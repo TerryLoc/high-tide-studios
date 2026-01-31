@@ -1,0 +1,15 @@
+.yt-embed-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #000;
+  border-radius: var(--hts-radius-lg);
+  overflow: hidden;
+  min-height: 200px;
+}
+
+@media (max-width: 600px) {
+  .yt-embed-wrapper {
+    min-height: 140px;
+  }
+}
