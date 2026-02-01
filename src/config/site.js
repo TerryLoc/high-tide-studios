@@ -90,11 +90,6 @@ export const pageSEO = {
       'Greystones studio booking',
     ],
   },
-  cart: {
-    title: 'Your Cart',
-    description: 'Complete your podcast package booking at High Tide Studios.',
-    keywords: [],
-  },
 };
 
 // Structured Data (JSON-LD) for SEO

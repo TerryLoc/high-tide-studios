@@ -60,14 +60,14 @@ Three production packages are offered:
 
 ## 🎨 Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| React 19 | UI framework |
-| React Router 7 | Navigation |
-| Bootstrap 5 | CSS framework |
-| Framer Motion | Animations |
-| PropTypes | Type checking |
-| Sharp | Image optimization |
+| Technology     | Purpose            |
+| -------------- | ------------------ |
+| React 19       | UI framework       |
+| React Router 7 | Navigation         |
+| Bootstrap 5    | CSS framework      |
+| Framer Motion  | Animations         |
+| PropTypes      | Type checking      |
+| Sharp          | Image optimization |
 
 ## 📝 License
 
