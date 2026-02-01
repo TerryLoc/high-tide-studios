@@ -2,12 +2,12 @@
  * @typedef {Object} Episode
  * @property {string} title - Episode title
  * @property {string} youtubeId - YouTube video ID
- */
-
+ * @property {string} spotifyId - Spotify video ID (if applicable)
 /**
- * @typedef {Object} Client
+ * * @typedef {Object} Client
  * @property {string} name - Client/show name
  * @property {string} description - Show description
+ * @property {string} [spotifyShowId] - Spotify show/playlist URI (optional)
  * @property {Episode[]} episodes - List of featured episodes
  */
 
