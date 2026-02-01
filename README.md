@@ -1,53 +1,77 @@
-# Getting Started with Create React App
+# High Tide Studios
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A professional website for **High Tide Studios** — a broadcast-ready podcast and video production studio in Greystones, Wicklow, Ireland.
 
-## Available Scripts
+## 🎙️ Features
 
-In the project directory, you can run:
+- **Modern React 19** with functional components and hooks
+- **Bootstrap 5** for responsive, mobile-first design
+- **Framer Motion** animations for smooth page transitions
+- **SEO optimized** with meta tags, Open Graph, and JSON-LD structured data
+- **Centralized configuration** in `src/config/site.js` for easy content management
+- **Lazy-loaded YouTube embeds** for better performance
+- **Booking system** with calendar, package selection, and 10% deposit calculation
+- **Optimized images** in WebP format with lazy loading
 
-### `npm start`
+## 🚀 Quick Start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+# Install dependencies
+npm install
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Start development server
+npm start
 
-### `npm test`
+# Build for production
+npm run build
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-### `npm run build`
+## 📁 Project Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+src/
+├── components/      # Reusable UI components
+├── pages/           # Page components (Home, About, Contact, etc.)
+├── config/          # Site configuration and SEO settings
+├── data/            # Static data (packages, testimonials, team)
+├── styles/          # Custom CSS
+├── animations/      # Framer Motion animation configs
+└── context/         # React context providers
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ⚙️ Configuration
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+All site settings are centralized in `src/config/site.js`:
 
-### `npm run eject`
+- **Brand identity** (name, tagline, description)
+- **Contact info** (email, phone, address)
+- **Social links** (Instagram, YouTube)
+- **SEO defaults** (meta descriptions, keywords)
+- **Structured data** (JSON-LD for Google)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 📦 Packages & Services
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Three production packages are offered:
+- **Bronze** (€299) — Audio Foundation
+- **Silver** (€399) — Video + Social Clips  
+- **Gold** (€749) — Signature Broadcast
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🎨 Tech Stack
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+| Technology | Purpose |
+|------------|---------|
+| React 19 | UI framework |
+| React Router 7 | Navigation |
+| Bootstrap 5 | CSS framework |
+| Framer Motion | Animations |
+| PropTypes | Type checking |
+| Sharp | Image optimization |
 
-## Learn More
+## 📝 License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+© 2026 High Tide Studios. All rights reserved.
 
 ### Analyzing the Bundle Size
 
