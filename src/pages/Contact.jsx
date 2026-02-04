@@ -3,10 +3,16 @@ import { FadeInUp, FadeIn } from '../components/AnimatedSection';
 import { siteConfig } from '../config/site';
 import { packages } from '../data/packages';
 import SEO from '../components/SEO';
+import emailjs from '@emailjs/browser';
+
+// EmailJS Configuration
+const EMAILJS_SERVICE_ID = 'service_ns57z9a';
+const EMAILJS_TEMPLATE_ID = 'template_4wdkal7'; // Contact Form template
+const EMAILJS_PUBLIC_KEY = 'fA8c0XayRbgHD9Yec';
 
 /**
  * Contact page with form and contact information
- * Form includes validation and submission handling
+ * Sends inquiries via EmailJS
  */
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -64,17 +70,30 @@ export default function Contact() {
       setIsSubmitting(true);
 
       try {
-        // TODO: Integrate with email service (e.g., EmailJS, Formspree, or backend API)
-        console.log('Form submitted:', formData);
+        // Prepare email template parameters for Contact template
+        const emailParams = {
+          to_name: 'High Tide Studios',
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone || 'Not provided',
+          subject: formData.service || 'General Inquiry',
+          message: formData.message,
+          reply_to: formData.email,
+        };
 
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 800));
+        // Send email via EmailJS
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          emailParams,
+          EMAILJS_PUBLIC_KEY
+        );
 
         setSubmitted(true);
         setFormData({ name: '', email: '', phone: '', service: '', message: '' });
       } catch (error) {
         console.error('Submission error:', error);
-        setErrors({ submit: 'Something went wrong. Please try again.' });
+        setErrors({ submit: 'Failed to send message. Please try again or email us directly at colmhayesradio@gmail.com' });
       } finally {
         setIsSubmitting(false);
       }

@@ -3,9 +3,16 @@ import { useSearchParams } from 'react-router-dom';
 import { FadeInUp, FadeIn } from '../components/AnimatedSection';
 import { packages } from '../data/packages';
 import SEO from '../components/SEO';
+import emailjs from '@emailjs/browser';
+
+// EmailJS Configuration
+const EMAILJS_SERVICE_ID = 'service_ns57z9a';
+const EMAILJS_TEMPLATE_ID = 'template_jvbux9k';
+const EMAILJS_PUBLIC_KEY = 'fA8c0XayRbgHD9Yec';
 
 /**
- * Booking page with calendar, deposit system, and client details
+ * Booking page with calendar and client details
+ * Sends booking requests via EmailJS
  */
 export default function Booking() {
   const [searchParams] = useSearchParams();
@@ -142,17 +149,49 @@ export default function Booking() {
     setIsSubmitting(true);
 
     try {
-      // TODO: Integrate with booking system / payment processor
-      console.log('Booking submitted:', { ...formData, selectedDates, depositAmount });
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Format dates for email
+      const formattedDates = selectedDates.map(date => 
+        new Date(date).toLocaleDateString('en-IE', { 
+          weekday: 'long', 
+          day: 'numeric', 
+          month: 'long',
+          year: 'numeric'
+        })
+      ).join('\n• ');
+
+      // Prepare email template parameters (must match EmailJS template variables)
+      const emailParams = {
+        to_name: 'High Tide Studios',
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        company: formData.company || 'Not provided',
+        package: `${selectedPackage.title} - ${selectedPackage.subtitle}`,
+        package_price: selectedPackage.price,
+        deposit_amount: `€${depositAmount}`,
+        balance_due: `€${parseInt(selectedPackage.price.replace(/[€,]/g, '')) - depositAmount}`,
+        preferred_dates: formattedDates,
+        notes: formData.notes || 'None provided',
+        reply_to: formData.email,
+      };
+
+      // Send email via EmailJS
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        emailParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
       setSubmitted(true);
     } catch (error) {
       console.error('Booking error:', error);
-      setErrors({ submit: 'Something went wrong. Please try again.' });
+      console.error('Error details:', error.text || error.message || error);
+      setErrors({ submit: `Failed to send booking request: ${error.text || error.message || 'Unknown error'}. Please contact us directly at colmhayesradio@gmail.com` });
     } finally {
       setIsSubmitting(false);
     }
-  }, [formData, selectedDates, depositAmount, validateForm]);
+  }, [formData, selectedDates, depositAmount, selectedPackage, validateForm]);
 
   const { daysInMonth, startingDay, year, month } = getDaysInMonth(currentMonth);
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
