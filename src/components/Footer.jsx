@@ -108,9 +108,12 @@ export default function Footer() {
             </p>
           </div>
           <div className="col-12 col-md-6 text-center text-md-end mt-2 mt-md-0">
-            <p className="small text-muted mb-0">
+            <Link to="/privacy" className="small text-muted text-decoration-none me-3 footer-link">
+              Privacy Policy
+            </Link>
+            <span className="small text-muted">
               {siteConfig.contact.address}
-            </p>
+            </span>
           </div>
         </div>
       </div>
