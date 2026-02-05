@@ -15,8 +15,8 @@ export const siteConfig = {
   // Contact (consolidated)
   contact: {
     email: 'colmhayesradio@gmail.com',
-    phone: '087 256 2643',
-    phoneRaw: '+353872562643',
+    phone: '087 246 2643',
+    phoneRaw: '+353872462643',
     location: 'Greystones, Wicklow',
     address: 'Unit 11, Watson Johnson, Church Road, Greystones',
   },
