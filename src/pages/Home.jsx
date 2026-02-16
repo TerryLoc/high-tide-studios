@@ -188,16 +188,17 @@ export default function Home() {
           <StaggerContainer className="row g-3">
             {/* Row 1: Large feature + vertical stack */}
             <StaggerItem className="col-12 col-md-8">
-              <div className="studio-gallery-item studio-gallery-large">
-                <img 
-                  src="/images/rodecaster.webp" 
-                  alt="Rodecaster professional audio equipment" 
-                  className="studio-gallery-image"
-                  loading="lazy"
+              <div className="studio-gallery-item studio-gallery-large" style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden' }}>
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/JDKTdv_gKhg?si=_YLahDvVWPcEe3r5"
+                  title="High Tide Studios Tour"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: 'inherit' }}
                 />
-                <div className="studio-gallery-overlay">
-                  <span className="studio-gallery-label">Recording Suite</span>
-                </div>
               </div>
             </StaggerItem>
             <StaggerItem className="col-12 col-md-4">
