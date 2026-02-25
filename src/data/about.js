@@ -88,3 +88,12 @@ export const stats = [
   { value: 'Growing', label: 'Client Base' },
   { value: '100%', label: 'Satisfaction Rate' },
 ];
+
+export const features = [
+  'Professional recording environment with broadcast-quality equipment',
+  'Experienced technical support and engineering',
+  'Flexible recording packages tailored to your needs',
+  'Video podcasting with multi-4k cameras setups and social clips',
+  'Audio mastering, editing, and post-production services',
+  'Podcast distribution, publishing, and SEO-optimised show notes',
+];
