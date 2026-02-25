@@ -15,6 +15,53 @@ const EMAILJS_PUBLIC_KEY = 'fA8c0XayRbgHD9Yec';
  * Sends booking requests via EmailJS
  */
 export default function Booking() {
+    // FAQ Schema for SEO
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': 'How do I book a session at High Tide Studios?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Select your preferred dates, choose a package, and submit your details. We will confirm availability and send deposit instructions.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What is the deposit policy?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'A 10% non-refundable deposit is required to secure your booking. The balance is due 48 hours before your session.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Can I reschedule or cancel?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'You can reschedule up to 48 hours before your session. Deposits are non-refundable if cancelled.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What equipment is available?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Our studio features 5 x 4K cameras, multiple studio microphones, professional lighting, greenscreen, and live video switching.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'How many dates can I select?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'You can select up to 3 preferred dates. We will confirm which are available.'
+          }
+        }
+      ]
+    };
   const [searchParams] = useSearchParams();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDates, setSelectedDates] = useState([]);
@@ -293,6 +340,8 @@ export default function Booking() {
         page="contact"
         customTitle="Book a Session - High Tide Studios"
         customDescription="Book your podcast or video recording session at High Tide Studios Greystones. Select your preferred dates and secure your slot with a 10% deposit."
+        structuredDataType="faq"
+        structuredDataPayload={faqSchema}
       />
       
       <section className="booking-section py-5">
