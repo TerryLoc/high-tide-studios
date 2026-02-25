@@ -5,6 +5,7 @@ import ScrollToTop from './components/ScrollToTop';
 import CookieConsent from './components/CookieConsent';
 
 import Home from './pages/Home';
+import Services from './pages/Services';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Booking from './pages/Booking';
@@ -20,6 +21,7 @@ export default function App() {
         <main className="flex-grow-1" style={{ paddingTop: '76px' }}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/booking" element={<Booking />} />

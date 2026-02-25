@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
-import { packages } from "../data/packages";
 import { brandVision } from "../data/about";
 import { testimonials } from "../data/testimonials";
-import PackageCard from "../components/PackageCard";
 import TestimonialCard from "../components/TestimonialCard";
 import SEO from "../components/SEO";
 import { FadeInUp, FadeIn, StaggerContainer, StaggerItem } from "../components/AnimatedSection";
@@ -38,9 +36,9 @@ export default function Home() {
           </FadeInUp>
           <FadeInUp delay={0.4}>
             <div className="d-flex gap-3 justify-content-center flex-wrap">
-              <Link to="/booking" className="btn btn-light btn-lg px-4">
+              <Link to="/services" className="btn btn-light btn-lg px-4">
                 <i className="bi bi-calendar-check me-2"></i>
-                Book a Session
+                Our Services
               </Link>
               <Link to="/clients" className="btn btn-outline-light btn-lg px-4">
                 <i className="bi bi-play-circle me-2"></i>
@@ -51,22 +49,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Packages Section */}
-      <section className="container py-5" id="packages">
-        <FadeInUp>
-          <div className="text-center mb-5">
-            <h2 className="display-6 fw-bold">Our Packages</h2>
-            <p className="text-muted">Professional podcast production tailored to your needs</p>
-          </div>
-        </FadeInUp>
-        <StaggerContainer className="row g-4">
-          {packages.map((pkg, i) => (
-            <StaggerItem className="col-12 col-md-6 col-lg-4" key={pkg.id || i}>
-              <PackageCard pkg={pkg} featured={pkg.badge === 'Best Value'} />
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
-      </section>
 
       {/* Brand Vision Section */}
       <section className="bg-light py-5">

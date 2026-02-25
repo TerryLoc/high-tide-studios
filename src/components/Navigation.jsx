@@ -28,12 +28,13 @@ export default function Navigation() {
   }, []);
 
   const navLinks = [
-    { to: '/', label: 'Services' },
-    { to: '/about', label: 'About' },
-    { to: '/clients', label: 'Clients' },
-    { to: '/booking', label: 'Book Now' },
-    { to: '/contact', label: 'Contact' },
-  ];
+  { to: '/', label: 'Home' },
+  { to: '/about', label: 'About' },
+  { to: '/clients', label: 'Clients' },
+  { to: '/services', label: 'Services' },
+  { to: '/booking', label: 'Book Now' },
+  { to: '/contact', label: 'Contact' },
+];
 
   return (
     <header>
