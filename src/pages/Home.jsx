@@ -1,38 +1,54 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
 import { brandVision } from "../data/about";
 import { testimonials } from "../data/testimonials";
 import TestimonialCard from "../components/TestimonialCard";
 import SEO from "../components/SEO";
 import { FadeInUp, FadeIn, StaggerContainer, StaggerItem } from "../components/AnimatedSection";
 import { features } from '../data/about';
+import '../styles/home.css';
 
 export default function Home() {
+  const barsRef = useRef(null);
+
+  useEffect(() => {
+    const bars = barsRef.current?.querySelectorAll('.ht-hero-bar');
+    if (!bars) return;
+    bars.forEach((bar, i) => {
+      bar.style.animationDelay = `${i * 0.08}s`;
+    });
+  }, []);
+
   return <>
     <SEO page="home" />
 
-    {/* Hero Image Section */}
-    <section className="hero-image-section">
-      <img
-        src={`${process.env.PUBLIC_URL}/images/hero.webp`}
-        alt="High Tide Studios recording environment"
-        className="hero-image-full"
-      />
+    {/* ── Hero: Logo over animated soundwave ── */}
+    <section className="ht-hero-image-section" aria-label="High Tide Studios">
+      <div className="ht-hero-glow" aria-hidden="true" />
+      <div className="ht-hero-wave-bg" ref={barsRef} aria-hidden="true">
+        {Array.from({ length: 31 }).map((_, i) => (
+          <div key={i} className="ht-hero-bar" />
+        ))}
+      </div>
+      <div className="ht-hero-logo-wrap">
+        <img
+          src={`${process.env.PUBLIC_URL}/images/main_logo.png`}
+          alt="High Tide Studios"
+          className="ht-hero-logo"
+        />
+      </div>
     </section>
 
-    {/* Hero Content Section */}
+    {/* Hero Content */}
     <section className="ht-hero-content text-center py-5">
       <div className="container">
         <FadeInUp>
           <p className="ht-eyebrow">Podcast &amp; Video Production · Greystones</p>
-          <h1 className="ht-hero-title">
-            High Tide Studios
-          </h1>
+          <h1 className="ht-hero-title">High Tide Studios</h1>
           <div className="ht-title-divider" aria-hidden="true" />
         </FadeInUp>
         <FadeInUp delay={0.2}>
-          <p className="ht-hero-lead">
-            A calm, broadcast-ready environment for serious voices.
-          </p>
+          <p className="ht-hero-lead">A calm, broadcast-ready environment for serious voices.</p>
         </FadeInUp>
         <FadeInUp delay={0.4}>
           <div className="d-flex gap-3 justify-content-center flex-wrap">
@@ -49,7 +65,7 @@ export default function Home() {
       </div>
     </section>
 
-    {/* Brand Vision Section */}
+    {/* Brand Vision */}
     <section className="ht-brand-vision py-5">
       <div className="container">
         <div className="row justify-content-center">
@@ -62,9 +78,7 @@ export default function Home() {
             <FadeIn delay={0.2}>
               <div className="ht-brand-vision-content">
                 {brandVision.paragraphs.map((p, i) => (
-                  <p key={i} className={`ht-body-text ${i === 0 ? 'ht-body-text--lead' : ''} mb-4`}>
-                    {p}
-                  </p>
+                  <p key={i} className={`ht-body-text ${i === 0 ? 'ht-body-text--lead' : ''} mb-4`}>{p}</p>
                 ))}
               </div>
             </FadeIn>
@@ -72,8 +86,7 @@ export default function Home() {
           <StaggerItem className="col-12 col-md-8 mt-4">
             <div className="ht-video-wrapper">
               <iframe
-                width="100%"
-                height="100%"
+                width="100%" height="100%"
                 src="https://www.youtube.com/embed/JDKTdv_gKhg?si=_YLahDvVWPcEe3r5"
                 title="High Tide Studios Tour"
                 frameBorder="0"
@@ -87,7 +100,7 @@ export default function Home() {
       </div>
     </section>
 
-    {/* Features Section */}
+    {/* Features */}
     <section className="ht-features py-5">
       <div className="container">
         <FadeInUp>
@@ -95,58 +108,35 @@ export default function Home() {
             <p className="ht-eyebrow">What We Offer</p>
             <h2 className="ht-section-title">Studio Features</h2>
             <div className="ht-section-divider mx-auto" aria-hidden="true" />
-            <p className="ht-muted-text mt-3">
-              What makes High Tide Studios the ideal choice for your content creation needs?
-            </p>
+            <p className="ht-muted-text mt-3">What makes High Tide Studios the ideal choice for your content creation needs?</p>
           </div>
         </FadeInUp>
         <StaggerContainer className="row g-4">
           <StaggerItem className="col-12 col-md-4">
             <div className="ht-feature-card h-100">
               <div className="ht-feature-image-wrapper mb-3">
-                <img
-                  src="/images/rodecasterproii.webp"
-                  alt="Rodecaster Pro II audio equipment"
-                  className="ht-feature-image"
-                  loading="lazy"
-                />
+                <img src="/images/rodecasterproii.webp" alt="Rodecaster Pro II audio equipment" className="ht-feature-image" loading="lazy" />
               </div>
               <h5 className="ht-feature-title">Professional Audio</h5>
-              <p className="ht-muted-text small mb-0">
-                Multi-mic studio recording with broadcast-quality mastering and noise reduction
-              </p>
+              <p className="ht-muted-text small mb-0">Multi-mic studio recording with broadcast-quality mastering and noise reduction</p>
             </div>
           </StaggerItem>
           <StaggerItem className="col-12 col-md-4">
             <div className="ht-feature-card h-100">
               <div className="ht-feature-image-wrapper mb-3">
-                <img
-                  src="/images/rodecastervideo.webp"
-                  alt="Rodecaster video production equipment"
-                  className="ht-feature-image"
-                  loading="lazy"
-                />
+                <img src="/images/rodecastervideo.webp" alt="Rodecaster video production equipment" className="ht-feature-image" loading="lazy" />
               </div>
               <h5 className="ht-feature-title">Video Production</h5>
-              <p className="ht-muted-text small mb-0">
-                Cinematic lighting and multi-camera setups for stunning visuals
-              </p>
+              <p className="ht-muted-text small mb-0">Cinematic lighting and multi-camera setups for stunning visuals</p>
             </div>
           </StaggerItem>
           <StaggerItem className="col-12 col-md-4">
             <div className="ht-feature-card h-100">
               <div className="ht-feature-image-wrapper mb-3">
-                <img
-                  src="/images/tech_desk.webp"
-                  alt="Professional technical desk setup"
-                  className="ht-feature-image"
-                  loading="lazy"
-                />
+                <img src="/images/tech_desk.webp" alt="Professional technical desk setup" className="ht-feature-image" loading="lazy" />
               </div>
               <h5 className="ht-feature-title">Expert Mixing</h5>
-              <p className="ht-muted-text small mb-0">
-                Professional audio engineering with state-of-the-art equipment
-              </p>
+              <p className="ht-muted-text small mb-0">Professional audio engineering with state-of-the-art equipment</p>
             </div>
           </StaggerItem>
           <StaggerItem className="col-12">
@@ -166,7 +156,7 @@ export default function Home() {
       </div>
     </section>
 
-    {/* Testimonials Section */}
+    {/* Testimonials */}
     <section className="ht-testimonials py-5">
       <div className="container">
         <FadeInUp>
@@ -187,7 +177,7 @@ export default function Home() {
       </div>
     </section>
 
-    {/* Studio Gallery Section */}
+    {/* Gallery */}
     <section className="ht-gallery py-5">
       <div className="container">
         <FadeInUp>
@@ -257,7 +247,7 @@ export default function Home() {
       </div>
     </section>
 
-    {/* CTA Section */}
+    {/* CTA */}
     <section className="ht-cta py-5">
       <div className="container text-center">
         <FadeInUp>

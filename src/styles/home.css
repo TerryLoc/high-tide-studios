@@ -1,9 +1,9 @@
 /* ============================================================
    home.css — High Tide Studios
-   Cinematic dark/amber theme · matches not-found.css palette
+   Cinematic dark/amber theme
    ============================================================ */
 
-/* ── CSS Variables (shared design tokens) ── */
+/* ── CSS Variables ── */
 :root {
   --ht-black: #0a0a0a;
   --ht-dark: #111111;
@@ -19,7 +19,7 @@
   --ht-serif: 'Georgia', 'Times New Roman', serif;
 }
 
-/* ── Shared typography tokens ── */
+/* ── Shared typography ── */
 .ht-eyebrow {
   font-size: 0.68rem;
   font-weight: 600;
@@ -97,9 +97,7 @@
   box-shadow: 0 8px 24px rgba(196, 150, 72, 0.3);
 }
 
-/* Light variant for dark CTA backgrounds */
 .ht-btn-primary--light {
-  background: var(--ht-gold);
   box-shadow: 0 0 0 1px rgba(196, 150, 72, 0.4);
 }
 
@@ -130,7 +128,195 @@
 }
 
 /* ============================================================
-   HERO CONTENT
+   HERO — Logo + Soundwave
+   ============================================================ */
+.ht-hero-image-section {
+  position: relative;
+  background: var(--ht-black);
+  width: 100%;
+  /* Tall enough to be cinematic, not so tall it needs scrolling */
+  height: clamp(320px, 55vw, 600px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Warm amber radial glow from centre */
+.ht-hero-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 70% at 50% 50%,
+    rgba(196, 150, 72, 0.1) 0%,
+    rgba(196, 150, 72, 0.03) 45%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Background soundwave ── */
+.ht-hero-wave-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(3px, 0.6vw, 8px);
+  padding: 0 2rem;
+  z-index: 2;
+}
+
+.ht-hero-bar {
+  flex: 1;
+  max-width: 10px;
+  border-radius: 3px;
+  background: var(--ht-gold);
+  opacity: 0.18;
+  animation: ht-hero-pulse 2s ease-in-out infinite alternate;
+}
+
+/* Give bars a natural waveform silhouette — peaks in the middle */
+.ht-hero-bar:nth-child(1) {
+  height: 8%;
+}
+.ht-hero-bar:nth-child(2) {
+  height: 14%;
+}
+.ht-hero-bar:nth-child(3) {
+  height: 22%;
+}
+.ht-hero-bar:nth-child(4) {
+  height: 30%;
+}
+.ht-hero-bar:nth-child(5) {
+  height: 42%;
+}
+.ht-hero-bar:nth-child(6) {
+  height: 55%;
+}
+.ht-hero-bar:nth-child(7) {
+  height: 65%;
+}
+.ht-hero-bar:nth-child(8) {
+  height: 74%;
+}
+.ht-hero-bar:nth-child(9) {
+  height: 82%;
+}
+.ht-hero-bar:nth-child(10) {
+  height: 88%;
+}
+.ht-hero-bar:nth-child(11) {
+  height: 93%;
+}
+.ht-hero-bar:nth-child(12) {
+  height: 97%;
+}
+.ht-hero-bar:nth-child(13) {
+  height: 99%;
+}
+.ht-hero-bar:nth-child(14) {
+  height: 100%;
+}
+.ht-hero-bar:nth-child(15) {
+  height: 100%;
+}
+.ht-hero-bar:nth-child(16) {
+  height: 100%;
+} /* centre peak */
+.ht-hero-bar:nth-child(17) {
+  height: 100%;
+}
+.ht-hero-bar:nth-child(18) {
+  height: 100%;
+}
+.ht-hero-bar:nth-child(19) {
+  height: 99%;
+}
+.ht-hero-bar:nth-child(20) {
+  height: 97%;
+}
+.ht-hero-bar:nth-child(21) {
+  height: 93%;
+}
+.ht-hero-bar:nth-child(22) {
+  height: 88%;
+}
+.ht-hero-bar:nth-child(23) {
+  height: 82%;
+}
+.ht-hero-bar:nth-child(24) {
+  height: 74%;
+}
+.ht-hero-bar:nth-child(25) {
+  height: 65%;
+}
+.ht-hero-bar:nth-child(26) {
+  height: 55%;
+}
+.ht-hero-bar:nth-child(27) {
+  height: 42%;
+}
+.ht-hero-bar:nth-child(28) {
+  height: 30%;
+}
+.ht-hero-bar:nth-child(29) {
+  height: 22%;
+}
+.ht-hero-bar:nth-child(30) {
+  height: 14%;
+}
+.ht-hero-bar:nth-child(31) {
+  height: 8%;
+}
+
+@keyframes ht-hero-pulse {
+  0% {
+    transform: scaleY(0.5);
+    opacity: 0.12;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0.22;
+  }
+}
+
+/* ── Logo on top of the wave ── */
+.ht-hero-logo-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  padding: 2rem;
+}
+
+.ht-hero-logo {
+  width: clamp(220px, 45vw, 520px);
+  height: auto;
+  /* Knock out the black background — white logo remains, black vanishes */
+
+  /* Subtle fade in */
+  animation: ht-logo-appear 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes ht-logo-appear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   HERO CONTENT (text block below the wave section)
    ============================================================ */
 .ht-hero-content {
   background: var(--ht-black);
@@ -138,7 +324,6 @@
   overflow: hidden;
 }
 
-/* Warm glow effect — like a spotlight above the text */
 .ht-hero-content::before {
   content: '';
   position: absolute;
@@ -207,7 +392,6 @@
   overflow: hidden;
 }
 
-/* Subtle gold top-edge accent on hover */
 .ht-feature-card::before {
   content: '';
   position: absolute;
@@ -262,7 +446,6 @@
   transform: scale(1.04);
 }
 
-/* Equipment list */
 .ht-equipment-list {
   list-style: none;
   padding: 0;
@@ -297,8 +480,6 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-/* Assumes TestimonialCard renders with its own class — 
-   these cascade in to align cards with the dark theme */
 .ht-testimonials .card,
 .ht-testimonials [class*='testimonial-card'],
 .ht-testimonials [class*='TestimonialCard'] {
@@ -317,7 +498,6 @@
   transform: translateY(-3px);
 }
 
-/* Blockquote/quote marks inside testimonials */
 .ht-testimonials blockquote,
 .ht-testimonials .card-text,
 .ht-testimonials p {
@@ -393,7 +573,6 @@
   border-top: 1px solid var(--ht-gold-border);
 }
 
-/* Ambient glow */
 .ht-cta::before {
   content: '';
   position: absolute;
