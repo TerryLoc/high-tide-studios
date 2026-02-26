@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import SEO from '../components/SEO';
 import { FadeInUp } from '../components/AnimatedSection';
-import '../styles/not-found.css'; // Import specific styles for the 404 page
+
 
 /**
  * 404 Not Found page

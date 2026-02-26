@@ -1,0 +1,422 @@
+/* ============================================================
+   home.css — High Tide Studios
+   Cinematic dark/amber theme · matches not-found.css palette
+   ============================================================ */
+
+/* ── CSS Variables (shared design tokens) ── */
+:root {
+  --ht-black: #0a0a0a;
+  --ht-dark: #111111;
+  --ht-dark-mid: #1a1a1a;
+  --ht-dark-card: #141414;
+  --ht-gold: #c49648;
+  --ht-gold-light: #d4a85a;
+  --ht-gold-dim: rgba(196, 150, 72, 0.15);
+  --ht-gold-border: rgba(196, 150, 72, 0.25);
+  --ht-cream: #f5f0e8;
+  --ht-cream-dim: rgba(245, 240, 232, 0.55);
+  --ht-cream-faint: rgba(245, 240, 232, 0.18);
+  --ht-serif: 'Georgia', 'Times New Roman', serif;
+}
+
+/* ── Shared typography tokens ── */
+.ht-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ht-gold);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.ht-section-title {
+  font-family: var(--ht-serif);
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  font-weight: 700;
+  color: var(--ht-cream);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.ht-section-divider {
+  width: 44px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ht-gold), transparent);
+  margin-bottom: 1.25rem;
+}
+
+.ht-title-divider {
+  width: 44px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ht-gold), transparent);
+  margin: 1.25rem auto;
+}
+
+.ht-body-text {
+  color: var(--ht-cream-dim);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.ht-body-text--lead {
+  font-size: 1.1rem;
+  color: rgba(245, 240, 232, 0.75);
+}
+
+.ht-muted-text {
+  color: var(--ht-cream-dim);
+  line-height: 1.7;
+}
+
+/* ── Shared buttons ── */
+.ht-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  background: var(--ht-gold);
+  color: var(--ht-black);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 2px;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.ht-btn-primary:hover {
+  background: var(--ht-gold-light);
+  color: var(--ht-black);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(196, 150, 72, 0.3);
+}
+
+/* Light variant for dark CTA backgrounds */
+.ht-btn-primary--light {
+  background: var(--ht-gold);
+  box-shadow: 0 0 0 1px rgba(196, 150, 72, 0.4);
+}
+
+.ht-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  background: transparent;
+  color: var(--ht-cream);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--ht-cream-faint);
+  border-radius: 2px;
+  text-decoration: none;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.ht-btn-outline:hover {
+  border-color: var(--ht-gold);
+  color: var(--ht-gold);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   HERO CONTENT
+   ============================================================ */
+.ht-hero-content {
+  background: var(--ht-black);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Warm glow effect — like a spotlight above the text */
+.ht-hero-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 0%,
+    rgba(196, 150, 72, 0.07) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.ht-hero-title {
+  font-family: var(--ht-serif);
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 700;
+  color: var(--ht-cream);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-bottom: 0;
+}
+
+.ht-hero-lead {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: var(--ht-cream-dim);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  margin-bottom: 2.5rem;
+}
+
+/* ============================================================
+   BRAND VISION
+   ============================================================ */
+.ht-brand-vision {
+  background: var(--ht-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ht-video-wrapper {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 3px;
+  border: 1px solid var(--ht-gold-border);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* ============================================================
+   FEATURES
+   ============================================================ */
+.ht-features {
+  background: var(--ht-black);
+}
+
+.ht-feature-card {
+  background: var(--ht-dark-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  padding: 1.5rem;
+  transition:
+    border-color 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle gold top-edge accent on hover */
+.ht-feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ht-gold), transparent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.ht-feature-card:hover {
+  border-color: var(--ht-gold-border);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.ht-feature-card:hover::before {
+  opacity: 1;
+}
+
+.ht-feature-card--equipment {
+  background: var(--ht-dark-mid);
+  border-color: var(--ht-gold-border);
+}
+
+.ht-feature-title {
+  font-family: var(--ht-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ht-cream);
+  margin-bottom: 0.5rem;
+}
+
+.ht-feature-image-wrapper {
+  overflow: hidden;
+  border-radius: 2px;
+  aspect-ratio: 16 / 9;
+  background: #0d0d0d;
+}
+
+.ht-feature-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.ht-feature-card:hover .ht-feature-image {
+  transform: scale(1.04);
+}
+
+/* Equipment list */
+.ht-equipment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.5rem 2rem;
+}
+
+.ht-equipment-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--ht-cream-dim);
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ht-check-icon {
+  color: var(--ht-gold);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.ht-testimonials {
+  background: var(--ht-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Assumes TestimonialCard renders with its own class — 
+   these cascade in to align cards with the dark theme */
+.ht-testimonials .card,
+.ht-testimonials [class*='testimonial-card'],
+.ht-testimonials [class*='TestimonialCard'] {
+  background: var(--ht-dark-card) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 3px !important;
+  color: var(--ht-cream) !important;
+  transition:
+    border-color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.ht-testimonials .card:hover,
+.ht-testimonials [class*='testimonial-card']:hover {
+  border-color: var(--ht-gold-border) !important;
+  transform: translateY(-3px);
+}
+
+/* Blockquote/quote marks inside testimonials */
+.ht-testimonials blockquote,
+.ht-testimonials .card-text,
+.ht-testimonials p {
+  color: var(--ht-cream-dim) !important;
+}
+
+.ht-testimonials .text-muted {
+  color: rgba(196, 150, 72, 0.7) !important;
+}
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+.ht-gallery {
+  background: var(--ht-black);
+}
+
+.ht-gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  aspect-ratio: 4 / 3;
+  background: #0d0d0d;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ht-gallery-item--large {
+  aspect-ratio: 16 / 9;
+}
+
+.ht-gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.ht-gallery-item:hover .ht-gallery-image {
+  transform: scale(1.05);
+}
+
+.ht-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 55%);
+  display: flex;
+  align-items: flex-end;
+  padding: 0.85rem 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ht-gallery-item:hover .ht-gallery-overlay {
+  opacity: 1;
+}
+
+.ht-gallery-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ht-gold);
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.ht-cta {
+  background: var(--ht-dark-mid);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--ht-gold-border);
+}
+
+/* Ambient glow */
+.ht-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 60% 80% at 50% 100%,
+    rgba(196, 150, 72, 0.07) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.ht-cta-title {
+  font-family: var(--ht-serif);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--ht-cream);
+  margin-bottom: 0;
+}
+
+.ht-cta-lead {
+  color: var(--ht-cream-dim);
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
