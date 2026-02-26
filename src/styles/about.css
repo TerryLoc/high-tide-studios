@@ -317,3 +317,47 @@
 .ht-location-link:hover {
   color: var(--ht-gold-light);
 }
+
+/* ============================================================
+   STATS — mobile fix
+   ============================================================ */
+
+/* Tighten font sizes on small screens */
+@media (max-width: 575px) {
+  .ht-stat-value {
+    font-size: clamp(1.4rem, 7vw, 2rem);
+    word-break: break-word;
+  }
+
+  .ht-stat-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+  }
+
+  .ht-stat-item {
+    padding: 0.75rem 0.5rem;
+  }
+
+  /* Hide vertical dividers on mobile — too cramped */
+  .ht-stat-item + .ht-stat-item::before {
+    display: none;
+  }
+}
+
+/* Extra small — stack stats into a single column */
+@media (max-width: 380px) {
+  .ht-stats .row {
+    flex-direction: column;
+  }
+
+  .ht-stats .col-4 {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .ht-stats .col-4:last-child {
+    border-bottom: none;
+  }
+}
