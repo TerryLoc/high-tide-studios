@@ -9,9 +9,11 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { to: '/', label: 'Services' },
+    { to: '/', label: 'Home' },
     { to: '/about', label: 'About' },
     { to: '/clients', label: 'Clients' },
+    { to: '/services', label: 'Services' },
+    { to: '/booking', label: 'Book Now' },
     { to: '/contact', label: 'Contact' },
   ];
 
