@@ -1,0 +1,408 @@
+/* ============================================================
+   services.css — High Tide Studios
+   Services page hero + package cards (bronze / silver / gold)
+   ============================================================ */
+
+/* ── Tier accent colours ── */
+:root {
+  --ht-bronze: #cd7f32;
+  --ht-bronze-dim: rgba(205, 127, 50, 0.2);
+  --ht-bronze-border: rgba(205, 127, 50, 0.35);
+  --ht-silver: #a8b2bc;
+  --ht-silver-dim: rgba(168, 178, 188, 0.2);
+  --ht-silver-border: rgba(168, 178, 188, 0.35);
+  --ht-gold-pkg: #c49648;
+  --ht-gold-pkg-dim: rgba(196, 150, 72, 0.2);
+  --ht-gold-pkg-border: rgba(196, 150, 72, 0.4);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.ht-services-hero {
+  background: var(--ht-black);
+  padding: 6rem 1.5rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ht-services-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 0%,
+    rgba(196, 150, 72, 0.08) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.ht-services-title {
+  font-family: var(--ht-serif);
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--ht-cream);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 0;
+}
+
+.ht-services-lead {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: var(--ht-cream-dim);
+  font-weight: 300;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   PACKAGES SECTION
+   ============================================================ */
+.ht-packages-section {
+  background: var(--ht-dark);
+}
+
+/* ============================================================
+   PACKAGE CARD — base
+   ============================================================ */
+.ht-pkg-card {
+  background: var(--ht-dark-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.ht-pkg-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Top accent bar (coloured per tier) ── */
+.ht-pkg-accent-bar {
+  height: 3px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* ── Badge ── */
+.ht-pkg-badge-row {
+  text-align: center;
+  padding: 0.5rem 1.5rem 0;
+}
+
+.ht-pkg-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.9rem;
+  border-radius: 2rem;
+  background: var(--ht-gold);
+  color: var(--ht-black);
+}
+
+/* ── Card body ── */
+.ht-pkg-body {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ── Header ── */
+.ht-pkg-tier-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.ht-pkg-subtitle {
+  font-family: var(--ht-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ht-cream);
+  margin-bottom: 0;
+  line-height: 1.25;
+}
+
+/* ── Price ── */
+.ht-pkg-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+
+.ht-pkg-price {
+  font-family: var(--ht-serif);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--ht-cream);
+  line-height: 1;
+}
+
+.ht-pkg-original-price {
+  font-size: 0.95rem;
+  color: rgba(245, 240, 232, 0.3);
+  text-decoration: line-through;
+}
+
+/* ── Description ── */
+.ht-pkg-description {
+  font-size: 0.88rem;
+  color: var(--ht-cream-dim);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Features list ── */
+.ht-pkg-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  flex-grow: 1;
+}
+
+.ht-pkg-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.86rem;
+  color: var(--ht-cream-dim);
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  line-height: 1.5;
+}
+
+.ht-pkg-feature-item:last-child {
+  border-bottom: none;
+}
+
+.ht-pkg-check {
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 0.85rem;
+}
+
+/* ── Note ── */
+.ht-pkg-note {
+  font-size: 0.78rem;
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 2px;
+  border-left: 2px solid;
+}
+
+/* ── Who for ── */
+.ht-pkg-who-for {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.ht-pkg-who-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ht-cream);
+  margin-bottom: 0.4rem;
+}
+
+.ht-pkg-who-text {
+  font-size: 0.82rem;
+  color: var(--ht-cream-dim);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── CTA button ── */
+.ht-pkg-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  margin-top: auto;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.ht-pkg-cta:hover {
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   TIER VARIANTS
+   ============================================================ */
+
+/* ── BRONZE ── */
+.ht-pkg-bronze {
+  border-color: var(--ht-bronze-border);
+}
+
+.ht-pkg-bronze:hover {
+  box-shadow: 0 20px 50px rgba(205, 127, 50, 0.15);
+}
+
+.ht-pkg-bronze .ht-pkg-accent-bar {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--ht-bronze),
+    transparent
+  );
+}
+
+.ht-pkg-bronze .ht-pkg-tier-label {
+  color: var(--ht-bronze);
+}
+
+.ht-pkg-bronze .ht-pkg-check {
+  color: var(--ht-bronze);
+}
+
+.ht-pkg-bronze .ht-pkg-note {
+  background: var(--ht-bronze-dim);
+  color: rgba(245, 240, 232, 0.6);
+  border-color: var(--ht-bronze);
+}
+
+.ht-pkg-bronze .ht-pkg-cta {
+  background: var(--ht-bronze);
+  color: #0a0a0a;
+}
+
+.ht-pkg-bronze .ht-pkg-cta:hover {
+  background: #d98c3e;
+  box-shadow: 0 6px 20px rgba(205, 127, 50, 0.4);
+  color: #0a0a0a;
+}
+
+/* ── SILVER ── */
+.ht-pkg-silver {
+  border-color: var(--ht-silver-border);
+}
+
+.ht-pkg-silver:hover {
+  box-shadow: 0 20px 50px rgba(168, 178, 188, 0.12);
+}
+
+.ht-pkg-silver .ht-pkg-accent-bar {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--ht-silver),
+    transparent
+  );
+}
+
+.ht-pkg-silver .ht-pkg-tier-label {
+  color: var(--ht-silver);
+}
+
+.ht-pkg-silver .ht-pkg-check {
+  color: var(--ht-silver);
+}
+
+.ht-pkg-silver .ht-pkg-note {
+  background: var(--ht-silver-dim);
+  color: rgba(245, 240, 232, 0.6);
+  border-color: var(--ht-silver);
+}
+
+.ht-pkg-silver .ht-pkg-cta {
+  background: var(--ht-silver);
+  color: #0a0a0a;
+}
+
+.ht-pkg-silver .ht-pkg-cta:hover {
+  background: #bbc4cc;
+  box-shadow: 0 6px 20px rgba(168, 178, 188, 0.3);
+  color: #0a0a0a;
+}
+
+/* ── GOLD ── */
+.ht-pkg-gold {
+  border-color: var(--ht-gold-pkg-border);
+  background: #161410; /* slightly warmer dark for the flagship */
+}
+
+.ht-pkg-gold:hover {
+  box-shadow: 0 20px 60px rgba(196, 150, 72, 0.2);
+}
+
+.ht-pkg-gold .ht-pkg-accent-bar {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--ht-gold-pkg),
+    var(--ht-gold-light),
+    var(--ht-gold-pkg),
+    transparent
+  );
+}
+
+.ht-pkg-gold .ht-pkg-tier-label {
+  color: var(--ht-gold-pkg);
+}
+
+.ht-pkg-gold .ht-pkg-price {
+  color: var(--ht-gold-pkg);
+}
+
+.ht-pkg-gold .ht-pkg-check {
+  color: var(--ht-gold-pkg);
+}
+
+.ht-pkg-gold .ht-pkg-note {
+  background: var(--ht-gold-pkg-dim);
+  color: rgba(245, 240, 232, 0.7);
+  border-color: var(--ht-gold-pkg);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.ht-pkg-gold .ht-pkg-cta {
+  background: var(--ht-gold-pkg);
+  color: #0a0a0a;
+}
+
+.ht-pkg-gold .ht-pkg-cta:hover {
+  background: var(--ht-gold-light);
+  box-shadow: 0 6px 24px rgba(196, 150, 72, 0.45);
+  color: #0a0a0a;
+}
+
+/* Gold gets a subtle inner glow to elevate it as flagship */
+.ht-pkg-gold::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  box-shadow: inset 0 0 40px rgba(196, 150, 72, 0.04);
+  pointer-events: none;
+}

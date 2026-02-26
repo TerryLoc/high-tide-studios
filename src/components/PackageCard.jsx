@@ -3,79 +3,88 @@ import PropTypes from 'prop-types';
 
 /**
  * Package card component for displaying service offerings
- * @param {Object} pkg - Package data object
- * @param {boolean} featured - Whether to highlight this package
  */
 export default function PackageCard({ pkg, featured = false }) {
-  // Map package id to hover color class
-  const hoverColorClass = {
-    bronze: 'package-hover-bronze',
-    silver: 'package-hover-silver',
-    gold: 'package-hover-gold',
+  const tierClass = {
+    bronze: 'ht-pkg-bronze',
+    silver: 'ht-pkg-silver',
+    gold:   'ht-pkg-gold',
   }[pkg.id] || '';
 
   return (
-    <article 
-      className={`card h-100 shadow-sm package-card ${hoverColorClass} ${featured ? 'border-dark border-2' : ''}`}
-      aria-label={`${pkg.title} package - ${pkg.price}`}
+    <article
+      className={`ht-pkg-card h-100 ${tierClass} ${featured ? 'ht-pkg-card--featured' : ''}`}
+      aria-label={`${pkg.title} package — ${pkg.price}`}
     >
+      {/* Tier accent bar at top */}
+      <div className="ht-pkg-accent-bar" aria-hidden="true" />
+
       {pkg.badge && (
-        <div className="card-header bg-dark text-white text-center py-2">
-          <span className="badge-text fw-semibold small">{pkg.badge}</span>
+        <div className="ht-pkg-badge-row">
+          <span className="ht-pkg-badge">{pkg.badge}</span>
         </div>
       )}
-      <div className="card-body d-flex flex-column">
-        <header>
-          <h3 className="h4 fw-bold mb-1">{pkg.title}</h3>
-          <p className="text-muted small mb-3">{pkg.subtitle}</p>
+
+      <div className="ht-pkg-body">
+
+        {/* Header */}
+        <header className="ht-pkg-header">
+          <p className="ht-pkg-tier-label">{pkg.title}</p>
+          <h3 className="ht-pkg-subtitle">{pkg.subtitle}</h3>
         </header>
 
-        <div className="mb-3" aria-label="Pricing">
-          <span className="fs-3 fw-bold text-dark">{pkg.price}</span>
+        {/* Price */}
+        <div className="ht-pkg-price-row" aria-label="Pricing">
+          <span className="ht-pkg-price">{pkg.price}</span>
           {pkg.originalPrice && (
-            <span className="text-muted text-decoration-line-through ms-2">
-              <span className="visually-hidden">Originally </span>
+            <span className="ht-pkg-original-price" aria-label={`Originally ${pkg.originalPrice}`}>
               {pkg.originalPrice}
             </span>
           )}
         </div>
 
-        <p className="small mb-3">{pkg.description}</p>
+        {/* Description */}
+        <p className="ht-pkg-description">{pkg.description}</p>
 
-        <ul className="package-features small flex-grow-1" aria-label="Package features">
+        {/* Features */}
+        <ul className="ht-pkg-features" aria-label="Package features">
           {pkg.features.map((feature, index) => (
-            <li key={`${pkg.id}-feature-${index}`}>
-              <i className="bi bi-check2 text-success me-2" aria-hidden="true" />
+            <li key={`${pkg.id}-feature-${index}`} className="ht-pkg-feature-item">
+              <i className="bi bi-check2 ht-pkg-check" aria-hidden="true" />
               {feature}
             </li>
           ))}
         </ul>
 
+        {/* Note */}
         {pkg.note && (
-          <p className="small text-muted fst-italic mb-3">
+          <p className="ht-pkg-note">
             <i className="bi bi-info-circle me-1" aria-hidden="true" />
             {pkg.note}
           </p>
         )}
 
+        {/* Who it's for */}
         {pkg.whoFor && (
-          <div className="small mb-3 pt-2 border-top">
-            <p className="fw-semibold mb-1 text-dark">
+          <div className="ht-pkg-who-for">
+            <p className="ht-pkg-who-label">
               <i className="bi bi-person-check me-1" aria-hidden="true" />
               Who this is for
             </p>
-            <p className="text-muted mb-0">{pkg.whoFor}</p>
+            <p className="ht-pkg-who-text">{pkg.whoFor}</p>
           </div>
         )}
 
+        {/* CTA */}
         <Link
           to={`/booking?package=${pkg.id}`}
-          className="btn btn-dark w-100"
+          className="ht-pkg-cta"
           aria-label={`Book ${pkg.title} package`}
         >
-          <i className="bi bi-calendar-check me-2" aria-hidden="true" />
+          <i className="bi bi-calendar-check" aria-hidden="true" />
           Book Now
         </Link>
+
       </div>
     </article>
   );
