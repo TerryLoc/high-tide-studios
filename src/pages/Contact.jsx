@@ -7,364 +7,276 @@ import emailjs from '@emailjs/browser';
 
 // EmailJS Configuration
 const EMAILJS_SERVICE_ID = 'service_ns57z9a';
-const EMAILJS_TEMPLATE_ID = 'template_4wdkal7'; // Contact Form template
+const EMAILJS_TEMPLATE_ID = 'template_4wdkal7';
 const EMAILJS_PUBLIC_KEY = 'fA8c0XayRbgHD9Yec';
 
-/**
- * Contact page with form and contact information
- * Sends inquiries via EmailJS
- */
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: '',
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', service: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
 
   const validateForm = useCallback(() => {
     const newErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
-    }
-
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Please enter a valid email address';
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
+    else if (formData.message.trim().length < 10) newErrors.message = 'Message must be at least 10 characters';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   }, [formData]);
 
-  const handleChange = useCallback(
-    (e) => {
-      const { name, value } = e.target;
-      setFormData((prev) => ({ ...prev, [name]: value }));
-      // Clear error on change
-      if (errors[name]) {
-        setErrors((prev) => ({ ...prev, [name]: undefined }));
-      }
-    },
-    [errors]
-  );
+  const handleChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: undefined }));
+  }, [errors]);
 
-  const handleSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
-
-      if (!validateForm()) return;
-
-      setIsSubmitting(true);
-
-      try {
-        // Prepare email template parameters for Contact template
-        const emailParams = {
-          to_name: 'High Tide Studios',
-          from_name: formData.name,
-          from_email: formData.email,
-          phone: formData.phone || 'Not provided',
-          subject: formData.service || 'General Inquiry',
-          message: formData.message,
-          reply_to: formData.email,
-        };
-
-        // Send email via EmailJS
-        await emailjs.send(
-          EMAILJS_SERVICE_ID,
-          EMAILJS_TEMPLATE_ID,
-          emailParams,
-          EMAILJS_PUBLIC_KEY
-        );
-
-        setSubmitted(true);
-        setFormData({ name: '', email: '', phone: '', service: '', message: '' });
-      } catch (error) {
-        console.error('Submission error:', error);
-        setErrors({ submit: 'Failed to send message. Please try again or email us directly at colmhayesradio@gmail.com' });
-      } finally {
-        setIsSubmitting(false);
-      }
-    },
-    [formData, validateForm]
-  );
+  const handleSubmit = useCallback(async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+    setIsSubmitting(true);
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        to_name: 'High Tide Studios',
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone || 'Not provided',
+        subject: formData.service || 'General Inquiry',
+        message: formData.message,
+        reply_to: formData.email,
+      }, EMAILJS_PUBLIC_KEY);
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+    } catch (error) {
+      console.error('Submission error:', error);
+      setErrors({ submit: 'Failed to send message. Please try again or email us directly at colmhayesradio@gmail.com' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, [formData, validateForm]);
 
   const { contact } = siteConfig;
 
   return (
     <>
       <SEO page="contact" />
-      <section 
-        className="contact-section"
-        style={{
-          backgroundImage: 'linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.7) 100%), url(/images/lights.webp)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-          minHeight: 'calc(100vh - 76px)'
-        }}
-      >
-        <div className="container py-5">
-          {/* Header */}
+
+      {/* Hero */}
+      <section className="ht-contact-hero text-center">
+        <div className="container">
           <FadeInUp>
-            <div className="text-center mb-5">
-              <span className="badge bg-white bg-opacity-10 text-white px-3 py-2 mb-3">
-                <i className="bi bi-chat-dots me-2"></i>Let's Talk
-              </span>
-              <h1 className="display-5 fw-bold text-white mb-3">Get in Touch</h1>
-              <p className="lead text-white opacity-75 mx-auto" style={{ maxWidth: '600px' }}>
-                Ready to create something amazing? We'd love to hear about your project.
-              </p>
-            </div>
+            <p className="ht-eyebrow">Get in Touch</p>
+            <h1 className="ht-contact-title">Let's Talk</h1>
+            <div className="ht-title-divider mx-auto" aria-hidden="true" />
+            <p className="ht-contact-lead">
+              Ready to create something remarkable? We'd love to hear about your project.
+            </p>
           </FadeInUp>
+        </div>
+      </section>
 
+      {/* Contact body — background image with dark overlay */}
+      <section className="ht-contact-section">
+       <div
+  className="ht-contact-bg"
+  aria-hidden="true"
+  style={{
+    backgroundImage: `linear-gradient(
+      to bottom,
+      rgba(10, 10, 10, 0.92) 0%,
+      rgba(10, 10, 10, 0.82) 40%,
+      rgba(10, 10, 10, 0.93) 100%
+    ), url(${process.env.PUBLIC_URL}/images/lights.webp)`
+  }}
+/>
+        <div className="container py-5 ht-contact-content">
           <div className="row g-4 justify-content-center">
-            {/* Contact Form Card */}
+
+            {/* ── Form ── */}
             <div className="col-12 col-lg-7">
-              <FadeIn delay={0.2}>
-                <div className="contact-card">
-                  <h2 className="h4 fw-bold mb-4">Send us a Message</h2>
-              {submitted ? (
-                <div
-                  className="alert alert-success"
-                  role="status"
-                  aria-live="polite"
-                >
-                  <i className="bi bi-check-circle me-2" aria-hidden="true" />
-                  Thanks for reaching out! We'll be in touch soon.
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} noValidate>
-                  {errors.submit && (
-                    <div className="alert alert-danger" role="alert">
-                      {errors.submit}
-                    </div>
-                  )}
+              <FadeIn delay={0.1}>
+                <div className="ht-contact-card">
+                  <h2 className="ht-contact-card-title">Send us a Message</h2>
 
-                  <div className="row g-3">
-                    <div className="col-12 col-md-6">
-                      <label htmlFor="contact-name" className="form-label">
-                        Name{' '}
-                        <span className="text-danger" aria-hidden="true">
-                          *
-                        </span>
-                      </label>
-                      <input
-                        type="text"
-                        id="contact-name"
-                        className={`form-control ${errors.name ? 'is-invalid' : ''}`}
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        aria-required="true"
-                        aria-invalid={!!errors.name}
-                        aria-describedby={errors.name ? 'name-error' : undefined}
-                        autoComplete="name"
-                      />
-                      {errors.name && (
-                        <div id="name-error" className="invalid-feedback">
-                          {errors.name}
-                        </div>
+                  {submitted ? (
+                    <div className="ht-contact-success" role="status" aria-live="polite">
+                      <div className="ht-success-icon mb-3">
+                        <i className="bi bi-check-circle-fill" aria-hidden="true" />
+                      </div>
+                      <p className="ht-eyebrow">Message Sent</p>
+                      <p className="ht-body-text mb-0">
+                        Thanks for reaching out! We'll be in touch soon.
+                      </p>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} noValidate>
+                      {errors.submit && (
+                        <div className="ht-form-error-banner" role="alert">{errors.submit}</div>
                       )}
-                    </div>
 
-                    <div className="col-12 col-md-6">
-                      <label htmlFor="contact-email" className="form-label">
-                        Email{' '}
-                        <span className="text-danger" aria-hidden="true">
-                          *
-                        </span>
-                      </label>
-                      <input
-                        type="email"
-                        id="contact-email"
-                        className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        aria-required="true"
-                        aria-invalid={!!errors.email}
-                        aria-describedby={errors.email ? 'email-error' : undefined}
-                        autoComplete="email"
-                      />
-                      {errors.email && (
-                        <div id="email-error" className="invalid-feedback">
-                          {errors.email}
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="col-12 col-md-6">
-                      <label htmlFor="contact-phone" className="form-label">
-                        Phone
-                      </label>
-                      <input
-                        type="tel"
-                        id="contact-phone"
-                        className="form-control"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        autoComplete="tel"
-                      />
-                    </div>
-
-                    <div className="col-12 col-md-6">
-                      <label htmlFor="contact-service" className="form-label">
-                        Service Interest
-                      </label>
-                      <select
-                        id="contact-service"
-                        className="form-select"
-                        name="service"
-                        value={formData.service}
-                        onChange={handleChange}
-                      >
-                        <option value="">Select a package...</option>
-                        {packages.map((pkg) => (
-                          <option key={pkg.id} value={pkg.id}>
-                            {pkg.title} — {pkg.subtitle} ({pkg.price})
-                          </option>
-                        ))}
-                        <option value="custom">Custom Project</option>
-                      </select>
-                    </div>
-
-                    <div className="col-12">
-                      <label htmlFor="contact-message" className="form-label">
-                        Message{' '}
-                        <span className="text-danger" aria-hidden="true">
-                          *
-                        </span>
-                      </label>
-                      <textarea
-                        id="contact-message"
-                        className={`form-control ${errors.message ? 'is-invalid' : ''}`}
-                        name="message"
-                        rows="5"
-                        value={formData.message}
-                        onChange={handleChange}
-                        placeholder="Tell us about your project..."
-                        required
-                        aria-required="true"
-                        aria-invalid={!!errors.message}
-                        aria-describedby={
-                          errors.message ? 'message-error' : undefined
-                        }
-                      />
-                      {errors.message && (
-                        <div id="message-error" className="invalid-feedback">
-                          {errors.message}
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="col-12">
-                      <button
-                        type="submit"
-                        className="btn btn-primary btn-lg w-100"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <span
-                              className="spinner-border spinner-border-sm me-2"
-                              role="status"
-                              aria-hidden="true"
+                      <div className="row g-3">
+                        <div className="col-12 col-md-6">
+                          <div className="ht-field">
+                            <label htmlFor="contact-name" className="ht-label">
+                              Name <span aria-hidden="true">*</span>
+                            </label>
+                            <input type="text" id="contact-name" name="name"
+                              value={formData.name} onChange={handleChange}
+                              className={`ht-input ${errors.name ? 'ht-input--error' : ''}`}
+                              autoComplete="name" aria-required="true"
+                              aria-invalid={!!errors.name}
+                              aria-describedby={errors.name ? 'name-error' : undefined}
                             />
-                            Sending...
-                          </>
-                        ) : (
-                          <>
-                            <i className="bi bi-send me-2" aria-hidden="true" />
-                            Send Message
-                          </>
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              )}
+                            {errors.name && <p id="name-error" className="ht-field-error">{errors.name}</p>}
+                          </div>
+                        </div>
+
+                        <div className="col-12 col-md-6">
+                          <div className="ht-field">
+                            <label htmlFor="contact-email" className="ht-label">
+                              Email <span aria-hidden="true">*</span>
+                            </label>
+                            <input type="email" id="contact-email" name="email"
+                              value={formData.email} onChange={handleChange}
+                              className={`ht-input ${errors.email ? 'ht-input--error' : ''}`}
+                              autoComplete="email" aria-required="true"
+                              aria-invalid={!!errors.email}
+                              aria-describedby={errors.email ? 'email-error' : undefined}
+                            />
+                            {errors.email && <p id="email-error" className="ht-field-error">{errors.email}</p>}
+                          </div>
+                        </div>
+
+                        <div className="col-12 col-md-6">
+                          <div className="ht-field">
+                            <label htmlFor="contact-phone" className="ht-label">
+                              Phone <span className="ht-optional">(optional)</span>
+                            </label>
+                            <input type="tel" id="contact-phone" name="phone"
+                              value={formData.phone} onChange={handleChange}
+                              className="ht-input" autoComplete="tel"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="col-12 col-md-6">
+                          <div className="ht-field">
+                            <label htmlFor="contact-service" className="ht-label">
+                              Service Interest <span className="ht-optional">(optional)</span>
+                            </label>
+                            <select id="contact-service" name="service"
+                              value={formData.service} onChange={handleChange}
+                              className="ht-input ht-select"
+                            >
+                              <option value="">Select a package...</option>
+                              {packages.map(pkg => (
+                                <option key={pkg.id} value={pkg.id}>
+                                  {pkg.title} — {pkg.subtitle} ({pkg.price})
+                                </option>
+                              ))}
+                              <option value="custom">Custom Project</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div className="col-12">
+                          <div className="ht-field">
+                            <label htmlFor="contact-message" className="ht-label">
+                              Message <span aria-hidden="true">*</span>
+                            </label>
+                            <textarea id="contact-message" name="message" rows="5"
+                              value={formData.message} onChange={handleChange}
+                              placeholder="Tell us about your project..."
+                              className={`ht-input ht-textarea ${errors.message ? 'ht-input--error' : ''}`}
+                              aria-required="true" aria-invalid={!!errors.message}
+                              aria-describedby={errors.message ? 'message-error' : undefined}
+                            />
+                            {errors.message && <p id="message-error" className="ht-field-error">{errors.message}</p>}
+                          </div>
+                        </div>
+
+                        <div className="col-12">
+                          <button type="submit" className="ht-btn-primary w-100 justify-content-center" disabled={isSubmitting}>
+                            {isSubmitting ? (
+                              <><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" />Sending...</>
+                            ) : (
+                              <><i className="bi bi-send" aria-hidden="true" />Send Message</>
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  )}
                 </div>
               </FadeIn>
             </div>
 
-            {/* Contact Info Cards */}
+            {/* ── Info cards ── */}
             <div className="col-12 col-lg-5">
-              <FadeInUp delay={0.3}>
+              <FadeInUp delay={0.2}>
                 <div className="d-flex flex-column gap-3">
-                  {/* Quick Contact Card */}
-                  <div className="contact-info-card">
-                    <h3 className="h5 fw-bold mb-4 text-white">Contact</h3>
-                    
-                    <a href={`mailto:${contact.email}`} className="contact-info-item">
-                      <div className="contact-info-icon">
-                        <i className="bi bi-envelope"></i>
+
+                  {/* Contact details */}
+                  <div className="ht-contact-info-card">
+                    <h3 className="ht-contact-info-title">Contact</h3>
+
+                    <a href={`mailto:${contact.email}`} className="ht-contact-info-item">
+                      <div className="ht-contact-info-icon">
+                        <i className="bi bi-envelope" aria-hidden="true" />
                       </div>
                       <div>
-                        <span className="d-block small text-white-50">Email</span>
-                        <span className="text-white">{contact.email}</span>
+                        <span className="ht-contact-info-label">Email</span>
+                        <span className="ht-contact-info-value">{contact.email}</span>
                       </div>
                     </a>
 
-                    <a href={`tel:${contact.phone.replace(/\s/g, '')}`} className="contact-info-item">
-                      <div className="contact-info-icon">
-                        <i className="bi bi-telephone"></i>
+                    <a href={`tel:${contact.phone.replace(/\s/g, '')}`} className="ht-contact-info-item">
+                      <div className="ht-contact-info-icon">
+                        <i className="bi bi-telephone" aria-hidden="true" />
                       </div>
                       <div>
-                        <span className="d-block small text-white-50">Phone</span>
-                        <span className="text-white">{contact.phone}</span>
+                        <span className="ht-contact-info-label">Phone</span>
+                        <span className="ht-contact-info-value">{contact.phone}</span>
                       </div>
                     </a>
                   </div>
 
-                  {/* Location Card */}
-                  <div className="contact-info-card">
-                    <h3 className="h5 fw-bold mb-4 text-white">Studio</h3>
-                    
-                    <div className="contact-info-item">
-                      <div className="contact-info-icon">
-                        <i className="bi bi-geo-alt"></i>
+                  {/* Location */}
+                  <div className="ht-contact-info-card">
+                    <h3 className="ht-contact-info-title">Studio</h3>
+
+                    <div className="ht-contact-info-item">
+                      <div className="ht-contact-info-icon">
+                        <i className="bi bi-geo-alt" aria-hidden="true" />
                       </div>
                       <div>
-                        <span className="d-block small text-white-50">Location</span>
-                        <address className="text-white mb-0">
-                          High Tide Studios<br />
-                          {contact.address}
+                        <span className="ht-contact-info-label">Location</span>
+                        <address className="ht-contact-info-value mb-0">
+                          High Tide Studios<br />{contact.address}
                         </address>
                       </div>
                     </div>
 
-                    <div className="contact-info-item">
-                      <div className="contact-info-icon">
-                        <i className="bi bi-clock"></i>
+                    <div className="ht-contact-info-item">
+                      <div className="ht-contact-info-icon">
+                        <i className="bi bi-clock" aria-hidden="true" />
                       </div>
                       <div>
-                        <span className="d-block small text-white-50">Hours</span>
-                        <span className="text-white">
+                        <span className="ht-contact-info-label">Hours</span>
+                        <span className="ht-contact-info-value">
                           Mon – Fri: 9am – 6pm<br />
                           Weekend: By appointment
                         </span>
                       </div>
                     </div>
                   </div>
+
                 </div>
               </FadeInUp>
             </div>
+
           </div>
         </div>
       </section>

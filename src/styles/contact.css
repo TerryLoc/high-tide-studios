@@ -1,0 +1,317 @@
+/* ============================================================
+   contact.css — High Tide Studios
+   Cinematic dark/amber theme · Contact page
+   ============================================================ */
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.ht-contact-hero {
+  background: var(--ht-black);
+  padding: 6rem 1.5rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ht-contact-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 0%,
+    rgba(196, 150, 72, 0.08) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.ht-contact-title {
+  font-family: var(--ht-serif);
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--ht-cream);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 0;
+}
+
+.ht-contact-lead {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: var(--ht-cream-dim);
+  font-weight: 300;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   SECTION — background image + overlay
+   ============================================================ */
+.ht-contact-section {
+  position: relative;
+  min-height: 60vh;
+}
+
+/* Background image is set via inline style in Contact.jsx
+   using process.env.PUBLIC_URL — do not add background-image here */
+.ht-contact-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: 0;
+}
+
+/* Fixed attachment is janky on iOS */
+@media (max-width: 768px) {
+  .ht-contact-bg {
+    background-attachment: scroll;
+  }
+}
+
+.ht-contact-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   FORM CARD
+   ============================================================ */
+.ht-contact-card {
+  background: rgba(20, 20, 20, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gold top edge */
+.ht-contact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ht-gold), transparent);
+}
+
+.ht-contact-card-title {
+  font-family: var(--ht-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ht-cream);
+  margin-bottom: 1.5rem;
+}
+
+/* Success state */
+.ht-contact-success {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.ht-contact-success .ht-success-icon {
+  font-size: 3rem;
+  color: var(--ht-gold);
+}
+
+/* ============================================================
+   FORM FIELDS
+   ============================================================ */
+.ht-field {
+  margin-bottom: 0;
+}
+
+.ht-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ht-cream-dim);
+  margin-bottom: 0.5rem;
+}
+
+.ht-label span[aria-hidden] {
+  color: var(--ht-gold);
+  margin-left: 2px;
+}
+
+.ht-optional {
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: rgba(245, 240, 232, 0.3);
+  font-size: 0.75rem;
+}
+
+.ht-input {
+  width: 100%;
+  background: rgba(26, 26, 26, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  color: var(--ht-cream);
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  appearance: none;
+}
+
+.ht-input::placeholder {
+  color: rgba(245, 240, 232, 0.2);
+}
+
+.ht-input:focus {
+  outline: none;
+  border-color: var(--ht-gold);
+  box-shadow: 0 0 0 3px rgba(196, 150, 72, 0.12);
+  background: rgba(26, 26, 26, 0.95);
+}
+
+.ht-input--error {
+  border-color: rgba(248, 113, 113, 0.6);
+}
+
+.ht-input--error:focus {
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.12);
+}
+
+.ht-select option {
+  background: var(--ht-dark-card);
+  color: var(--ht-cream);
+}
+
+.ht-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.ht-field-error {
+  font-size: 0.75rem;
+  color: #f87171;
+  margin-top: 0.35rem;
+  margin-bottom: 0;
+}
+
+.ht-form-error-banner {
+  background: rgba(220, 38, 38, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  border-radius: 2px;
+  color: #fca5a5;
+  font-size: 0.85rem;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   INFO CARDS
+   ============================================================ */
+.ht-contact-info-card {
+  background: rgba(20, 20, 20, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  padding: 1.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s ease;
+}
+
+.ht-contact-info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ht-gold), transparent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.ht-contact-info-card:hover {
+  border-color: var(--ht-gold-border);
+}
+
+.ht-contact-info-card:hover::before {
+  opacity: 1;
+}
+
+.ht-contact-info-title {
+  font-family: var(--ht-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ht-cream);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ht-contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: transform 0.2s ease;
+}
+
+.ht-contact-info-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+a.ht-contact-info-item:hover {
+  transform: translateX(4px);
+}
+
+.ht-contact-info-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(196, 150, 72, 0.1);
+  border: 1px solid rgba(196, 150, 72, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ht-gold);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.ht-contact-info-label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(196, 150, 72, 0.7);
+  margin-bottom: 0.2rem;
+}
+
+.ht-contact-info-value {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--ht-cream);
+  line-height: 1.6;
+  font-style: normal;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 575px) {
+  .ht-contact-card,
+  .ht-contact-info-card {
+    padding: 1.25rem;
+  }
+}

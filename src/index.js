@@ -9,6 +9,7 @@ import './styles/about.css';
 import './styles/clients.css';
 import './styles/services.css';
 import './styles/booking.css';
+import './styles/contact.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
