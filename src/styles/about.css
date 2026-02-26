@@ -1,0 +1,319 @@
+/* ============================================================
+   about.css — High Tide Studios
+   Cinematic dark/amber theme · consistent with home.css tokens
+   ============================================================ */
+
+/* ── Shared tokens are defined in home.css via :root ──
+   These classes extend or override for About-specific needs  */
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.ht-about-hero {
+  background: var(--ht-black);
+  padding: 6rem 1.5rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ht-about-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 0%,
+    rgba(196, 150, 72, 0.08) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.ht-about-title {
+  font-family: var(--ht-serif);
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--ht-cream);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 0;
+}
+
+.ht-about-tagline {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: var(--ht-cream-dim);
+  font-weight: 300;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   WHO WE ARE
+   ============================================================ */
+.ht-who-we-are {
+  background: var(--ht-dark);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ht-body-text--emphasis {
+  font-family: var(--ht-serif);
+  font-size: 1.15rem;
+  color: var(--ht-gold) !important;
+  font-style: italic;
+  border-left: 2px solid var(--ht-gold);
+  padding-left: 1rem;
+}
+
+.ht-about-image-wrapper {
+  position: relative;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.ht-about-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 3px;
+  transition: transform 0.5s ease;
+  filter: brightness(0.92) contrast(1.05);
+}
+
+.ht-about-image-wrapper:hover .ht-about-image {
+  transform: scale(1.02);
+}
+
+/* Decorative offset border — gives depth */
+.ht-about-image-border {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--ht-gold-border);
+  border-radius: 3px;
+  pointer-events: none;
+  translate: 10px 10px;
+  z-index: -1;
+}
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.ht-stats {
+  background: var(--ht-black);
+  border-top: 1px solid var(--ht-gold-border);
+  border-bottom: 1px solid var(--ht-gold-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.ht-stats::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 100% at 50% 50%,
+    rgba(196, 150, 72, 0.05) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.ht-stat-item {
+  padding: 1rem;
+  position: relative;
+}
+
+/* Vertical divider between stats */
+.ht-stat-item + .ht-stat-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--ht-gold-border),
+    transparent
+  );
+}
+
+.ht-stat-value {
+  font-family: var(--ht-serif);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--ht-gold);
+  margin-bottom: 0.35rem;
+  line-height: 1;
+}
+
+.ht-stat-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ht-cream-dim);
+  margin: 0;
+}
+
+/* ============================================================
+   TEAM
+   ============================================================ */
+.ht-team {
+  background: var(--ht-dark);
+}
+
+.ht-team-card {
+  background: var(--ht-dark-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  padding: 1.75rem;
+  transition:
+    border-color 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ht-team-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ht-gold), transparent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.ht-team-card:hover {
+  border-color: var(--ht-gold-border);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.ht-team-card:hover::before {
+  opacity: 1;
+}
+
+.ht-team-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--ht-gold-border);
+  display: block;
+}
+
+.ht-team-avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--ht-dark-mid);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--ht-cream-faint);
+}
+
+.ht-team-name {
+  font-family: var(--ht-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ht-cream);
+  margin-bottom: 0.2rem;
+}
+
+.ht-team-role {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ht-gold);
+  margin-bottom: 0.6rem;
+}
+
+.ht-team-bio {
+  font-size: 0.88rem;
+  color: var(--ht-cream-dim);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.ht-team-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--ht-gold);
+  cursor: pointer;
+  transition: color 0.2s ease;
+  margin-top: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.ht-team-toggle:hover {
+  color: var(--ht-gold-light);
+}
+
+.ht-team-full-bio {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ============================================================
+   LOCATION
+   ============================================================ */
+.ht-location {
+  background: var(--ht-black);
+  border-top: 1px solid var(--ht-gold-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.ht-location::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 60% 80% at 50% 100%,
+    rgba(196, 150, 72, 0.06) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.ht-address {
+  font-style: normal;
+  color: var(--ht-cream-dim);
+  line-height: 2;
+  font-size: 0.95rem;
+}
+
+.ht-address-name {
+  color: var(--ht-cream);
+  font-family: var(--ht-serif);
+  font-size: 1.05rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.ht-location-link {
+  color: var(--ht-gold);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.ht-location-link:hover {
+  color: var(--ht-gold-light);
+}

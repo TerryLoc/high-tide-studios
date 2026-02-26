@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/custom.css';
 import './styles/home.css';
 import './styles/not-found.css';
+import './styles/about.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);

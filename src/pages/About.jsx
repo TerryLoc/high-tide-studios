@@ -14,55 +14,67 @@ export default function About() {
   return (
     <>
       <SEO page="about" />
+
       {/* Hero Section */}
-      <section className="hero-main text-center">
+      <section className="ht-about-hero text-center">
         <div className="container">
           <FadeInUp>
-            <p className="text-uppercase small opacity-75 mb-2">About</p>
-            <h1 className="display-5 fw-bold mb-3">High Tide Studios</h1>
-            <p className="lead">{companyInfo.tagline}</p>
+            <p className="ht-eyebrow">Our Story</p>
+            <h1 className="ht-about-title">High Tide Studios</h1>
+            <div className="ht-title-divider mx-auto" aria-hidden="true" />
+            <p className="ht-about-tagline">{companyInfo.tagline}</p>
           </FadeInUp>
         </div>
       </section>
 
       {/* Who We Are Section */}
-      <section className="container py-5">
-        <div className="row align-items-center g-5">
-          <div className="col-12 col-lg-6">
-            <FadeInUp>
-              <h2 className="fw-bold mb-4">{whoWeAre.title}</h2>
-            </FadeInUp>
-            <FadeIn delay={0.2}>
-              {whoWeAre.paragraphs.map((p, i) => (
-                <p key={i} className={`${i === 0 ? 'fs-5' : ''} ${p === 'This is not a content factory.' ? 'fw-semibold' : ''} mb-4`}>
-                  {p}
-                </p>
-              ))}
-            </FadeIn>
-          </div>
-          <div className="col-12 col-lg-6">
-            <FadeIn delay={0.3}>
-              <div className="about-image-wrapper">
-                <img 
-                  src="/images/mic1.webp" 
-                  alt="Professional microphone at High Tide Studios" 
-                  className="about-image"
-                  loading="lazy"
-                />
-              </div>
-            </FadeIn>
+      <section className="ht-who-we-are py-5">
+        <div className="container">
+          <div className="row align-items-center g-5">
+            <div className="col-12 col-lg-6">
+              <FadeInUp>
+                <p className="ht-eyebrow">Who We Are</p>
+                <h2 className="ht-section-title">{whoWeAre.title}</h2>
+                <div className="ht-section-divider" aria-hidden="true" />
+              </FadeInUp>
+              <FadeIn delay={0.2}>
+                {whoWeAre.paragraphs.map((p, i) => (
+                  <p
+                    key={i}
+                    className={`ht-body-text mb-4 ${i === 0 ? 'ht-body-text--lead' : ''} ${p === 'This is not a content factory.' ? 'ht-body-text--emphasis' : ''}`}
+                  >
+                    {p}
+                  </p>
+                ))}
+              </FadeIn>
+            </div>
+            <div className="col-12 col-lg-6">
+              <FadeIn delay={0.3}>
+                <div className="ht-about-image-wrapper">
+                  <img
+                    src="/images/mic1.webp"
+                    alt="Professional microphone at High Tide Studios"
+                    className="ht-about-image"
+                    loading="lazy"
+                  />
+                  <div className="ht-about-image-border" aria-hidden="true" />
+                </div>
+              </FadeIn>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="bg-dark text-white py-5">
+      <section className="ht-stats py-5">
         <div className="container">
           <StaggerContainer className="row text-center">
             {stats.map((stat, i) => (
               <StaggerItem className="col-4" key={i}>
-                <h2 className="display-5 fw-bold mb-1">{stat.value}</h2>
-                <p className="opacity-75 mb-0 small">{stat.label}</p>
+                <div className="ht-stat-item">
+                  <h2 className="ht-stat-value">{stat.value}</h2>
+                  <p className="ht-stat-label">{stat.label}</p>
+                </div>
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -70,57 +82,58 @@ export default function About() {
       </section>
 
       {/* Team Section */}
-      <section className="container py-5">
-        <FadeInUp>
-          <h2 className="text-center fw-bold mb-5">Meet the Team</h2>
-        </FadeInUp>
-        <StaggerContainer className="row g-4">
-          {teamMembers.map((member) => (
-            <StaggerItem className="col-12 col-md-6" key={member.id}>
-              <div className="card h-100 shadow-sm">
-                <div className="card-body">
+      <section className="ht-team py-5">
+        <div className="container">
+          <FadeInUp>
+            <div className="text-center mb-5">
+              <p className="ht-eyebrow">The People</p>
+              <h2 className="ht-section-title">Meet the Team</h2>
+              <div className="ht-section-divider mx-auto" aria-hidden="true" />
+            </div>
+          </FadeInUp>
+          <StaggerContainer className="row g-4">
+            {teamMembers.map((member) => (
+              <StaggerItem className="col-12 col-md-6" key={member.id}>
+                <div className="ht-team-card h-100">
                   <div className="d-flex align-items-start mb-3">
-                    <div className="me-3">
+                    <div className="me-3 flex-shrink-0">
                       {member.image ? (
-                        <img 
-                          src={member.image} 
+                        <img
+                          src={member.image}
                           alt={member.name}
-                          className="rounded-circle"
-                          style={{ width: '80px', height: '80px', objectFit: 'cover' }}
+                          className="ht-team-avatar"
                         />
                       ) : (
-                        <div 
-                          className="rounded-circle bg-light d-flex align-items-center justify-content-center"
-                          style={{ width: '80px', height: '80px' }}
-                        >
-                          <i className="bi bi-person fs-2 text-muted"></i>
+                        <div className="ht-team-avatar-placeholder">
+                          <i className="bi bi-person" aria-hidden="true" />
                         </div>
                       )}
                     </div>
                     <div>
-                      <h5 className="fw-bold mb-1">{member.name}</h5>
-                      <p className="text-muted small mb-2">{member.role}</p>
-                      <p className="small mb-0">{member.shortBio}</p>
+                      <h5 className="ht-team-name">{member.name}</h5>
+                      <p className="ht-team-role">{member.role}</p>
+                      <p className="ht-team-bio">{member.shortBio}</p>
                     </div>
                   </div>
-                  
+
                   {member.fullBio && (
                     <>
-                      <button 
-                        className="btn btn-link p-0 text-decoration-none small"
+                      <button
+                        className="ht-team-toggle"
                         onClick={() => toggleMember(member.id)}
+                        aria-expanded={expandedMember === member.id}
                       >
                         {expandedMember === member.id ? (
-                          <>Read less <i className="bi bi-chevron-up ms-1"></i></>
+                          <>Read less <i className="bi bi-chevron-up ms-1" aria-hidden="true" /></>
                         ) : (
-                          <>Read full bio <i className="bi bi-chevron-down ms-1"></i></>
+                          <>Read full bio <i className="bi bi-chevron-down ms-1" aria-hidden="true" /></>
                         )}
                       </button>
-                      
+
                       {expandedMember === member.id && (
-                        <div className="mt-3 pt-3 border-top">
+                        <div className="ht-team-full-bio">
                           {member.fullBio.split('\n\n').map((paragraph, i) => (
-                            <p key={i} className="small text-muted mb-3">
+                            <p key={i} className="ht-body-text small mb-3">
                               {paragraph}
                             </p>
                           ))}
@@ -129,21 +142,23 @@ export default function About() {
                     </>
                   )}
                 </div>
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
       </section>
 
       {/* Location Section */}
-      <section className="bg-light py-5">
+      <section className="ht-location py-5">
         <div className="container text-center">
           <FadeInUp>
-            <h2 className="fw-bold mb-4">Visit Us</h2>
-            <div className="row justify-content-center">
+            <p className="ht-eyebrow">Find Us</p>
+            <h2 className="ht-section-title">Visit Us</h2>
+            <div className="ht-section-divider mx-auto" aria-hidden="true" />
+            <div className="row justify-content-center mt-4">
               <div className="col-12 col-md-6">
-                <address className="mb-4">
-                  <strong>High Tide Studios</strong><br />
+                <address className="ht-address mb-4">
+                  <strong className="ht-address-name">High Tide Studios</strong><br />
                   Unit 11, Watson Johnson<br />
                   Church Road<br />
                   Greystones<br />
@@ -151,13 +166,13 @@ export default function About() {
                   Ireland
                 </address>
                 <p className="mb-4">
-                  <a href="mailto:colmhayesradio@gmail.com" className="text-decoration-none">
-                    <i className="bi bi-envelope me-2"></i>
+                  <a href="mailto:colmhayesradio@gmail.com" className="ht-location-link">
+                    <i className="bi bi-envelope me-2" aria-hidden="true" />
                     colmhayesradio@gmail.com
                   </a>
                 </p>
-                <Link to="/contact" className="btn btn-dark">
-                  <i className="bi bi-calendar-check me-2"></i>
+                <Link to="/contact" className="ht-btn-primary">
+                  <i className="bi bi-calendar-check" aria-hidden="true" />
                   Get in Touch
                 </Link>
               </div>
