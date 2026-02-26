@@ -1,0 +1,560 @@
+/* ============================================================
+   booking.css — High Tide Studios
+   Cinematic dark/amber theme · Booking page + calendar + form
+   ============================================================ */
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.ht-booking-hero {
+  background: var(--ht-black);
+  padding: 6rem 1.5rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ht-booking-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 0%,
+    rgba(196, 150, 72, 0.08) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.ht-booking-title {
+  font-family: var(--ht-serif);
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--ht-cream);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 0;
+}
+
+.ht-booking-lead {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: var(--ht-cream-dim);
+  font-weight: 300;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   SECTION BODY
+   ============================================================ */
+.ht-booking-section {
+  background: var(--ht-dark);
+  min-height: 60vh;
+}
+
+/* ============================================================
+   BOOKING CARD
+   ============================================================ */
+.ht-booking-card {
+  background: var(--ht-dark-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  padding: 2rem;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gold top edge */
+.ht-booking-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ht-gold), transparent);
+}
+
+.ht-booking-card-title {
+  font-family: var(--ht-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ht-cream);
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.ht-booking-card-title i {
+  color: var(--ht-gold);
+  font-size: 1rem;
+}
+
+/* ============================================================
+   CALENDAR
+   ============================================================ */
+.ht-cal-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.ht-cal-month {
+  font-family: var(--ht-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ht-cream);
+  margin: 0;
+}
+
+.ht-cal-nav-btn {
+  background: var(--ht-dark-mid);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--ht-cream);
+  width: 36px;
+  height: 36px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.ht-cal-nav-btn:hover {
+  border-color: var(--ht-gold-border);
+  color: var(--ht-gold);
+}
+
+.ht-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 1.25rem;
+}
+
+.ht-cal-header {
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ht-gold);
+  padding: 0.4rem 0;
+}
+
+/* ── Day cells ── */
+.ht-cal-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+  border: 1px solid transparent;
+  color: var(--ht-cream-dim);
+}
+
+.ht-cal-day--empty {
+  background: transparent;
+  cursor: default;
+  border-color: transparent;
+}
+
+.ht-cal-day--available {
+  background: var(--ht-dark-mid);
+}
+
+.ht-cal-day--available:hover {
+  background: var(--ht-gold);
+  color: var(--ht-black);
+  transform: scale(1.08);
+}
+
+.ht-cal-day--selected {
+  background: var(--ht-gold);
+  color: var(--ht-black);
+  border-color: var(--ht-gold-light);
+  box-shadow: 0 0 0 2px rgba(196, 150, 72, 0.3);
+  font-weight: 700;
+}
+
+.ht-cal-day--past {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.12);
+  cursor: not-allowed;
+}
+
+.ht-cal-day--unavailable {
+  background: rgba(220, 38, 38, 0.12);
+  color: rgba(248, 113, 113, 0.7);
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.ht-cal-day--weekend {
+  background: rgba(196, 150, 72, 0.08);
+  color: rgba(196, 150, 72, 0.6);
+  border-color: rgba(196, 150, 72, 0.15);
+}
+
+.ht-cal-day--weekend:hover {
+  background: var(--ht-gold);
+  color: var(--ht-black);
+  transform: scale(1.08);
+}
+
+/* ── Calendar legend ── */
+.ht-cal-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ht-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  color: var(--ht-cream-dim);
+}
+
+.ht-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.ht-legend-dot--available {
+  background: var(--ht-dark-mid);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.ht-legend-dot--selected {
+  background: var(--ht-gold);
+}
+.ht-legend-dot--unavailable {
+  background: rgba(220, 38, 38, 0.4);
+}
+.ht-legend-dot--weekend {
+  background: rgba(196, 150, 72, 0.25);
+  border: 1px solid rgba(196, 150, 72, 0.3);
+}
+
+/* ── Selected date chips ── */
+.ht-selected-dates-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ht-gold);
+  margin-bottom: 0.6rem;
+}
+
+.ht-date-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--ht-gold);
+  color: var(--ht-black);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.3rem 0.7rem;
+  border-radius: 2rem;
+}
+
+.ht-date-chip-remove {
+  background: none;
+  border: none;
+  padding: 0;
+  line-height: 1;
+  color: var(--ht-black);
+  cursor: pointer;
+  opacity: 0.6;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.15s;
+}
+
+.ht-date-chip-remove:hover {
+  opacity: 1;
+}
+
+/* ============================================================
+   FORM FIELDS
+   ============================================================ */
+.ht-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ht-cream-dim);
+  margin-bottom: 0.5rem;
+}
+
+.ht-label span[aria-hidden] {
+  color: var(--ht-gold);
+  margin-left: 2px;
+}
+
+.ht-optional {
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: rgba(245, 240, 232, 0.3);
+  font-size: 0.75rem;
+}
+
+.ht-input {
+  width: 100%;
+  background: var(--ht-dark-mid);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  color: var(--ht-cream);
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  appearance: none;
+}
+
+.ht-input::placeholder {
+  color: rgba(245, 240, 232, 0.2);
+}
+
+.ht-input:focus {
+  outline: none;
+  border-color: var(--ht-gold);
+  box-shadow: 0 0 0 3px rgba(196, 150, 72, 0.12);
+}
+
+.ht-input--error {
+  border-color: rgba(248, 113, 113, 0.6);
+}
+
+.ht-input--error:focus {
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.12);
+}
+
+/* Select arrow */
+.ht-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c49648' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.ht-select option {
+  background: var(--ht-dark-card);
+  color: var(--ht-cream);
+}
+
+.ht-textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* ── Field errors ── */
+.ht-field-error {
+  font-size: 0.75rem;
+  color: #f87171;
+  margin-top: 0.35rem;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* ── Form error banner ── */
+.ht-form-error-banner {
+  background: rgba(220, 38, 38, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  border-radius: 2px;
+  color: #fca5a5;
+  font-size: 0.85rem;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+/* ── Checkbox ── */
+.ht-checkbox-label {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-size: 0.82rem;
+  color: var(--ht-cream-dim);
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.ht-checkbox-label strong {
+  color: var(--ht-cream);
+}
+
+.ht-checkbox {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  accent-color: var(--ht-gold);
+  cursor: pointer;
+}
+
+/* ── Deposit info box ── */
+.ht-deposit-box {
+  background: var(--ht-dark-mid);
+  border: 1px solid var(--ht-gold-border);
+  border-left: 3px solid var(--ht-gold);
+  border-radius: 2px;
+  padding: 1.1rem 1.25rem;
+}
+
+.ht-deposit-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--ht-cream-dim);
+  margin-bottom: 0.5rem;
+}
+
+.ht-deposit-row:last-child {
+  margin-bottom: 0;
+}
+
+.ht-deposit-amount {
+  font-family: var(--ht-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ht-gold);
+}
+
+.ht-deposit-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  margin: 0.6rem 0;
+}
+
+/* ── Disclaimer ── */
+.ht-form-disclaimer {
+  font-size: 0.72rem;
+  color: rgba(245, 240, 232, 0.25);
+  text-align: center;
+  margin-top: 0.85rem;
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   SUCCESS STATE
+   ============================================================ */
+.ht-booking-success {
+  background: var(--ht-dark-card);
+  border: 1px solid var(--ht-gold-border);
+  border-radius: 4px;
+  padding: 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ht-booking-success::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ht-gold), transparent);
+}
+
+.ht-success-icon {
+  font-size: 3.5rem;
+  color: var(--ht-gold);
+}
+
+.ht-booking-summary {
+  background: var(--ht-dark-mid);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  padding: 1.25rem;
+  text-align: left;
+}
+
+.ht-summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--ht-cream-dim);
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ht-summary-row:last-child {
+  margin-bottom: 0;
+}
+
+.ht-summary-row span:first-child {
+  font-weight: 600;
+  color: var(--ht-cream);
+  flex-shrink: 0;
+}
+
+.ht-summary-row--total span:last-child {
+  font-family: var(--ht-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ht-gold);
+}
+
+.text-gold {
+  color: var(--ht-gold);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 575px) {
+  .ht-booking-card {
+    padding: 1.25rem;
+  }
+
+  .ht-cal-header {
+    font-size: 0.6rem;
+    padding: 0.3rem 0;
+    letter-spacing: 0.05em;
+  }
+
+  .ht-cal-day {
+    font-size: 0.75rem;
+  }
+
+  .ht-cal-legend {
+    gap: 0.5rem 1rem;
+  }
+
+  .ht-legend-item {
+    font-size: 0.65rem;
+  }
+
+  .ht-booking-success {
+    padding: 2rem 1.25rem;
+  }
+}

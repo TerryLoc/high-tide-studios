@@ -10,204 +10,111 @@ const EMAILJS_SERVICE_ID = 'service_ns57z9a';
 const EMAILJS_TEMPLATE_ID = 'template_jvbux9k';
 const EMAILJS_PUBLIC_KEY = 'fA8c0XayRbgHD9Yec';
 
-/**
- * Booking page with calendar and client details
- * Sends booking requests via EmailJS
- */
 export default function Booking() {
-    // FAQ Schema for SEO
-    const faqSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      'mainEntity': [
-        {
-          '@type': 'Question',
-          'name': 'How do I book a session at High Tide Studios?',
-          'acceptedAnswer': {
-            '@type': 'Answer',
-            'text': 'Select your preferred dates, choose a package, and submit your details. We will confirm availability and send deposit instructions.'
-          }
-        },
-        {
-          '@type': 'Question',
-          'name': 'What is the deposit policy?',
-          'acceptedAnswer': {
-            '@type': 'Answer',
-            'text': 'A 10% non-refundable deposit is required to secure your booking. The balance is due 48 hours before your session.'
-          }
-        },
-        {
-          '@type': 'Question',
-          'name': 'Can I reschedule or cancel?',
-          'acceptedAnswer': {
-            '@type': 'Answer',
-            'text': 'You can reschedule up to 48 hours before your session. Deposits are non-refundable if cancelled.'
-          }
-        },
-        {
-          '@type': 'Question',
-          'name': 'What equipment is available?',
-          'acceptedAnswer': {
-            '@type': 'Answer',
-            'text': 'Our studio features 5 x 4K cameras, multiple studio microphones, professional lighting, greenscreen, and live video switching.'
-          }
-        },
-        {
-          '@type': 'Question',
-          'name': 'How many dates can I select?',
-          'acceptedAnswer': {
-            '@type': 'Answer',
-            'text': 'You can select up to 3 preferred dates. We will confirm which are available.'
-          }
-        }
-      ]
-    };
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: 'How do I book a session at High Tide Studios?', acceptedAnswer: { '@type': 'Answer', text: 'Select your preferred dates, choose a package, and submit your details. We will confirm availability and send deposit instructions.' } },
+      { '@type': 'Question', name: 'What is the deposit policy?', acceptedAnswer: { '@type': 'Answer', text: 'A 10% non-refundable deposit is required to secure your booking. The balance is due 48 hours before your session.' } },
+      { '@type': 'Question', name: 'Can I reschedule or cancel?', acceptedAnswer: { '@type': 'Answer', text: 'You can reschedule up to 48 hours before your session. Deposits are non-refundable if cancelled.' } },
+      { '@type': 'Question', name: 'What equipment is available?', acceptedAnswer: { '@type': 'Answer', text: 'Our studio features 5 x 4K cameras, multiple studio microphones, professional lighting, greenscreen, and live video switching.' } },
+      { '@type': 'Question', name: 'How many dates can I select?', acceptedAnswer: { '@type': 'Answer', text: 'You can select up to 3 preferred dates. We will confirm which are available.' } },
+    ],
+  };
+
   const [searchParams] = useSearchParams();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDates, setSelectedDates] = useState([]);
-  
-  // Get package from URL params
   const initialPackage = searchParams.get('package') || '';
-  
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    package: initialPackage,
-    notes: '',
-    agreeDeposit: false,
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', company: '', package: initialPackage, notes: '', agreeDeposit: false });
 
-  // Update package if URL param changes
   useEffect(() => {
     const pkgParam = searchParams.get('package');
     if (pkgParam && packages.some(p => p.id === pkgParam)) {
       setFormData(prev => ({ ...prev, package: pkgParam }));
     }
   }, [searchParams]);
+
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
 
-  // Example unavailable dates (would come from backend in production)
   const unavailableDates = useMemo(() => [
     '2026-01-25', '2026-01-26', '2026-01-30',
     '2026-02-02', '2026-02-03', '2026-02-10',
     '2026-02-14', '2026-02-20', '2026-02-21',
   ], []);
 
-  // Calculate deposit based on selected package
-  const selectedPackage = useMemo(() => {
-    return packages.find(pkg => pkg.id === formData.package);
-  }, [formData.package]);
-
+  const selectedPackage = useMemo(() => packages.find(pkg => pkg.id === formData.package), [formData.package]);
   const depositAmount = useMemo(() => {
     if (!selectedPackage) return null;
-    const price = parseInt(selectedPackage.price.replace(/[€,]/g, ''));
-    return Math.round(price * 0.1);
+    return Math.round(parseInt(selectedPackage.price.replace(/[€,]/g, '')) * 0.1);
   }, [selectedPackage]);
 
-  // Calendar helper functions
   const getDaysInMonth = (date) => {
     const year = date.getFullYear();
     const month = date.getMonth();
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
-    const daysInMonth = lastDay.getDate();
-    const startingDay = firstDay.getDay();
-    
-    return { daysInMonth, startingDay, year, month };
+    return { daysInMonth: lastDay.getDate(), startingDay: firstDay.getDay(), year, month };
   };
 
-  const formatDateKey = (year, month, day) => {
-    return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-  };
+  const formatDateKey = (year, month, day) =>
+    `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
   const isDateUnavailable = (dateKey) => unavailableDates.includes(dateKey);
   const isDateSelected = (dateKey) => selectedDates.includes(dateKey);
   const isPastDate = (year, month, day) => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const checkDate = new Date(year, month, day);
-    return checkDate < today;
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    return new Date(year, month, day) < today;
   };
-
   const isWeekend = (year, month, day) => {
-    const date = new Date(year, month, day);
-    return date.getDay() === 0 || date.getDay() === 6;
+    const d = new Date(year, month, day).getDay();
+    return d === 0 || d === 6;
   };
 
   const handleDateClick = (dateKey, year, month, day) => {
     if (isDateUnavailable(dateKey) || isPastDate(year, month, day)) return;
-    
     setSelectedDates(prev => {
-      if (prev.includes(dateKey)) {
-        return prev.filter(d => d !== dateKey);
-      }
-      if (prev.length >= 3) {
-        return [...prev.slice(1), dateKey];
-      }
+      if (prev.includes(dateKey)) return prev.filter(d => d !== dateKey);
+      if (prev.length >= 3) return [...prev.slice(1), dateKey];
       return [...prev, dateKey];
     });
   };
 
-  const prevMonth = () => {
-    setCurrentMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1));
-  };
-
-  const nextMonth = () => {
-    setCurrentMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1));
-  };
+  const prevMonth = () => setCurrentMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1));
+  const nextMonth = () => setCurrentMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1));
 
   const validateForm = useCallback(() => {
     const newErrors = {};
-
     if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Please enter a valid email address';
     if (!formData.phone.trim()) newErrors.phone = 'Phone is required';
     if (!formData.package) newErrors.package = 'Please select a package';
     if (selectedDates.length === 0) newErrors.dates = 'Please select at least one preferred date';
     if (!formData.agreeDeposit) newErrors.agreeDeposit = 'You must agree to the deposit terms';
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   }, [formData, selectedDates]);
 
   const handleChange = useCallback((e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
-    }
+    setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: undefined }));
   }, [errors]);
 
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-
     setIsSubmitting(true);
-
     try {
-      // Format dates for email
-      const formattedDates = selectedDates.map(date => 
-        new Date(date).toLocaleDateString('en-IE', { 
-          weekday: 'long', 
-          day: 'numeric', 
-          month: 'long',
-          year: 'numeric'
-        })
+      const formattedDates = selectedDates.map(date =>
+        new Date(date).toLocaleDateString('en-IE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
       ).join('\n• ');
 
-      // Prepare email template parameters (must match EmailJS template variables)
-      const emailParams = {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
         to_name: 'High Tide Studios',
         from_name: formData.name,
         from_email: formData.email,
@@ -220,20 +127,11 @@ export default function Booking() {
         preferred_dates: formattedDates,
         notes: formData.notes || 'None provided',
         reply_to: formData.email,
-      };
-
-      // Send email via EmailJS
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        emailParams,
-        EMAILJS_PUBLIC_KEY
-      );
+      }, EMAILJS_PUBLIC_KEY);
 
       setSubmitted(true);
     } catch (error) {
       console.error('Booking error:', error);
-      console.error('Error details:', error.text || error.message || error);
       setErrors({ submit: `Failed to send booking request: ${error.text || error.message || 'Unknown error'}. Please contact us directly at colmhayesradio@gmail.com` });
     } finally {
       setIsSubmitting(false);
@@ -241,28 +139,20 @@ export default function Booking() {
   }, [formData, selectedDates, depositAmount, selectedPackage, validateForm]);
 
   const { daysInMonth, startingDay, year, month } = getDaysInMonth(currentMonth);
-  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'];
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
   const renderCalendar = () => {
     const days = [];
-    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
-    // Day headers
-    dayNames.forEach(day => {
-      days.push(
-        <div key={`header-${day}`} className="calendar-day-header">
-          {day}
-        </div>
-      );
-    });
+    dayNames.forEach(day => (
+      days.push(<div key={`header-${day}`} className="ht-cal-header">{day}</div>)
+    ));
 
-    // Empty cells before first day
     for (let i = 0; i < startingDay; i++) {
-      days.push(<div key={`empty-${i}`} className="calendar-day empty"></div>);
+      days.push(<div key={`empty-${i}`} className="ht-cal-day ht-cal-day--empty" />);
     }
 
-    // Days of month
     for (let day = 1; day <= daysInMonth; day++) {
       const dateKey = formatDateKey(year, month, day);
       const unavailable = isDateUnavailable(dateKey);
@@ -270,59 +160,69 @@ export default function Booking() {
       const past = isPastDate(year, month, day);
       const weekend = isWeekend(year, month, day);
 
-      let className = 'calendar-day';
-      if (unavailable) className += ' unavailable';
-      if (selected) className += ' selected';
-      if (past) className += ' past';
-      if (weekend && !unavailable && !past) className += ' weekend';
+      let cls = 'ht-cal-day';
+      if (unavailable) cls += ' ht-cal-day--unavailable';
+      else if (past)   cls += ' ht-cal-day--past';
+      else if (selected) cls += ' ht-cal-day--selected';
+      else if (weekend) cls += ' ht-cal-day--weekend';
+      else cls += ' ht-cal-day--available';
 
       days.push(
         <div
           key={dateKey}
-          className={className}
+          className={cls}
           onClick={() => handleDateClick(dateKey, year, month, day)}
           role="button"
           tabIndex={past || unavailable ? -1 : 0}
           aria-label={`${day} ${monthNames[month]} ${year}${unavailable ? ', unavailable' : ''}${selected ? ', selected' : ''}`}
+          onKeyDown={(e) => e.key === 'Enter' && handleDateClick(dateKey, year, month, day)}
         >
           {day}
         </div>
       );
     }
-
     return days;
   };
 
+  /* ── Success state ── */
   if (submitted) {
     return (
       <>
-        <SEO 
-          page="contact"
-          customTitle="Booking Confirmed - High Tide Studios"
-        />
-        <section className="booking-section py-5">
-          <div className="container">
+        <SEO page="contact" customTitle="Booking Confirmed — High Tide Studios" />
+        <section className="ht-booking-section">
+          <div className="container py-5">
             <div className="row justify-content-center">
               <div className="col-12 col-md-8 col-lg-6 text-center">
                 <FadeInUp>
-                  <div className="booking-success-card">
-                    <div className="success-icon mb-4">
-                      <i className="bi bi-check-circle-fill"></i>
+                  <div className="ht-booking-success">
+                    <div className="ht-success-icon" aria-hidden="true">
+                      <i className="bi bi-check-circle-fill" />
                     </div>
-                    <h1 className="h2 fw-bold mb-3">Booking Request Received!</h1>
-                    <p className="text-muted mb-4">
-                      Thank you for your booking request. We'll review your preferred dates and 
-                      contact you within 24 hours to confirm availability and arrange your 
-                      <strong> €{depositAmount}</strong> non-refundable deposit.
+                    <p className="ht-eyebrow mt-4">Booking Request Received</p>
+                    <h1 className="ht-section-title">You're on the radar!</h1>
+                    <div className="ht-section-divider mx-auto" />
+                    <p className="ht-body-text mb-4">
+                      We'll review your preferred dates and contact you within 24 hours
+                      to confirm availability and arrange your{' '}
+                      <strong className="text-gold">€{depositAmount}</strong> non-refundable deposit.
                     </p>
-                    <div className="booking-summary p-4 bg-light rounded mb-4">
-                      <h3 className="h6 fw-bold mb-3">Booking Summary</h3>
-                      <p className="mb-2"><strong>Package:</strong> {selectedPackage?.title} - {selectedPackage?.subtitle}</p>
-                      <p className="mb-2"><strong>Preferred Dates:</strong> {selectedDates.join(', ')}</p>
-                      <p className="mb-0"><strong>Deposit (10%):</strong> €{depositAmount}</p>
+                    <div className="ht-booking-summary mb-4">
+                      <p className="ht-summary-row">
+                        <span>Package</span>
+                        <span>{selectedPackage?.title} — {selectedPackage?.subtitle}</span>
+                      </p>
+                      <p className="ht-summary-row">
+                        <span>Preferred Dates</span>
+                        <span>{selectedDates.join(', ')}</span>
+                      </p>
+                      <p className="ht-summary-row ht-summary-row--total">
+                        <span>Deposit (10%)</span>
+                        <span>€{depositAmount}</span>
+                      </p>
                     </div>
-                    <a href="/" className="btn btn-dark btn-lg">
-                      <i className="bi bi-house me-2"></i>Return Home
+                    <a href="/" className="ht-btn-primary">
+                      <i className="bi bi-house" aria-hidden="true" />
+                      Return Home
                     </a>
                   </div>
                 </FadeInUp>
@@ -334,114 +234,92 @@ export default function Booking() {
     );
   }
 
+  /* ── Main booking form ── */
   return (
     <>
-      <SEO 
+      <SEO
         page="contact"
-        customTitle="Book a Session - High Tide Studios"
-        customDescription="Book your podcast or video recording session at High Tide Studios Greystones. Select your preferred dates and secure your slot with a 10% deposit."
+        customTitle="Book a Session — High Tide Studios"
+        customDescription="Book your podcast or video recording session at High Tide Studios Greystones."
         structuredDataType="faq"
         structuredDataPayload={faqSchema}
       />
-      
-      <section className="booking-section py-5">
-        <div className="container">
-          {/* Header */}
-          <FadeInUp>
-            <div className="text-center mb-5">
-              <span className="badge bg-dark px-3 py-2 mb-3">
-                <i className="bi bi-calendar-check me-2"></i>Studio Booking
-              </span>
-              <h1 className="display-5 fw-bold mb-3">Book Your Session</h1>
-              <p className="lead text-muted mx-auto" style={{ maxWidth: '600px' }}>
-                Select your preferred dates, choose your package, and secure your booking with a 10% deposit.
-              </p>
-            </div>
-          </FadeInUp>
 
+      {/* Hero */}
+      <section className="ht-booking-hero text-center">
+        <div className="container">
+          <FadeInUp>
+            <p className="ht-eyebrow">Studio Booking</p>
+            <h1 className="ht-booking-title">Book Your Session</h1>
+            <div className="ht-title-divider mx-auto" aria-hidden="true" />
+            <p className="ht-booking-lead">
+              Select your preferred dates, choose your package, and secure your booking with a 10% deposit.
+            </p>
+          </FadeInUp>
+        </div>
+      </section>
+
+      <section className="ht-booking-section">
+        <div className="container py-5">
           <div className="row g-4">
-            {/* Calendar Section */}
+
+            {/* ── Calendar ── */}
             <div className="col-12 col-lg-7">
               <FadeIn delay={0.1}>
-                <div className="booking-card">
-                  <h2 className="h4 fw-bold mb-4">
-                    <i className="bi bi-calendar3 me-2 text-muted"></i>
+                <div className="ht-booking-card">
+                  <h2 className="ht-booking-card-title">
+                    <i className="bi bi-calendar3" aria-hidden="true" />
                     Select Preferred Dates
                   </h2>
-                  <p className="text-muted small mb-4">
+                  <p className="ht-muted-text small mb-4">
                     Choose up to 3 preferred dates. We'll confirm availability within 24 hours.
                   </p>
 
-                  {/* Calendar Navigation */}
-                  <div className="calendar-header">
-                    <button 
-                      className="btn btn-outline-dark btn-sm" 
-                      onClick={prevMonth}
-                      aria-label="Previous month"
-                    >
-                      <i className="bi bi-chevron-left"></i>
+                  {/* Month navigation */}
+                  <div className="ht-cal-nav">
+                    <button className="ht-cal-nav-btn" onClick={prevMonth} aria-label="Previous month">
+                      <i className="bi bi-chevron-left" />
                     </button>
-                    <h3 className="h5 fw-bold mb-0">
-                      {monthNames[month]} {year}
-                    </h3>
-                    <button 
-                      className="btn btn-outline-dark btn-sm" 
-                      onClick={nextMonth}
-                      aria-label="Next month"
-                    >
-                      <i className="bi bi-chevron-right"></i>
+                    <h3 className="ht-cal-month">{monthNames[month]} {year}</h3>
+                    <button className="ht-cal-nav-btn" onClick={nextMonth} aria-label="Next month">
+                      <i className="bi bi-chevron-right" />
                     </button>
                   </div>
 
-                  {/* Calendar Grid */}
-                  <div className="calendar-grid">
+                  {/* Calendar grid */}
+                  <div className="ht-cal-grid">
                     {renderCalendar()}
                   </div>
 
-                  {/* Calendar Legend */}
-                  <div className="calendar-legend">
-                    <div className="legend-item">
-                      <span className="legend-dot available"></span>
-                      <span>Available</span>
-                    </div>
-                    <div className="legend-item">
-                      <span className="legend-dot selected"></span>
-                      <span>Selected</span>
-                    </div>
-                    <div className="legend-item">
-                      <span className="legend-dot unavailable"></span>
-                      <span>Unavailable</span>
-                    </div>
-                    <div className="legend-item">
-                      <span className="legend-dot weekend"></span>
-                      <span>Weekend (by request)</span>
-                    </div>
+                  {/* Legend */}
+                  <div className="ht-cal-legend">
+                    <div className="ht-legend-item"><span className="ht-legend-dot ht-legend-dot--available" />Available</div>
+                    <div className="ht-legend-item"><span className="ht-legend-dot ht-legend-dot--selected" />Selected</div>
+                    <div className="ht-legend-item"><span className="ht-legend-dot ht-legend-dot--unavailable" />Unavailable</div>
+                    <div className="ht-legend-item"><span className="ht-legend-dot ht-legend-dot--weekend" />Weekend (by request)</div>
                   </div>
 
                   {errors.dates && (
-                    <div className="text-danger small mt-2">
-                      <i className="bi bi-exclamation-circle me-1"></i>
+                    <p className="ht-field-error mt-2">
+                      <i className="bi bi-exclamation-circle me-1" />
                       {errors.dates}
-                    </div>
+                    </p>
                   )}
 
                   {selectedDates.length > 0 && (
-                    <div className="selected-dates mt-4">
-                      <h4 className="h6 fw-bold mb-2">Your Preferred Dates:</h4>
+                    <div className="ht-selected-dates mt-4">
+                      <p className="ht-selected-dates-label">Your Preferred Dates:</p>
                       <div className="d-flex flex-wrap gap-2">
                         {selectedDates.map(date => (
-                          <span key={date} className="badge bg-dark py-2 px-3">
-                            {new Date(date).toLocaleDateString('en-IE', { 
-                              weekday: 'short', 
-                              day: 'numeric', 
-                              month: 'short' 
-                            })}
-                            <button 
-                              className="btn-close btn-close-white ms-2" 
-                              style={{ fontSize: '0.6rem' }}
+                          <span key={date} className="ht-date-chip">
+                            {new Date(date).toLocaleDateString('en-IE', { weekday: 'short', day: 'numeric', month: 'short' })}
+                            <button
+                              className="ht-date-chip-remove"
                               onClick={() => setSelectedDates(prev => prev.filter(d => d !== date))}
                               aria-label="Remove date"
-                            ></button>
+                            >
+                              <i className="bi bi-x" />
+                            </button>
                           </span>
                         ))}
                       </div>
@@ -451,105 +329,51 @@ export default function Booking() {
               </FadeIn>
             </div>
 
-            {/* Booking Form */}
+            {/* ── Form ── */}
             <div className="col-12 col-lg-5">
               <FadeIn delay={0.2}>
-                <div className="booking-card">
-                  <h2 className="h4 fw-bold mb-4">
-                    <i className="bi bi-person-lines-fill me-2 text-muted"></i>
+                <div className="ht-booking-card">
+                  <h2 className="ht-booking-card-title">
+                    <i className="bi bi-person-lines-fill" aria-hidden="true" />
                     Your Details
                   </h2>
 
                   <form onSubmit={handleSubmit} noValidate>
                     {errors.submit && (
-                      <div className="alert alert-danger" role="alert">
-                        {errors.submit}
-                      </div>
+                      <div className="ht-form-error-banner" role="alert">{errors.submit}</div>
                     )}
 
-                    {/* Name */}
-                    <div className="mb-3">
-                      <label htmlFor="booking-name" className="form-label">
-                        Full Name <span className="text-danger">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="booking-name"
-                        className={`form-control ${errors.name ? 'is-invalid' : ''}`}
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="John Smith"
-                        autoComplete="name"
-                      />
-                      {errors.name && <div className="invalid-feedback">{errors.name}</div>}
+                    <div className="ht-field mb-3">
+                      <label htmlFor="booking-name" className="ht-label">Full Name <span aria-hidden="true">*</span></label>
+                      <input type="text" id="booking-name" name="name" value={formData.name} onChange={handleChange}
+                        className={`ht-input ${errors.name ? 'ht-input--error' : ''}`} placeholder="John Smith" autoComplete="name" />
+                      {errors.name && <p className="ht-field-error">{errors.name}</p>}
                     </div>
 
-                    {/* Email */}
-                    <div className="mb-3">
-                      <label htmlFor="booking-email" className="form-label">
-                        Email <span className="text-danger">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        id="booking-email"
-                        className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="john@example.com"
-                        autoComplete="email"
-                      />
-                      {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+                    <div className="ht-field mb-3">
+                      <label htmlFor="booking-email" className="ht-label">Email <span aria-hidden="true">*</span></label>
+                      <input type="email" id="booking-email" name="email" value={formData.email} onChange={handleChange}
+                        className={`ht-input ${errors.email ? 'ht-input--error' : ''}`} placeholder="john@example.com" autoComplete="email" />
+                      {errors.email && <p className="ht-field-error">{errors.email}</p>}
                     </div>
 
-                    {/* Phone */}
-                    <div className="mb-3">
-                      <label htmlFor="booking-phone" className="form-label">
-                        Phone <span className="text-danger">*</span>
-                      </label>
-                      <input
-                        type="tel"
-                        id="booking-phone"
-                        className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="087 123 4567"
-                        autoComplete="tel"
-                      />
-                      {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
+                    <div className="ht-field mb-3">
+                      <label htmlFor="booking-phone" className="ht-label">Phone <span aria-hidden="true">*</span></label>
+                      <input type="tel" id="booking-phone" name="phone" value={formData.phone} onChange={handleChange}
+                        className={`ht-input ${errors.phone ? 'ht-input--error' : ''}`} placeholder="087 123 4567" autoComplete="tel" />
+                      {errors.phone && <p className="ht-field-error">{errors.phone}</p>}
                     </div>
 
-                    {/* Company (optional) */}
-                    <div className="mb-3">
-                      <label htmlFor="booking-company" className="form-label">
-                        Company / Podcast Name
-                      </label>
-                      <input
-                        type="text"
-                        id="booking-company"
-                        className="form-control"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleChange}
-                        placeholder="Optional"
-                        autoComplete="organization"
-                      />
+                    <div className="ht-field mb-3">
+                      <label htmlFor="booking-company" className="ht-label">Company / Podcast Name <span className="ht-optional">(optional)</span></label>
+                      <input type="text" id="booking-company" name="company" value={formData.company} onChange={handleChange}
+                        className="ht-input" placeholder="Optional" autoComplete="organization" />
                     </div>
 
-                    {/* Package Selection */}
-                    <div className="mb-3">
-                      <label htmlFor="booking-package" className="form-label">
-                        Select Package <span className="text-danger">*</span>
-                      </label>
-                      <select
-                        id="booking-package"
-                        className={`form-select ${errors.package ? 'is-invalid' : ''}`}
-                        name="package"
-                        value={formData.package}
-                        onChange={handleChange}
-                      >
+                    <div className="ht-field mb-3">
+                      <label htmlFor="booking-package" className="ht-label">Select Package <span aria-hidden="true">*</span></label>
+                      <select id="booking-package" name="package" value={formData.package} onChange={handleChange}
+                        className={`ht-input ht-select ${errors.package ? 'ht-input--error' : ''}`}>
                         <option value="">Choose a package...</option>
                         {packages.map(pkg => (
                           <option key={pkg.id} value={pkg.id}>
@@ -557,92 +381,65 @@ export default function Booking() {
                           </option>
                         ))}
                       </select>
-                      {errors.package && <div className="invalid-feedback">{errors.package}</div>}
+                      {errors.package && <p className="ht-field-error">{errors.package}</p>}
                     </div>
 
-                    {/* Notes */}
-                    <div className="mb-4">
-                      <label htmlFor="booking-notes" className="form-label">
-                        Additional Notes
-                      </label>
-                      <textarea
-                        id="booking-notes"
-                        className="form-control"
-                        name="notes"
-                        rows="3"
-                        value={formData.notes}
-                        onChange={handleChange}
-                        placeholder="Tell us about your project, any special requirements, or questions..."
-                      />
+                    <div className="ht-field mb-4">
+                      <label htmlFor="booking-notes" className="ht-label">Additional Notes <span className="ht-optional">(optional)</span></label>
+                      <textarea id="booking-notes" name="notes" rows="3" value={formData.notes} onChange={handleChange}
+                        className="ht-input ht-textarea"
+                        placeholder="Tell us about your project, any special requirements, or questions..." />
                     </div>
 
-                    {/* Deposit Info Box */}
+                    {/* Deposit info */}
                     {selectedPackage && (
-                      <div className="deposit-info-box mb-4">
-                        <div className="d-flex justify-content-between align-items-center mb-2">
-                          <span className="fw-semibold">Package Price:</span>
+                      <div className="ht-deposit-box mb-4">
+                        <div className="ht-deposit-row">
+                          <span>Package Price</span>
                           <span>{selectedPackage.price}</span>
                         </div>
-                        <div className="d-flex justify-content-between align-items-center mb-2">
-                          <span className="fw-semibold">Deposit (10%):</span>
-                          <span className="h5 fw-bold text-success mb-0">€{depositAmount}</span>
+                        <div className="ht-deposit-row">
+                          <span>Deposit (10%)</span>
+                          <span className="ht-deposit-amount">€{depositAmount}</span>
                         </div>
-                        <hr />
-                        <div className="d-flex justify-content-between align-items-center">
-                          <span className="fw-semibold">Balance Due on Session:</span>
+                        <div className="ht-deposit-divider" />
+                        <div className="ht-deposit-row">
+                          <span>Balance Due on Session</span>
                           <span>€{parseInt(selectedPackage.price.replace(/[€,]/g, '')) - depositAmount}</span>
                         </div>
                       </div>
                     )}
 
-                    {/* Deposit Agreement */}
-                    <div className="mb-4">
-                      <div className="form-check">
-                        <input
-                          type="checkbox"
-                          id="booking-agree"
-                          className={`form-check-input ${errors.agreeDeposit ? 'is-invalid' : ''}`}
-                          name="agreeDeposit"
-                          checked={formData.agreeDeposit}
-                          onChange={handleChange}
-                        />
-                        <label htmlFor="booking-agree" className="form-check-label small">
-                          I understand that a <strong>10% non-refundable deposit</strong> is required to 
-                          secure my booking. The remaining balance is due 48 hours before the day of the first recording.
-                        </label>
-                        {errors.agreeDeposit && (
-                          <div className="invalid-feedback d-block">{errors.agreeDeposit}</div>
-                        )}
-                      </div>
+                    {/* Deposit agreement */}
+                    <div className="ht-field mb-4">
+                      <label className="ht-checkbox-label">
+                        <input type="checkbox" name="agreeDeposit" checked={formData.agreeDeposit} onChange={handleChange}
+                          className={`ht-checkbox ${errors.agreeDeposit ? 'ht-checkbox--error' : ''}`} id="booking-agree" />
+                        <span>
+                          I understand that a <strong>10% non-refundable deposit</strong> is required to secure my booking.
+                          The remaining balance is due 48 hours before the day of the first recording.
+                        </span>
+                      </label>
+                      {errors.agreeDeposit && <p className="ht-field-error">{errors.agreeDeposit}</p>}
                     </div>
 
-                    {/* Submit Button */}
-                    <button
-                      type="submit"
-                      className="btn btn-dark btn-lg w-100"
-                      disabled={isSubmitting}
-                    >
+                    <button type="submit" className="ht-btn-primary w-100 justify-content-center" disabled={isSubmitting}>
                       {isSubmitting ? (
-                        <>
-                          <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" />
-                          Processing...
-                        </>
+                        <><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" />Processing...</>
                       ) : (
-                        <>
-                          <i className="bi bi-calendar-check me-2"></i>
-                          Request Booking
-                        </>
+                        <><i className="bi bi-calendar-check" aria-hidden="true" />Request Booking</>
                       )}
                     </button>
 
-                    <p className="text-muted small text-center mt-3 mb-0">
-                      <i className="bi bi-shield-check me-1"></i>
+                    <p className="ht-form-disclaimer">
+                      <i className="bi bi-shield-check me-1" aria-hidden="true" />
                       Your information is secure and will only be used for booking purposes.
                     </p>
                   </form>
                 </div>
               </FadeIn>
             </div>
+
           </div>
         </div>
       </section>
