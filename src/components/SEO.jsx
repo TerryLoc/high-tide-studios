@@ -1,74 +1,71 @@
 import { useEffect, useMemo } from 'react';
 import { siteConfig, pageSEO, structuredData } from '../config/site';
 
-/**
- * SEO Component - Updates document head for each page
- * Works without external dependencies, compatible with React 19
- */
-export default function SEO({ 
+export default function SEO({
   page = 'home',
   title,
   description,
   keywords = [],
   noIndex = false,
+  customTitle,
+  customDescription,
   structuredDataType = null,
   structuredDataPayload = null,
 }) {
-  // Get page-specific SEO or use defaults
   const pageData = pageSEO[page] || pageSEO.home;
-  
-  const finalTitle = title || pageData.title;
-  const finalDescription = description || pageData.description;
-  
-  // Memoize keywords to prevent useEffect re-running on every render
+  const finalTitle = customTitle || title || pageData.title;
+  const finalDescription = customDescription || description || pageData.description;
+  const finalImage = `${siteConfig.url}${siteConfig.seo.ogImage}`;
+
   const finalKeywords = useMemo(
-    () => [...(pageData.keywords || []), ...keywords],
-    [pageData.keywords, keywords]
+    () => [...(pageData.keywords || []), ...siteConfig.seo.keywords, ...keywords],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [page]
   );
 
   useEffect(() => {
-    // Update document title
-    document.title = finalTitle.includes('High Tide') 
-      ? finalTitle 
+    document.title = finalTitle.includes('High Tide')
+      ? finalTitle
       : `${finalTitle} | High Tide Studios`;
 
-    // Update meta tags
-    const updateMeta = (name, content, isProperty = false) => {
+    const setMeta = (name, content, isProperty = false) => {
+      if (!content) return;
       const attr = isProperty ? 'property' : 'name';
-      let meta = document.querySelector(`meta[${attr}="${name}"]`);
-      if (!meta) {
-        meta = document.createElement('meta');
-        meta.setAttribute(attr, name);
-        document.head.appendChild(meta);
+      let el = document.querySelector(`meta[${attr}="${name}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attr, name);
+        document.head.appendChild(el);
       }
-      meta.setAttribute('content', content);
+      el.setAttribute('content', content);
     };
 
-    // Standard meta tags
-    updateMeta('description', finalDescription);
-    if (finalKeywords.length > 0) {
-      updateMeta('keywords', finalKeywords.join(', '));
-    }
-    
-    // Robots
-    if (noIndex) {
-      updateMeta('robots', 'noindex, nofollow');
-    } else {
-      updateMeta('robots', 'index, follow');
-    }
+    setMeta('description', finalDescription);
+    setMeta('keywords', finalKeywords.join(', '));
+    setMeta('author', siteConfig.fullName);
+    setMeta('robots', noIndex
+      ? 'noindex, nofollow'
+      : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+    );
 
-    // Open Graph
-    updateMeta('og:title', finalTitle, true);
-    updateMeta('og:description', finalDescription, true);
-    updateMeta('og:url', `${siteConfig.url}${window.location.pathname}`, true);
-    updateMeta('og:type', 'website', true);
-    updateMeta('og:site_name', siteConfig.fullName, true);
+    setMeta('og:type', 'website', true);
+    setMeta('og:site_name', siteConfig.fullName, true);
+    setMeta('og:title', finalTitle, true);
+    setMeta('og:description', finalDescription, true);
+    setMeta('og:url', `${siteConfig.url}${window.location.pathname}`, true);
+    setMeta('og:image', finalImage, true);
+    setMeta('og:image:width', '1200', true);
+    setMeta('og:image:height', '630', true);
+    setMeta('og:image:alt', `${siteConfig.name} — Professional Podcast & Video Studio`, true);
+    setMeta('og:locale', 'en_IE', true);
 
-    // Twitter
-    updateMeta('twitter:title', finalTitle);
-    updateMeta('twitter:description', finalDescription);
+    setMeta('twitter:card', 'summary_large_image');
+    setMeta('twitter:site', siteConfig.seo.twitterHandle);
+    setMeta('twitter:title', finalTitle);
+    setMeta('twitter:description', finalDescription);
+    setMeta('twitter:image', finalImage);
+    setMeta('twitter:image:alt', `${siteConfig.name} — Professional Podcast & Video Studio`);
 
-    // Canonical URL
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement('link');
@@ -77,57 +74,47 @@ export default function SEO({
     }
     canonical.setAttribute('href', `${siteConfig.url}${window.location.pathname}`);
 
-    // Structured Data (JSON-LD)
-    const existingScript = document.querySelector('script[data-seo="structured-data"]');
-    if (existingScript) {
-      existingScript.remove();
-    }
+    const existing = document.querySelector('script[data-seo="structured-data"]');
+    if (existing) existing.remove();
 
-    let schemaData = structuredData.organization;
-    
-    if (structuredDataType === 'service' && structuredDataPayload) {
-      schemaData = structuredData.getServiceSchema(structuredDataPayload);
+    let schema;
+    if (structuredDataType === 'faq' && structuredDataPayload) {
+      schema = { '@context': 'https://schema.org', '@graph': [structuredData.localBusiness, structuredDataPayload] };
+    } else if (structuredDataType === 'service' && structuredDataPayload) {
+      schema = structuredData.getServiceSchema(structuredDataPayload);
+    } else if (page === 'services') {
+      schema = structuredData.servicesPage;
+    } else {
+      schema = structuredData.localBusiness;
     }
 
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.setAttribute('data-seo', 'structured-data');
-    script.textContent = JSON.stringify(schemaData);
+    script.textContent = JSON.stringify(schema);
     document.head.appendChild(script);
 
-    // Cleanup
     return () => {
-      const cleanupScript = document.querySelector('script[data-seo="structured-data"]');
-      if (cleanupScript) {
-        cleanupScript.remove();
-      }
+      const s = document.querySelector('script[data-seo="structured-data"]');
+      if (s) s.remove();
     };
-  }, [finalTitle, finalDescription, finalKeywords, noIndex, structuredDataType, structuredDataPayload]);
+  }, [finalTitle, finalDescription, finalKeywords, noIndex, structuredDataType, structuredDataPayload, finalImage, page]);
 
-  return null; // This component doesn't render anything
+  return null;
 }
 
-/**
- * Preload critical resources
- */
 export function PreloadResources() {
   useEffect(() => {
-    // Preload critical fonts
-    const fontPreloads = [
-      'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
-    ];
-
-    fontPreloads.forEach(href => {
-      const existing = document.querySelector(`link[href="${href}"]`);
-      if (!existing) {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'style';
-        link.href = href;
-        document.head.appendChild(link);
-      }
+    const preloads = [{ href: '/images/hero.webp', as: 'image', type: 'image/webp' }];
+    preloads.forEach(({ href, as, type }) => {
+      if (document.querySelector(`link[href="${href}"]`)) return;
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = as;
+      link.href = href;
+      if (type) link.type = type;
+      document.head.appendChild(link);
     });
   }, []);
-
   return null;
 }
