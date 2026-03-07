@@ -3,6 +3,41 @@
    Clients page hero + client show cards + Spotify button
    ============================================================ */
 
+/* ── Reels and clips ── */
+.ht-clients-reels {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(196, 150, 72, 0.08) 0%,
+      rgba(196, 150, 72, 0) 36%
+    ),
+    var(--ht-black);
+}
+
+.ht-reel-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.ht-reel-show {
+  color: var(--ht-gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.ht-reel-title {
+  font-family: var(--ht-serif);
+  color: var(--ht-cream);
+  font-size: 1.05rem;
+  line-height: 1.4;
+  margin-bottom: 0.85rem;
+}
+
 /* ── Hero ── */
 .ht-clients-hero {
   background: var(--ht-black);

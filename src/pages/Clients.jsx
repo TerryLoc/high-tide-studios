@@ -1,4 +1,4 @@
-import { clients, studioPromo } from "../data/clients";
+import { clients, reelsClips, studioPromo } from "../data/clients";
 import YouTubeEmbed from "../components/YouTubeEmbed";
 import ClientShow from "../components/ClientShow";
 import SEO from "../components/SEO";
@@ -14,9 +14,47 @@ export default function Clients() {
     client.episodes.some(ep => ep.youtubeId && !ep.youtubeId.includes('YOUTUBE_ID'))
   );
 
+  const featuredClips = reelsClips.filter(clip =>
+    clip.youtubeId &&
+    !clip.youtubeId.includes('YOUR_') &&
+    !clip.youtubeId.includes('YOUTUBE_ID')
+  );
+
   return (
     <>
       <SEO page="clients" />
+
+      {/* Reels and Clips */}
+      <section className="ht-clients-reels py-5">
+        <div className="container">
+          <FadeInUp>
+            <p className="ht-eyebrow">Reels &amp; Clips</p>
+            <h2 className="ht-section-title mb-2">Show Highlights</h2>
+            <div className="ht-section-divider mb-3" aria-hidden="true" />
+            <p className="ht-muted-text mb-4">
+              Quick highlight cuts from different shows recorded at High Tide Studios.
+            </p>
+          </FadeInUp>
+
+          {featuredClips.length > 0 ? (
+            <div className="row g-4">
+              {featuredClips.map((clip, i) => (
+                <div key={`${clip.showName}-${clip.youtubeId}-${i}`} className="col-12 col-md-6 col-xl-4">
+                  <article className="ht-reel-card h-100">
+                    <p className="ht-reel-show mb-2">{clip.showName}</p>
+                    <h3 className="ht-reel-title">{clip.clipTitle}</h3>
+                    <YouTubeEmbed videoId={clip.youtubeId} title={clip.clipTitle} />
+                  </article>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="ht-clients-empty text-center py-4">
+              <p className="ht-muted-text mb-0">Add clip entries in `src/data/clients.js` to publish your reels here.</p>
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section className="ht-clients-hero text-center">

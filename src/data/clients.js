@@ -19,6 +19,20 @@ export const studioPromo = Object.freeze({
   youtubeId: 'YOUR_PROMO_VIDEO_ID', // TODO: Replace with actual video ID
 });
 
+/** @type {{ showName: string, clipTitle: string, youtubeId: string }[]} */
+export const reelsClips = Object.freeze([
+  {
+    showName: 'Two Gas Tickets to Anywhere',
+    clipTitle: 'Clip Reel - Highlights',
+    youtubeId: 'uX1__iBTjf8',
+  },
+  {
+    showName: 'Not So Christian Brothers Podcast',
+    clipTitle: 'Clip Reel - Highlights',
+    youtubeId: '',
+  },
+]);
+
 /** @type {Client[]} */
 export const clients = Object.freeze([
   {
