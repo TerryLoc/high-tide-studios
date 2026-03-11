@@ -29,7 +29,7 @@ export const reelsClips = Object.freeze([
   {
     showName: 'Not So Christian Brothers Podcast',
     clipTitle: 'Clip Reel - Highlights',
-    youtubeId: '3keB5qGZjtDMsiZo',
+    youtubeId: '8aI4CuF3ets',
   },
 ]);
 
