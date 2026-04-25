@@ -43,7 +43,12 @@ export default function Clients() {
                   <article className="ht-reel-card h-100">
                     <p className="ht-reel-show mb-2">{clip.showName}</p>
                     <h3 className="ht-reel-title">{clip.clipTitle}</h3>
-                    <YouTubeEmbed videoId={clip.youtubeId} title={clip.clipTitle} />
+                    <YouTubeEmbed
+                      videoId={clip.youtubeId}
+                      title={clip.clipTitle}
+                      fallbackThumbnail={clip.fallbackThumbnail}
+                      preferFallbackThumbnail={clip.preferFallbackThumbnail}
+                    />
                   </article>
                 </div>
               ))}

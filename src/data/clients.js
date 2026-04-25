@@ -19,17 +19,25 @@ export const studioPromo = Object.freeze({
   youtubeId: 'YOUR_PROMO_VIDEO_ID', // TODO: Replace with actual video ID
 });
 
-/** @type {{ showName: string, clipTitle: string, youtubeId: string }[]} */
-export const reelsClips = Object.freeze([
+/** @type {{ showName: string, clipTitle: string, youtubeId: string, fallbackThumbnail?: string, preferFallbackThumbnail?: boolean }[]} */
+export let reelsClips = Object.freeze([
+  {
+    showName: 'Not So Christian Brothers Podcast',
+    clipTitle: 'Clip Reel - Highlights',
+    youtubeId: '8aI4CuF3ets',
+    fallbackThumbnail: '/images/nscb.webp',
+    preferFallbackThumbnail: true,
+  },
   {
     showName: 'Two Gas Tickets to Anywhere',
     clipTitle: 'Clip Reel - Highlights',
     youtubeId: 'uX1__iBTjf8',
   },
   {
-    showName: 'Not So Christian Brothers Podcast',
+    showName: 'Inside High Tide Studios',
     clipTitle: 'Clip Reel - Highlights',
-    youtubeId: '8aI4CuF3ets',
+    youtubeId: '', // TODO: Replace with actual video ID
+    fallbackThumbnail: '/images/high-tide-studios.jpeg',
   },
 ]);
 
