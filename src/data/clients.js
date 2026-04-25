@@ -51,13 +51,13 @@ export const clients = Object.freeze([
     episodes: [
       {
         title:
-          'Episode 37 – Crypto, Cash & Chaos: Is the World About to Snap? Why House Prices Are SO HIGH?',
-        youtubeId: 'MzQoXEv_0d8',
+          'Analyzing the "No": The Mystery of Family Obligations & Personal Survival',
+        youtubeId: 'hoVOXelpwJ8&t=18s',
       },
       {
         title:
-          'Episode 53 – "I Was In Bed With Victoria Beckham" | The Truth About Posh Spice & The Wedding Feud',
-        youtubeId: 'AvsL2VIIGzY',
+          'The TRUTH About Disclosure: Did UFOs Change Our Technology? (The Velcro Mystery)',
+        youtubeId: 'ObhYQ9uOWIg&t=578s',
       },
     ],
   },
