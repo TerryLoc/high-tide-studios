@@ -9,30 +9,30 @@
 
 /** @type {Testimonial[]} */
 export const testimonials = Object.freeze([
-  {
-    id: 1,
-    quote:
-      'High Tide Studios gave us the professional environment we needed to launch our podcast. The team understood exactly what we were going for.',
-    author: 'Sarah Mitchell',
-    role: 'Founder, Leadership Talks Podcast',
-    rating: 5,
-  },
-  {
-    id: 2,
-    quote:
-      'The quality of production exceeded our expectations. Colm and the team made us feel completely at ease behind the microphone.',
-    author: "David O'Connor",
-    role: 'CEO, TechStart Ireland',
-    rating: 5,
-  },
-  {
-    id: 3,
-    quote:
-      'Finally, a studio that takes audio seriously. No gimmicks, just broadcast-quality production from professionals who know their craft.',
-    author: 'Emma Byrne',
-    role: 'Author & Speaker',
-    rating: 5,
-  },
+  // {
+  //   id: 1,
+  //   quote:
+  //     'High Tide Studios gave us the professional environment we needed to launch our podcast. The team understood exactly what we were going for.',
+  //   author: 'Sarah Mitchell',
+  //   role: 'Founder, Leadership Talks Podcast',
+  //   rating: 5,
+  // },
+  // {
+  //   id: 2,
+  //   quote:
+  //     'The quality of production exceeded our expectations. Colm and the team made us feel completely at ease behind the microphone.',
+  //   author: "David O'Connor",
+  //   role: 'CEO, TechStart Ireland',
+  //   rating: 5,
+  // },
+  // {
+  //   id: 3,
+  //   quote:
+  //     'Finally, a studio that takes audio seriously. No gimmicks, just broadcast-quality production from professionals who know their craft.',
+  //   author: 'Emma Byrne',
+  //   role: 'Author & Speaker',
+  //   rating: 5,
+  // },
 ]);
 
 /**
