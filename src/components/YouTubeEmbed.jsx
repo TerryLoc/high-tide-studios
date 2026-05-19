@@ -76,6 +76,7 @@ export default function YouTubeEmbed({
 
     if (resolvedVideoId) {
       youtubeCandidates.push(`https://img.youtube.com/vi/${resolvedVideoId}/maxresdefault.jpg`);
+      youtubeCandidates.push(`https://img.youtube.com/vi/${resolvedVideoId}/sddefault.jpg`);
       youtubeCandidates.push(`https://img.youtube.com/vi/${resolvedVideoId}/hqdefault.jpg`);
     }
 

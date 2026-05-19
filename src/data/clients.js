@@ -16,7 +16,7 @@
 /** @type {{ title: string, youtubeId: string }} */
 export const studioPromo = Object.freeze({
   title: 'Inside High Tide Studios',
-  youtubeId: 'YOUR_PROMO_VIDEO_ID', // TODO: Replace with actual video ID
+  youtubeId: '', // TODO: Replace with actual video ID
 });
 
 /** @type {{ showName: string, clipTitle: string, youtubeId: string, fallbackThumbnail?: string, preferFallbackThumbnail?: boolean }[]} */
@@ -32,12 +32,6 @@ export let reelsClips = Object.freeze([
     showName: 'Two Gas Tickets to Anywhere',
     clipTitle: 'Clip Reel - Highlights',
     youtubeId: 'uX1__iBTjf8',
-  },
-  {
-    showName: 'Inside High Tide Studios',
-    clipTitle: 'Clip Reel - Highlights',
-    youtubeId: '', // TODO: Replace with actual video ID
-    fallbackThumbnail: '/images/high-tide-studios.jpeg',
   },
 ]);
 
@@ -70,6 +64,19 @@ export const clients = Object.freeze([
       {
         title: 'Episode 3 – 3rd February 2026',
         youtubeId: 'uCagmyX6fNo',
+      },
+    ],
+  },
+  {
+    name: 'Beatrice Caffrey',
+    description:
+      'Helping people feel healthy, fit and strong in midlife and beyond. Nutrition, fitness & lifestyle.',
+    spotifyShowUrl: '', // TODO: Replace with actual Spotify show URL
+    episodes: [
+      {
+        title:
+          'Why Women Are Doing the Wrong Exercise (And What Actually Works) | Emma Kinsella',
+        youtubeId: 'DNB8NNiYDk8',
       },
     ],
   },
