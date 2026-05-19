@@ -50,9 +50,9 @@
   --hts-dark-gray: #6c757d;
 
   /* Text Colors */
-  --hts-text: #212529;
-  --hts-text-muted: #5a5a6e;
-  --hts-text-light: rgba(255, 255, 255, 0.85);
+  --hts-text: #ffffff;
+  --hts-text-muted: rgba(255, 255, 255, 0.7);
+  --hts-text-light: #ffffff;
 
   /* Semantic Colors */
   --hts-success: #198754;

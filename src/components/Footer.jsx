@@ -18,7 +18,9 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { href: siteConfig.social.instagram, icon: 'bi-instagram', label: 'Instagram' },
+    { href: siteConfig.social.studioInstagram, icon: 'bi-instagram', label: 'Studio Instagram' },
+    { href: siteConfig.social.colmInstagram, icon: 'bi-instagram', label: 'Colm Hayes Instagram' },
+    { href: siteConfig.social.justinInstagram, icon: 'bi-instagram', label: 'Justin Caffrey Instagram' },
     { href: siteConfig.social.youtube, icon: 'bi-youtube', label: 'YouTube' },
   ];
 
@@ -83,21 +85,22 @@ export default function Footer() {
           {/* Social Links */}
           <div className="col-12 col-md-3">
             <h3 className="h6 fw-semibold mb-3">Follow Us</h3>
-            <div className="d-flex gap-3" role="list" aria-label="Social media links">
+            <ul className="list-unstyled small">
               {socialLinks.map(({ href, icon, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted fs-5 footer-social-link"
-                  aria-label={`Follow us on ${label}`}
-                  role="listitem"
-                >
-                  <i className={`bi ${icon}`} aria-hidden="true" />
-                </a>
+                <li className="mb-2" key={label}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted text-decoration-none footer-social-link"
+                    aria-label={`Follow us on ${label}`}
+                  >
+                    <i className={`bi ${icon} me-2`} aria-hidden="true" />
+                    {label}
+                  </a>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
 

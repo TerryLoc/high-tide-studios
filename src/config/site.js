@@ -18,7 +18,12 @@ export const siteConfig = {
   },
 
   social: {
-    instagram: 'https://instagram.com/high_tidestudios',
+    studioInstagram:
+      'https://www.instagram.com/high_tidestudios?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
+    colmInstagram:
+      'https://www.instagram.com/colmhayes?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
+    justinInstagram:
+      'https://www.instagram.com/justin.caffrey?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
     youtube: 'https://www.youtube.com/@HighTideGreystones',
   },
 

@@ -13,9 +13,9 @@
   --ht-gold-light: #d4a85a;
   --ht-gold-dim: rgba(196, 150, 72, 0.15);
   --ht-gold-border: rgba(196, 150, 72, 0.25);
-  --ht-cream: #f5f0e8;
-  --ht-cream-dim: rgba(245, 240, 232, 0.55);
-  --ht-cream-faint: rgba(245, 240, 232, 0.18);
+  --ht-cream: #ffffff;
+  --ht-cream-dim: rgba(255, 255, 255, 0.85);
+  --ht-cream-faint: rgba(255, 255, 255, 0.3);
   --ht-serif: 'Georgia', 'Times New Roman', serif;
 }
 

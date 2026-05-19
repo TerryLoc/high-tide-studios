@@ -155,7 +155,8 @@
 
 .ht-pkg-original-price {
   font-size: 0.95rem;
-  color: rgba(245, 240, 232, 0.3);
+  color: #ffffff;
+  opacity: 0.9;
   text-decoration: line-through;
 }
 

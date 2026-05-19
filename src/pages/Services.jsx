@@ -25,16 +25,6 @@ export default function Services() {
       {/* Packages Section */}
       <section className="ht-packages-section py-5" id="packages">
         <div className="container">
-          <FadeInUp>
-            <div className="text-center mb-5">
-              <p className="ht-eyebrow">What We Offer</p>
-              <h2 className="ht-section-title">Our Packages</h2>
-              <div className="ht-section-divider mx-auto" aria-hidden="true" />
-              <p className="ht-muted-text mt-3">
-                Professional podcast production tailored to your needs
-              </p>
-            </div>
-          </FadeInUp>
           <StaggerContainer className="row g-4 align-items-stretch">
             {packages.map((pkg, i) => (
               <StaggerItem className="col-12 col-md-6 col-lg-4" key={pkg.id || i}>
