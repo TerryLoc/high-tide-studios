@@ -646,8 +646,24 @@ footer .text-muted {
 }
 
 footer a.text-muted:hover,
-footer .footer-link:hover {
+footer .footer-link:hover,
+footer .footer-cookie-button:hover {
   color: var(--hts-white) !important;
+}
+
+footer .footer-cookie-button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: rgba(255, 255, 255, 0.65) !important;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+}
+
+footer .footer-cookie-button:focus-visible {
+  outline: 2px solid var(--hts-accent);
+  outline-offset: 3px;
 }
 
 footer h2,

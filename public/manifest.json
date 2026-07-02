@@ -1,6 +1,10 @@
 {
   "short_name": "High Tide",
   "name": "High Tide Studios",
+  "description": "Broadcast-ready podcast and video studio in Greystones, Wicklow.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
   "icons": [
     {
       "src": "favicons/favicon-16x16.png",
@@ -23,8 +27,9 @@
       "type": "image/png"
     }
   ],
-  "start_url": ".",
   "display": "standalone",
-  "theme_color": "#1a1a2e",
+  "orientation": "portrait-primary",
+  "categories": ["business", "music", "productivity"],
+  "theme_color": "#0a0a0a",
   "background_color": "#000000"
 }

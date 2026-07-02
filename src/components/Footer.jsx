@@ -7,6 +7,9 @@ import { siteConfig } from '../config/site';
  */
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const openCookiePreferences = () => {
+    window.dispatchEvent(new Event('hts:open-cookie-preferences'));
+  };
 
   const quickLinks = [
     { to: '/', label: 'Home' },
@@ -116,6 +119,13 @@ export default function Footer() {
             <Link to="/privacy" className="small text-muted text-decoration-none me-3 footer-link">
               Privacy Policy
             </Link>
+            <button
+              type="button"
+              className="footer-cookie-button small text-muted me-3"
+              onClick={openCookiePreferences}
+            >
+              Cookie settings
+            </button>
             <span className="small text-muted">
               {siteConfig.contact.address}
             </span>

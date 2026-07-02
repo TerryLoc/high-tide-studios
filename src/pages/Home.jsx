@@ -4,6 +4,7 @@ import { brandVision } from "../data/about";
 import { testimonials } from "../data/testimonials";
 import TestimonialCard from "../components/TestimonialCard";
 import SEO from "../components/SEO";
+import YouTubeEmbed from "../components/YouTubeEmbed";
 import { FadeInUp, FadeIn, StaggerContainer, StaggerItem } from "../components/AnimatedSection";
 import { features } from '../data/about';
 import '../styles/home.css';
@@ -84,17 +85,7 @@ export default function Home() {
             </FadeIn>
           </div>
           <StaggerItem className="col-12 col-md-8 mt-4">
-            <div className="ht-video-wrapper">
-              <iframe
-                width="100%" height="100%"
-                src="https://www.youtube.com/embed/JDKTdv_gKhg?si=_YLahDvVWPcEe3r5"
-                title="High Tide Studios Tour"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-              />
-            </div>
+            <YouTubeEmbed videoId="JDKTdv_gKhg" title="High Tide Studios Tour" />
           </StaggerItem>
         </div>
       </div>

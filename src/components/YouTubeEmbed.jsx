@@ -64,7 +64,6 @@ export default function YouTubeEmbed({
   videoId,
   title = 'Video',
   fallbackThumbnail,
-  preferFallbackThumbnail = false,
 }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [thumbnailIndex, setThumbnailIndex] = useState(0);
@@ -72,32 +71,13 @@ export default function YouTubeEmbed({
   const resolvedFallbackThumbnail = normalizeAssetPath(fallbackThumbnail);
 
   const thumbnailCandidates = useMemo(() => {
-    const youtubeCandidates = [];
-
-    if (resolvedVideoId) {
-      youtubeCandidates.push(`https://img.youtube.com/vi/${resolvedVideoId}/maxresdefault.jpg`);
-      youtubeCandidates.push(`https://img.youtube.com/vi/${resolvedVideoId}/sddefault.jpg`);
-      youtubeCandidates.push(`https://img.youtube.com/vi/${resolvedVideoId}/hqdefault.jpg`);
-    }
-
-    const candidates = [];
-
-    if (resolvedFallbackThumbnail && preferFallbackThumbnail) {
-      candidates.push(resolvedFallbackThumbnail);
-      candidates.push(...youtubeCandidates);
-    } else {
-      candidates.push(...youtubeCandidates);
-      if (resolvedFallbackThumbnail) {
-        candidates.push(resolvedFallbackThumbnail);
-      }
-    }
-
-    return candidates;
-  }, [resolvedVideoId, resolvedFallbackThumbnail, preferFallbackThumbnail]);
+    if (!resolvedFallbackThumbnail) return [];
+    return [resolvedFallbackThumbnail];
+  }, [resolvedFallbackThumbnail]);
 
   useEffect(() => {
     setThumbnailIndex(0);
-  }, [resolvedVideoId, resolvedFallbackThumbnail, preferFallbackThumbnail]);
+  }, [resolvedVideoId, resolvedFallbackThumbnail]);
 
   const handleLoad = useCallback(() => {
     setIsLoaded(true);
@@ -113,7 +93,7 @@ export default function YouTubeEmbed({
   }, [thumbnailCandidates.length]);
 
   const thumbnailUrl = thumbnailCandidates[thumbnailIndex] || '';
-  const embedUrl = `https://www.youtube.com/embed/${resolvedVideoId}?autoplay=1&rel=0`;
+  const embedUrl = `https://www.youtube-nocookie.com/embed/${resolvedVideoId}?autoplay=1&rel=0`;
 
   // Show thumbnail with play button until clicked
   return (
@@ -122,7 +102,7 @@ export default function YouTubeEmbed({
         <button
           onClick={handleLoad}
           className="youtube-thumbnail-btn"
-          aria-label={`Play video: ${title}`}
+          aria-label={`Play video with YouTube: ${title}`}
           style={{
             border: 'none',
             cursor: 'pointer',
@@ -148,6 +128,12 @@ export default function YouTubeEmbed({
                 display: 'block',
               }}
             />
+          )}
+          {!thumbnailUrl && (
+            <span className="youtube-placeholder">
+              <span className="youtube-placeholder-title">{title}</span>
+              <span className="youtube-placeholder-note">Loads from YouTube when played</span>
+            </span>
           )}
           <span className="youtube-play-icon" aria-hidden="true">
             <svg height="100%" viewBox="0 0 68 48" width="100%">
@@ -185,5 +171,4 @@ YouTubeEmbed.propTypes = {
   videoId: PropTypes.string.isRequired,
   title: PropTypes.string,
   fallbackThumbnail: PropTypes.string,
-  preferFallbackThumbnail: PropTypes.bool,
 };

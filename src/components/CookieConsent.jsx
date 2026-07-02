@@ -1,7 +1,41 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 const COOKIE_CONSENT_KEY = 'hts_cookie_consent';
+const COOKIE_CONSENT_VERSION = '2026-07-02';
+
+const createConsent = (media) => ({
+  version: COOKIE_CONSENT_VERSION,
+  essential: true,
+  media,
+  updatedAt: new Date().toISOString(),
+});
+
+const readConsent = () => {
+  try {
+    const stored = localStorage.getItem(COOKIE_CONSENT_KEY);
+    if (!stored) return null;
+
+    if (stored === 'accepted') return createConsent(true);
+    if (stored === 'declined') return createConsent(false);
+
+    const parsed = JSON.parse(stored);
+    if (parsed?.version === COOKIE_CONSENT_VERSION && typeof parsed.media === 'boolean') {
+      return parsed;
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
+};
+
+const saveConsent = (media) => {
+  const consent = createConsent(media);
+  localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(consent));
+  window.dispatchEvent(new CustomEvent('hts:cookie-consent-updated', { detail: consent }));
+  return consent;
+};
 
 /**
  * GDPR-compliant cookie consent banner
@@ -11,24 +45,27 @@ export default function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    // Check if user has already made a choice
-    const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
-    if (!consent) {
-      // Small delay for better UX - let page load first
+    if (!readConsent()) {
       const timer = setTimeout(() => setShowBanner(true), 1000);
       return () => clearTimeout(timer);
     }
   }, []);
 
-  const handleAccept = () => {
-    localStorage.setItem(COOKIE_CONSENT_KEY, 'accepted');
-    setShowBanner(false);
-  };
+  useEffect(() => {
+    const openPreferences = () => setShowBanner(true);
+    window.addEventListener('hts:open-cookie-preferences', openPreferences);
+    return () => window.removeEventListener('hts:open-cookie-preferences', openPreferences);
+  }, []);
 
-  const handleDecline = () => {
-    localStorage.setItem(COOKIE_CONSENT_KEY, 'declined');
+  const handleAcceptMedia = useCallback(() => {
+    saveConsent(true);
     setShowBanner(false);
-  };
+  }, []);
+
+  const handleEssentialOnly = useCallback(() => {
+    saveConsent(false);
+    setShowBanner(false);
+  }, []);
 
   if (!showBanner) return null;
 
@@ -38,32 +75,36 @@ export default function CookieConsent() {
       role="dialog"
       aria-label="Cookie consent"
       aria-describedby="cookie-consent-description"
+      aria-modal="false"
     >
       <div className="container">
         <div className="cookie-consent-content">
           <div className="cookie-consent-text">
-            <p id="cookie-consent-description" className="mb-2 mb-md-0">
-              We use cookies to enhance your experience. By continuing to visit this site, 
-              you agree to our use of cookies.{' '}
+            <p id="cookie-consent-description" className="mb-2">
+              We use essential storage to remember your choice. Optional embedded media
+              from YouTube or Google Maps may set cookies only when you allow or load it.{' '}
               <Link to="/privacy" className="cookie-consent-link">
                 Learn more
               </Link>
             </p>
+            <p className="cookie-consent-note mb-0">
+              No advertising or analytics cookies are currently used on this site.
+            </p>
           </div>
           <div className="cookie-consent-buttons">
             <button
-              onClick={handleDecline}
+              onClick={handleEssentialOnly}
               className="btn btn-outline-light btn-sm me-2"
-              aria-label="Decline cookies"
+              aria-label="Use essential cookies only"
             >
-              Decline
+              Essential only
             </button>
             <button
-              onClick={handleAccept}
+              onClick={handleAcceptMedia}
               className="btn btn-light btn-sm"
-              aria-label="Accept cookies"
+              aria-label="Allow optional embedded media cookies"
             >
-              Accept
+              Allow media
             </button>
           </div>
         </div>
@@ -110,13 +151,18 @@ export default function CookieConsent() {
           font-size: 0.9rem;
         }
 
+        .cookie-consent-note {
+          color: rgba(255, 255, 255, 0.72);
+          font-size: 0.8rem;
+        }
+
         .cookie-consent-link {
-          color: var(--primary, #7c3aed);
+          color: var(--hts-accent-light, #d4bc7a);
           text-decoration: underline;
         }
 
         .cookie-consent-link:hover {
-          color: var(--primary-light, #a78bfa);
+          color: #fff;
         }
 
         .cookie-consent-buttons {
@@ -151,9 +197,13 @@ export default function CookieConsent() {
 }
 
 /**
- * Utility function to check if user has accepted cookies
+ * Utility function to check if user has allowed optional embedded media cookies
  * Can be used by other components to conditionally load tracking
  */
 export function hasAcceptedCookies() {
-  return localStorage.getItem(COOKIE_CONSENT_KEY) === 'accepted';
+  return readConsent()?.media === true;
+}
+
+export function hasAllowedMediaCookies() {
+  return readConsent()?.media === true;
 }

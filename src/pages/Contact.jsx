@@ -14,6 +14,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', service: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [mapLoaded, setMapLoaded] = useState(false);
   const [errors, setErrors] = useState({});
 
   const validateForm = useCallback(() => {
@@ -284,16 +285,46 @@ export default function Contact() {
             <div className="row mt-5">
               <div className="col-12">
                 <div className="ht-contact-card p-2" style={{ borderRadius: 'var(--hts-radius-lg)', overflow: 'hidden' }}>
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4040.058133410199!2d-6.061866505499834!3d53.142989185692784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4867afdf1835a79d%3A0xc3080488ca621dce!2sHigh%20Tide%20Studios.!5e1!3m2!1sen!2sie!4v1779206109763!5m2!1sen!2sie"
-                    width="100%"
-                    height="500"
-                    title="High Tide Studios location map"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
+                  {mapLoaded ? (
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4040.058133410199!2d-6.061866505499834!3d53.142989185692784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4867afdf1835a79d%3A0xc3080488ca621dce!2sHigh%20Tide%20Studios.!5e1!3m2!1sen!2sie!4v1779206109763!5m2!1sen!2sie"
+                      width="100%"
+                      height="500"
+                      title="High Tide Studios location map"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                    />
+                  ) : (
+                    <div className="ht-map-consent">
+                      <i className="bi bi-geo-alt ht-map-consent-icon" aria-hidden="true" />
+                      <h2 className="ht-contact-card-title">High Tide Studios, Greystones</h2>
+                      <p className="ht-muted-text">
+                        Load the interactive Google Map to view the studio location. Google may
+                        use cookies or similar technologies when the map loads.
+                      </p>
+                      <div className="d-flex gap-3 justify-content-center flex-wrap">
+                        <button
+                          type="button"
+                          className="ht-btn-primary"
+                          onClick={() => setMapLoaded(true)}
+                        >
+                          <i className="bi bi-map" aria-hidden="true" />
+                          Load Map
+                        </button>
+                        <a
+                          href="https://www.google.com/maps/search/?api=1&query=High%20Tide%20Studios%20Greystones"
+                          className="ht-btn-outline"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
+                          Open Maps
+                        </a>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

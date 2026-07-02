@@ -11,8 +11,7 @@ export default function Privacy() {
   return (
     <>
       <SEO
-        title="Privacy Policy"
-        description={`Privacy Policy for ${name}. Learn how we collect, use, and protect your personal information.`}
+        page="privacy"
       />
 
       {/* Hero Section */}
@@ -21,7 +20,7 @@ export default function Privacy() {
           <FadeInUp>
             <h1 className="display-4 fw-bold mb-3">Privacy Policy</h1>
             <p className="lead text-white-50">
-              Last updated: February 2026
+              Last updated: July 2026
             </p>
           </FadeInUp>
         </div>
@@ -65,22 +64,25 @@ export default function Privacy() {
 
                   <h2>3. Cookies</h2>
                   <p>
-                    Cookies are small text files stored on your device. We use cookies to:
+                    Cookies and similar technologies are small files or browser storage entries
+                    stored on your device. We use them only where they are needed or where you
+                    choose to load an optional third-party service.
                   </p>
                   <ul>
-                    <li><strong>Essential cookies:</strong> Remember your cookie consent preference</li>
-                    <li><strong>Third-party cookies:</strong> YouTube embeds may set cookies when you view video content</li>
+                    <li><strong>Essential storage:</strong> Remember your cookie preference so we do not ask on every visit</li>
+                    <li><strong>Optional embedded media:</strong> YouTube or Google Maps may set cookies or use similar technologies when you choose to play a video or load the map</li>
                   </ul>
                   <p>
-                    You can control cookies through your browser settings. Note that disabling 
-                    cookies may affect the functionality of some features.
+                    We do not currently run advertising cookies or analytics cookies through this
+                    website. You can also control cookies through your browser settings.
                   </p>
 
                   <h3>Cookie Preferences</h3>
                   <p>
-                    When you first visit our site, you'll see a cookie banner asking for your consent. 
-                    Your choice is stored locally and remembered for future visits. You can change 
-                    your preference at any time by clearing your browser's local storage.
+                    When you first visit our site, you'll see a cookie banner asking whether you
+                    want to allow optional embedded media cookies. Your choice is stored locally
+                    and remembered for future visits. You can change your preference at any time
+                    from the Cookie settings link in the footer.
                   </p>
 
                   <h2>4. How We Use Your Information</h2>

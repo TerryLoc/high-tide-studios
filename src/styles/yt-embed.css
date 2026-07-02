@@ -2,10 +2,32 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16/9;
-  background: #000;
+  background: linear-gradient(135deg, #050505, #17120a);
   border-radius: var(--hts-radius-lg);
   overflow: hidden;
   min-height: 200px;
+}
+
+.youtube-placeholder {
+  align-items: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  height: 100%;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.youtube-placeholder-title {
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 700;
+}
+
+.youtube-placeholder-note {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.82rem;
 }
 
 @media (max-width: 600px) {

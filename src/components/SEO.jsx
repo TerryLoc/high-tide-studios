@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import { siteConfig, pageSEO, structuredData } from '../config/site';
 
 export default function SEO({
@@ -12,21 +13,26 @@ export default function SEO({
   structuredDataType = null,
   structuredDataPayload = null,
 }) {
+  const location = useLocation();
   const pageData = pageSEO[page] || pageSEO.home;
   const finalTitle = customTitle || title || pageData.title;
   const finalDescription = customDescription || description || pageData.description;
+  const brandedTitle = finalTitle.includes(siteConfig.name)
+    ? finalTitle
+    : `${finalTitle} | ${siteConfig.name}`;
+  const cleanPath = location.pathname === '/'
+    ? '/'
+    : location.pathname.replace(/\/+$/, '');
+  const canonicalUrl = `${siteConfig.url}${cleanPath}`;
   const finalImage = `${siteConfig.url}${siteConfig.seo.ogImage}`;
 
   const finalKeywords = useMemo(
-    () => [...(pageData.keywords || []), ...siteConfig.seo.keywords, ...keywords],
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [page]
+    () => Array.from(new Set([...(pageData.keywords || []), ...siteConfig.seo.keywords, ...keywords])),
+    [pageData.keywords, keywords]
   );
 
   useEffect(() => {
-    document.title = finalTitle.includes('High Tide')
-      ? finalTitle
-      : `${finalTitle} | High Tide Studios`;
+    document.title = brandedTitle;
 
     const setMeta = (name, content, isProperty = false) => {
       if (!content) return;
@@ -40,6 +46,21 @@ export default function SEO({
       el.setAttribute('content', content);
     };
 
+    const setLink = (rel, href, attributes = {}) => {
+      const selector = Object.entries(attributes).reduce(
+        (acc, [key, value]) => `${acc}[${key}="${value}"]`,
+        `link[rel="${rel}"]`
+      );
+      let el = document.querySelector(selector);
+      if (!el) {
+        el = document.createElement('link');
+        el.setAttribute('rel', rel);
+        Object.entries(attributes).forEach(([key, value]) => el.setAttribute(key, value));
+        document.head.appendChild(el);
+      }
+      el.setAttribute('href', href);
+    };
+
     setMeta('description', finalDescription);
     setMeta('keywords', finalKeywords.join(', '));
     setMeta('author', siteConfig.fullName);
@@ -50,10 +71,11 @@ export default function SEO({
 
     setMeta('og:type', 'website', true);
     setMeta('og:site_name', siteConfig.fullName, true);
-    setMeta('og:title', finalTitle, true);
+    setMeta('og:title', brandedTitle, true);
     setMeta('og:description', finalDescription, true);
-    setMeta('og:url', `${siteConfig.url}${window.location.pathname}`, true);
+    setMeta('og:url', canonicalUrl, true);
     setMeta('og:image', finalImage, true);
+    setMeta('og:image:secure_url', finalImage, true);
     setMeta('og:image:width', '1200', true);
     setMeta('og:image:height', '630', true);
     setMeta('og:image:alt', `${siteConfig.name} — Professional Podcast & Video Studio`, true);
@@ -61,32 +83,41 @@ export default function SEO({
 
     setMeta('twitter:card', 'summary_large_image');
     setMeta('twitter:site', siteConfig.seo.twitterHandle);
-    setMeta('twitter:title', finalTitle);
+    setMeta('twitter:title', brandedTitle);
     setMeta('twitter:description', finalDescription);
     setMeta('twitter:image', finalImage);
     setMeta('twitter:image:alt', `${siteConfig.name} — Professional Podcast & Video Studio`);
 
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', `${siteConfig.url}${window.location.pathname}`);
+    setLink('canonical', canonicalUrl);
+    setLink('alternate', canonicalUrl, { hreflang: 'en-IE' });
+    setLink('alternate', canonicalUrl, { hreflang: 'x-default' });
 
     const existing = document.querySelector('script[data-seo="structured-data"]');
     if (existing) existing.remove();
 
-    let schema;
+    const graph = [
+      structuredData.localBusiness,
+      structuredData.website,
+      structuredData.getWebPageSchema({
+        title: brandedTitle,
+        description: finalDescription,
+        url: canonicalUrl,
+        path: cleanPath,
+      }),
+      structuredData.getBreadcrumbSchema(cleanPath),
+    ];
+
     if (structuredDataType === 'faq' && structuredDataPayload) {
-      schema = { '@context': 'https://schema.org', '@graph': [structuredData.localBusiness, structuredDataPayload] };
+      graph.push(structuredDataPayload);
     } else if (structuredDataType === 'service' && structuredDataPayload) {
-      schema = structuredData.getServiceSchema(structuredDataPayload);
+      graph.push(structuredData.getServiceSchema(structuredDataPayload));
     } else if (page === 'services') {
-      schema = structuredData.servicesPage;
+      graph.push(...structuredData.servicesPage['@graph']);
     } else {
-      schema = structuredData.localBusiness;
+      graph.push(structuredData.getOrganizationSchema());
     }
+
+    const schema = { '@context': 'https://schema.org', '@graph': graph };
 
     const script = document.createElement('script');
     script.type = 'application/ld+json';
@@ -98,7 +129,18 @@ export default function SEO({
       const s = document.querySelector('script[data-seo="structured-data"]');
       if (s) s.remove();
     };
-  }, [finalTitle, finalDescription, finalKeywords, noIndex, structuredDataType, structuredDataPayload, finalImage, page]);
+  }, [
+    brandedTitle,
+    finalDescription,
+    finalKeywords,
+    noIndex,
+    structuredDataType,
+    structuredDataPayload,
+    finalImage,
+    page,
+    canonicalUrl,
+    cleanPath,
+  ]);
 
   return null;
 }

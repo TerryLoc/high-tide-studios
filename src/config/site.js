@@ -123,6 +123,26 @@ export const pageSEO = {
       'studio booking Greystones',
     ],
   },
+  privacy: {
+    title: 'Privacy & Cookie Policy — High Tide Studios',
+    description:
+      'Privacy and cookie information for High Tide Studios, including contact forms, booking enquiries, essential storage, and optional embedded media.',
+    keywords: [
+      'High Tide Studios privacy',
+      'High Tide Studios cookies',
+      'studio privacy policy',
+    ],
+  },
+};
+
+export const routeLabels = {
+  '/': 'Home',
+  '/about': 'About',
+  '/services': 'Services',
+  '/clients': 'Clients',
+  '/booking': 'Booking',
+  '/contact': 'Contact',
+  '/privacy': 'Privacy Policy',
 };
 
 // Structured Data (JSON-LD)
@@ -228,6 +248,86 @@ export const structuredData = {
       'Content Creation',
       'Broadcast Media',
     ],
+  },
+
+  website: {
+    '@type': 'WebSite',
+    '@id': 'https://hightidestudios.ie/#website',
+    url: 'https://hightidestudios.ie/',
+    name: 'High Tide Studios',
+    alternateName: 'High Tide Studios Greystones',
+    inLanguage: 'en-IE',
+    publisher: {
+      '@id': 'https://hightidestudios.ie/#business',
+    },
+  },
+
+  getOrganizationSchema: () => ({
+    '@type': 'Organization',
+    '@id': 'https://hightidestudios.ie/#organization',
+    name: 'High Tide Studios',
+    url: 'https://hightidestudios.ie/',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://hightidestudios.ie/images/main_logo.png',
+      width: 1024,
+      height: 1024,
+    },
+    sameAs: [
+      'https://instagram.com/high_tidestudios',
+      'https://www.youtube.com/@HighTideGreystones',
+    ],
+  }),
+
+  getWebPageSchema: ({ title, description, url, path }) => ({
+    '@type': 'WebPage',
+    '@id': `${url}#webpage`,
+    url,
+    name: title,
+    description,
+    inLanguage: 'en-IE',
+    isPartOf: {
+      '@id': 'https://hightidestudios.ie/#website',
+    },
+    about: {
+      '@id': 'https://hightidestudios.ie/#business',
+    },
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url: 'https://hightidestudios.ie/og-image.jpg',
+      width: 1200,
+      height: 630,
+    },
+    breadcrumb: {
+      '@id': `https://hightidestudios.ie${path}#breadcrumb`,
+    },
+  }),
+
+  getBreadcrumbSchema: (path) => {
+    const segments = path === '/' ? [] : path.split('/').filter(Boolean);
+    const itemListElement = [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: routeLabels['/'],
+        item: 'https://hightidestudios.ie/',
+      },
+      ...segments.map((segment, index) => {
+        const route = `/${segments.slice(0, index + 1).join('/')}`;
+        return {
+          '@type': 'ListItem',
+          position: index + 2,
+          name: routeLabels[route] || segment.replace(/-/g, ' '),
+          item: `https://hightidestudios.ie${route}`,
+        };
+      }),
+    ];
+
+    return {
+      '@type': 'BreadcrumbList',
+      '@id': `https://hightidestudios.ie${path}#breadcrumb`,
+      itemListElement,
+    };
   },
 
   // Used on services page
