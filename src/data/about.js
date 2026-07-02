@@ -14,7 +14,7 @@ High Tide reflects his belief that serious conversations deserve serious environ
     id: 2,
     name: 'Terry Loughran',
     role: 'Studio Director',
-    image: '/images/terry_headshot.webp',
+    image: '/images/terry_headshot.webp?v=20260702',
     shortBio:
       'Studio operations and client development, backed by decades of hands-on production expertise.',
     fullBio: `Terry Loughran leads studio operations and new business at High Tide Studios, bringing together deep technical expertise with a rare understanding of what makes a production actually work — under pressure, on a deadline, and in front of a camera.
