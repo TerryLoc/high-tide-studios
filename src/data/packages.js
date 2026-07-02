@@ -4,11 +4,15 @@
  * @property {string} title - Package name
  * @property {string} subtitle - Short description
  * @property {string} price - Display price
+ * @property {string} [priceNote] - Supporting price note
  * @property {string} [originalPrice] - Crossed-out original price
  * @property {string} description - Full description
  * @property {string[]} features - List of included features
  * @property {string} [note] - Additional note/disclaimer
  * @property {string} [badge] - Badge text (e.g., "Popular", "Best Value")
+ * @property {string} [whoFor] - Intended audience
+ * @property {string} [ctaLabel] - Custom CTA label
+ * @property {string} [ctaLink] - Custom CTA link
  */
 
 /** @type {Package[]} */
@@ -74,6 +78,76 @@ export const packages = Object.freeze([
     whoFor:
       'Built for serious podcast hosts, founders, executives, and brands who want a broadcast-ready presence and a complete production partner, not a DIY setup or piecemeal service.',
     badge: null,
+  },
+]);
+
+/** @type {Package[]} */
+export const businessPackages = Object.freeze([
+  {
+    id: 'leadership-voice',
+    title: 'LEADERSHIP VOICE',
+    subtitle: 'Internal & Leadership Podcasts',
+    price: '€324',
+    priceNote: 'ex VAT, per episode',
+    originalPrice: null,
+    description:
+      'Full-service internal comms and leadership podcast production for organisations who want their leadership to sound present, human, and consistent — without the self-op learning curve.',
+    features: [
+      'Full-service studio production — multi-mic audio, HD video, dedicated crew',
+      'Producer/engineer support throughout the session',
+      'Broadcast-quality edit of the full episode',
+      'Short-form clips cut for Slack, Teams, or intranet distribution',
+      'Full transcript for accessibility and internal search',
+    ],
+    note: 'Season package (4 episodes): €1,150 ex VAT',
+    whoFor:
+      'Heads of Internal Comms, People & Culture leads, and CEOs at mid-size organisations who want a consistent, human way to reach their own teams.',
+    ctaLabel: 'Request a Consultation',
+    ctaLink: '/contact?enquiry=leadership-voice',
+  },
+  {
+    id: 'brand-signal',
+    title: 'BRAND SIGNAL',
+    subtitle: 'Marketing & Thought-Leadership Podcasts',
+    price: '€609',
+    priceNote: 'ex VAT, per episode',
+    originalPrice: null,
+    description:
+      'Cinematic marketing and thought-leadership podcast production built for brand credibility, not just content volume.',
+    features: [
+      'Cinematic multi-camera studio production (3–5 camera setup available)',
+      'Professional audio mastering and colour grading',
+      '2–3 premium promotional reels optimised for LinkedIn, Instagram, and TikTok',
+      'SEO-optimised show notes and full transcript',
+      'Distribution and publishing support for YouTube and Spotify',
+      'Scheduled release setup',
+    ],
+    note: 'Full broadcast/season package: POA',
+    whoFor:
+      'Marketing Directors, Heads of Content, and agencies producing branded content for B2B clients.',
+    ctaLabel: 'Request a Consultation',
+    ctaLink: '/contact?enquiry=brand-signal',
+  },
+  {
+    id: 'talent-story',
+    title: 'TALENT STORY',
+    subtitle: 'Employer Branding & Recruitment Video',
+    price: '€324',
+    priceNote: 'ex VAT, per session',
+    originalPrice: null,
+    description:
+      'Studio-based interview and testimonial video production for employer branding and recruitment campaigns.',
+    features: [
+      'Studio-based interview and testimonial video production',
+      '1–2 HD camera setup with multi-mic professional audio',
+      '30–90 second highlight reels cut for careers pages and social recruitment',
+      'Full raw footage plus edited assets, reusable across campaigns',
+    ],
+    note: 'Multi-session campaign packages: custom quote',
+    whoFor:
+      'Heads of Talent Acquisition, HR Directors, and People Directors competing for candidates.',
+    ctaLabel: 'Request a Consultation',
+    ctaLink: '/contact?enquiry=talent-story',
   },
 ]);
 

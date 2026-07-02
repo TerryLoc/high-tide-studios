@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 
 /**
  * Scroll to top button that appears after scrolling down
@@ -6,6 +7,11 @@ import { useEffect, useState, useCallback } from 'react';
  */
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const { pathname, search } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [pathname, search]);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -30,7 +36,7 @@ export default function ScrollToTop() {
 
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    
+
     // Focus management for accessibility
     const mainContent = document.querySelector('main') || document.body;
     mainContent.focus();
@@ -43,8 +49,7 @@ export default function ScrollToTop() {
       onClick={scrollToTop}
       className="btn btn-dark btn-scroll-top"
       aria-label="Scroll to top of page"
-      type="button"
-    >
+      type="button">
       <i className="bi bi-arrow-up" aria-hidden="true" />
     </button>
   );

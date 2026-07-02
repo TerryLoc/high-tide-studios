@@ -64,6 +64,54 @@
   background: var(--ht-dark);
 }
 
+.ht-services-tabs {
+  align-items: center;
+  border: 1px solid rgba(196, 150, 72, 0.28);
+  border-radius: 4px;
+  display: flex;
+  gap: 0.35rem;
+  margin: 0 auto 2rem;
+  max-width: 560px;
+  padding: 0.35rem;
+}
+
+.ht-services-tab {
+  background: transparent;
+  border: 0;
+  border-radius: 2px;
+  color: var(--ht-cream-dim);
+  flex: 1;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  padding: 0.85rem 1rem;
+  text-transform: uppercase;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.ht-services-tab:hover,
+.ht-services-tab:focus-visible {
+  color: var(--ht-cream);
+}
+
+.ht-services-tab:focus-visible {
+  outline: 2px solid var(--ht-gold-pkg);
+  outline-offset: 2px;
+}
+
+.ht-services-tab--active {
+  background: var(--ht-gold-pkg);
+  color: #0a0a0a;
+}
+
+.ht-services-tab--active:hover,
+.ht-services-tab--active:focus-visible {
+  color: #0a0a0a;
+}
+
 /* ============================================================
    PACKAGE CARD — base
    ============================================================ */
@@ -158,6 +206,12 @@
   color: #ffffff;
   opacity: 0.9;
   text-decoration: line-through;
+}
+
+.ht-pkg-price-note {
+  color: rgba(245, 240, 232, 0.62);
+  font-size: 0.78rem;
+  line-height: 1.3;
 }
 
 /* ── Description ── */
@@ -406,4 +460,11 @@
   border-radius: 4px;
   box-shadow: inset 0 0 40px rgba(196, 150, 72, 0.04);
   pointer-events: none;
+}
+
+@media (max-width: 575px) {
+  .ht-services-tabs {
+    align-items: stretch;
+    flex-direction: column;
+  }
 }

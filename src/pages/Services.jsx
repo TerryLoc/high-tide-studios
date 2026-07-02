@@ -1,9 +1,18 @@
+import { useState } from 'react';
 import SEO from '../components/SEO';
-import { FadeInUp, StaggerContainer, StaggerItem } from '../components/AnimatedSection';
-import { packages } from "../data/packages";
-import PackageCard from "../components/PackageCard";
+import {
+  FadeInUp,
+  StaggerContainer,
+  StaggerItem,
+} from '../components/AnimatedSection';
+import { businessPackages, packages } from '../data/packages';
+import PackageCard from '../components/PackageCard';
 
 export default function Services() {
+  const [activeTab, setActiveTab] = useState('individual');
+  const visiblePackages =
+    activeTab === 'business' ? businessPackages : packages;
+
   return (
     <>
       <SEO page="services" />
@@ -25,13 +34,54 @@ export default function Services() {
       {/* Packages Section */}
       <section className="ht-packages-section py-5" id="packages">
         <div className="container">
-          <StaggerContainer className="row g-4 align-items-stretch">
-            {packages.map((pkg, i) => (
-              <StaggerItem className="col-12 col-md-6 col-lg-4" key={pkg.id || i}>
-                <PackageCard pkg={pkg} featured={pkg.badge === 'Best Value'} />
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+          <div
+            className="ht-services-tabs"
+            role="tablist"
+            aria-label="Service package type">
+            <button
+              type="button"
+              className={`ht-services-tab ${activeTab === 'individual' ? 'ht-services-tab--active' : ''}`}
+              role="tab"
+              aria-selected={activeTab === 'individual'}
+              aria-controls="services-packages-panel"
+              id="services-tab-individual"
+              onClick={() => setActiveTab('individual')}>
+              For Individuals &amp; Creators
+            </button>
+            <button
+              type="button"
+              className={`ht-services-tab ${activeTab === 'business' ? 'ht-services-tab--active' : ''}`}
+              role="tab"
+              aria-selected={activeTab === 'business'}
+              aria-controls="services-packages-panel"
+              id="services-tab-business"
+              onClick={() => setActiveTab('business')}>
+              For Business
+            </button>
+          </div>
+          <div
+            id="services-packages-panel"
+            role="tabpanel"
+            aria-labelledby={
+              activeTab === 'business'
+                ? 'services-tab-business'
+                : 'services-tab-individual'
+            }>
+            <StaggerContainer
+              key={activeTab}
+              className="row g-4 align-items-stretch">
+              {visiblePackages.map((pkg, i) => (
+                <StaggerItem
+                  className="col-12 col-md-6 col-lg-4"
+                  key={pkg.id || i}>
+                  <PackageCard
+                    pkg={pkg}
+                    featured={pkg.badge === 'Best Value'}
+                  />
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
         </div>
       </section>
     </>

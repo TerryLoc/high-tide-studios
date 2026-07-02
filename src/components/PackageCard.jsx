@@ -9,7 +9,12 @@ export default function PackageCard({ pkg, featured = false }) {
     bronze: 'ht-pkg-bronze',
     silver: 'ht-pkg-silver',
     gold:   'ht-pkg-gold',
+    'leadership-voice': 'ht-pkg-gold',
+    'brand-signal': 'ht-pkg-gold',
+    'talent-story': 'ht-pkg-gold',
   }[pkg.id] || '';
+  const ctaLabel = pkg.ctaLabel || 'Book Now';
+  const ctaLink = pkg.ctaLink || `/booking?package=${pkg.id}`;
 
   return (
     <article
@@ -40,6 +45,9 @@ export default function PackageCard({ pkg, featured = false }) {
             <span className="ht-pkg-original-price" aria-label={`Originally ${pkg.originalPrice}`}>
               {pkg.originalPrice}
             </span>
+          )}
+          {pkg.priceNote && (
+            <span className="ht-pkg-price-note">{pkg.priceNote}</span>
           )}
         </div>
 
@@ -77,12 +85,12 @@ export default function PackageCard({ pkg, featured = false }) {
 
         {/* CTA */}
         <Link
-          to={`/booking?package=${pkg.id}`}
+          to={ctaLink}
           className="ht-pkg-cta"
-          aria-label={`Book ${pkg.title} package`}
+          aria-label={`${ctaLabel} for ${pkg.title}`}
         >
           <i className="bi bi-calendar-check" aria-hidden="true" />
-          Book Now
+          {ctaLabel}
         </Link>
 
       </div>
@@ -96,12 +104,15 @@ PackageCard.propTypes = {
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string,
     price: PropTypes.string.isRequired,
+    priceNote: PropTypes.string,
     originalPrice: PropTypes.string,
     description: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.string).isRequired,
     note: PropTypes.string,
     whoFor: PropTypes.string,
     badge: PropTypes.string,
+    ctaLabel: PropTypes.string,
+    ctaLink: PropTypes.string,
   }).isRequired,
   featured: PropTypes.bool,
 };
