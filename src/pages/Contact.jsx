@@ -52,7 +52,7 @@ export default function Contact() {
       setFormData({ name: '', email: '', phone: '', service: '', message: '' });
     } catch (error) {
       console.error('Submission error:', error);
-      setErrors({ submit: 'Failed to send message. Please try again or email us directly at colmhayesradio@gmail.com' });
+      setErrors({ submit: `Failed to send message. Please try again or email us directly at ${siteConfig.contact.email}` });
     } finally {
       setIsSubmitting(false);
     }

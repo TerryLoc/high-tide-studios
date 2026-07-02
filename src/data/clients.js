@@ -40,7 +40,7 @@ export const clients = Object.freeze([
   {
     name: 'Not So Christian Brothers Podcast',
     description:
-      'Meet Justin Caffrey and Colm Hayes — two brothers (Colm has a "stage" name) who could not be more different, yet share one mission: to take the sacred cows of modern life and give them a good old-fashioned grilling.',
+      'A conversational show built around two very different voices with one shared mission: to take the sacred cows of modern life and give them a good old-fashioned grilling.',
     spotifyShowUrl: 'https://open.spotify.com/show/6rGJWNisg6vsGJeJcsqGOE', // TODO: Replace with actual Spotify show URL
     episodes: [
       {

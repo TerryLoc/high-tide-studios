@@ -20,7 +20,7 @@ export const testimonials = Object.freeze([
   // {
   //   id: 2,
   //   quote:
-  //     'The quality of production exceeded our expectations. Colm and the team made us feel completely at ease behind the microphone.',
+  //     'The quality of production exceeded our expectations. The team made us feel completely at ease behind the microphone.',
   //   author: "David O'Connor",
   //   role: 'CEO, TechStart Ireland',
   //   rating: 5,

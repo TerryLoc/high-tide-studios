@@ -2,6 +2,7 @@ import { useState, useCallback, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { FadeInUp, FadeIn } from '../components/AnimatedSection';
 import { packages } from '../data/packages';
+import { siteConfig } from '../config/site';
 import SEO from '../components/SEO';
 import emailjs from '@emailjs/browser';
 
@@ -132,7 +133,7 @@ export default function Booking() {
       setSubmitted(true);
     } catch (error) {
       console.error('Booking error:', error);
-      setErrors({ submit: `Failed to send booking request: ${error.text || error.message || 'Unknown error'}. Please contact us directly at colmhayesradio@gmail.com` });
+      setErrors({ submit: `Failed to send booking request: ${error.text || error.message || 'Unknown error'}. Please contact us directly at ${siteConfig.contact.email}` });
     } finally {
       setIsSubmitting(false);
     }

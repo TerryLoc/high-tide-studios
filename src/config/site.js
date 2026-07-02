@@ -10,9 +10,9 @@ export const siteConfig = {
   url: 'https://hightidestudios.ie',
 
   contact: {
-    email: 'colmhayesradio@gmail.com',
-    phone: '087 246 2643',
-    phoneRaw: '+353872462643',
+    email: 'hightidestudios@icloud.com',
+    phone: '087 165 7108',
+    phoneRaw: '+353871657108',
     location: 'Greystones, Wicklow',
     address: 'Unit 11, Watson Johnson, Church Road, Greystones',
   },
@@ -20,8 +20,6 @@ export const siteConfig = {
   social: {
     studioInstagram:
       'https://www.instagram.com/high_tidestudios?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
-    colmInstagram:
-      'https://www.instagram.com/colmhayes?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
     justinInstagram:
       'https://www.instagram.com/justin.caffrey?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
     youtube: 'https://www.youtube.com/@HighTideGreystones',
@@ -73,12 +71,13 @@ export const pageSEO = {
   about: {
     title: 'About High Tide Studios',
     description:
-      'Meet the team behind High Tide Studios — professional broadcasters and content creators based in Greystones, Wicklow.',
+      'Meet Justin Caffrey and Terry Loughran, the team behind High Tide Studios in Greystones, Wicklow.',
     keywords: [
       'about High Tide Studios',
       'podcast team Ireland',
       'Greystones studio team',
-      'Colm Hayes',
+      'Terry Loughran',
+      'Justin Caffrey',
     ],
   },
   clients: {
@@ -157,8 +156,8 @@ export const structuredData = {
     description:
       'Broadcast-ready podcast and video studio in Greystones, Wicklow. Professional audio recording, video production, and content creation.',
     url: 'https://hightidestudios.ie',
-    telephone: '+353872462643',
-    email: 'colmhayesradio@gmail.com',
+    telephone: '+353871657108',
+    email: 'hightidestudios@icloud.com',
     foundingDate: '2023',
     priceRange: '€€',
     currenciesAccepted: 'EUR',
@@ -339,7 +338,7 @@ export const structuredData = {
         '@id': 'https://hightidestudios.ie/#business',
         name: 'High Tide Studios',
         url: 'https://hightidestudios.ie',
-        telephone: '+353872462643',
+        telephone: '+353871657108',
         address: {
           '@type': 'PostalAddress',
           streetAddress: 'Unit 11, Watson Johnson, Church Road',

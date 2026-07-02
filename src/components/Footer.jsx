@@ -22,7 +22,6 @@ export default function Footer() {
 
   const socialLinks = [
     { href: siteConfig.social.studioInstagram, icon: 'bi-instagram', label: 'Studio Instagram' },
-    { href: siteConfig.social.colmInstagram, icon: 'bi-instagram', label: 'Colm Hayes Instagram' },
     { href: siteConfig.social.justinInstagram, icon: 'bi-instagram', label: 'Justin Caffrey Instagram' },
     { href: siteConfig.social.youtube, icon: 'bi-youtube', label: 'YouTube' },
   ];

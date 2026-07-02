@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { teamMembers, companyInfo, whoWeAre, stats } from '../data/about';
+import { siteConfig } from '../config/site';
 import { FadeInUp, FadeIn, StaggerContainer, StaggerItem } from '../components/AnimatedSection';
 import SEO from '../components/SEO';
 
@@ -166,9 +167,9 @@ export default function About() {
                   Ireland
                 </address>
                 <p className="mb-4">
-                  <a href="mailto:colmhayesradio@gmail.com" className="ht-location-link">
+                  <a href={`mailto:${siteConfig.contact.email}`} className="ht-location-link">
                     <i className="bi bi-envelope me-2" aria-hidden="true" />
-                    colmhayesradio@gmail.com
+                    {siteConfig.contact.email}
                   </a>
                 </p>
                 <Link to="/contact" className="ht-btn-primary">
