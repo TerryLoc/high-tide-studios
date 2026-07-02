@@ -88,7 +88,7 @@ export const businessPackages = Object.freeze([
     title: 'LEADERSHIP VOICE',
     subtitle: 'Internal & Leadership Podcasts',
     price: '€324',
-    priceNote: 'ex VAT, per episode',
+    priceNote: 'ex VAT, per episode · Discounted price until 1st Oct',
     originalPrice: null,
     description:
       'Full-service internal comms and leadership podcast production for organisations who want their leadership to sound present, human, and consistent — without the self-op learning curve.',
@@ -110,7 +110,7 @@ export const businessPackages = Object.freeze([
     title: 'BRAND SIGNAL',
     subtitle: 'Marketing & Thought-Leadership Podcasts',
     price: '€609',
-    priceNote: 'ex VAT, per episode',
+    priceNote: 'ex VAT, per episode · Discounted price until 1st Oct',
     originalPrice: null,
     description:
       'Cinematic marketing and thought-leadership podcast production built for brand credibility, not just content volume.',
@@ -133,7 +133,7 @@ export const businessPackages = Object.freeze([
     title: 'TALENT STORY',
     subtitle: 'Employer Branding & Recruitment Video',
     price: '€324',
-    priceNote: 'ex VAT, per session',
+    priceNote: 'ex VAT, per session · Discounted price until 1st Oct',
     originalPrice: null,
     description:
       'Studio-based interview and testimonial video production for employer branding and recruitment campaigns.',
