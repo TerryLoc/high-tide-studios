@@ -71,7 +71,6 @@ export const siteConfig = {
       'employer branding video Ireland',
     ],
     ogImage: '/og-image.jpg',
-    twitterHandle: '@hightidestudios',
   },
 };
 

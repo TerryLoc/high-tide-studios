@@ -96,16 +96,6 @@ export default function SEO({
     );
     setMeta('og:locale', 'en_IE', true);
 
-    setMeta('twitter:card', 'summary_large_image');
-    setMeta('twitter:site', siteConfig.seo.twitterHandle);
-    setMeta('twitter:title', brandedTitle);
-    setMeta('twitter:description', finalDescription);
-    setMeta('twitter:image', finalImage);
-    setMeta(
-      'twitter:image:alt',
-      `${siteConfig.name} — Professional Podcast & Video Studio`,
-    );
-
     setLink('canonical', canonicalUrl);
     setLink('alternate', canonicalUrl, { hreflang: 'en-IE' });
     setLink('alternate', canonicalUrl, { hreflang: 'x-default' });
