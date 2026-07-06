@@ -1,7 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 import { FadeInUp, FadeIn } from '../components/AnimatedSection';
 import { siteConfig } from '../config/site';
-import { packages } from '../data/packages';
 import {
   EMAILJS_SERVICE_ID,
   EMAILJS_PUBLIC_KEY,
@@ -34,9 +33,9 @@ export default function Contact() {
   // approach Booking.jsx already uses for its selectedPackage.
   const serviceLabel = useMemo(() => {
     if (!formData.service) return 'General Inquiry';
-    if (formData.service === 'custom') return 'Custom Project';
-    const pkg = packages.find((p) => p.id === formData.service);
-    return pkg ? `${pkg.title} — ${pkg.subtitle}` : 'General Inquiry';
+    if (formData.service === 'individual') return 'Individuals & Creators';
+    if (formData.service === 'business') return 'Business';
+    return 'General Inquiry';
   }, [formData.service]);
 
   const validateForm = useCallback(() => {
@@ -293,13 +292,11 @@ export default function Contact() {
                               value={formData.service}
                               onChange={handleChange}
                               className="ht-input ht-select">
-                              <option value="">Select a package...</option>
-                              {packages.map((pkg) => (
-                                <option key={pkg.id} value={pkg.id}>
-                                  {pkg.title} — {pkg.subtitle} ({pkg.price})
-                                </option>
-                              ))}
-                              <option value="custom">Custom Project</option>
+                              <option value="">Select an option...</option>
+                              <option value="individual">
+                                Individuals &amp; Creators
+                              </option>
+                              <option value="business">Business</option>
                             </select>
                           </div>
                         </div>
