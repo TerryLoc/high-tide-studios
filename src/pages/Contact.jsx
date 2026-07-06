@@ -263,7 +263,7 @@ export default function Contact() {
                         <div className="col-12 col-md-6">
                           <div className="ht-field">
                             <label htmlFor="contact-phone" className="ht-label">
-                              Phone{' '}
+                              Studio Phone{' '}
                               <span className="ht-optional">(optional)</span>
                             </label>
                             <input
