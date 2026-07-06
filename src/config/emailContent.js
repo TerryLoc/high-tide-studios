@@ -29,7 +29,7 @@ export function escapeHtml(value) {
 
 function row(label, value, { highlight = false } = {}) {
   const color = highlight ? '#c49648' : null;
-  const labelStyle = `color:${color || 'rgba(255,255,255,0.5)'}; font-size:13px; padding:5px 0;${highlight ? ' font-weight:bold;' : ''}`;
+  const labelStyle = `color:${color || '#b3b3b3'}; font-size:13px; padding:5px 0;${highlight ? ' font-weight:bold;' : ''}`;
   const valueStyle = `color:${color || '#ffffff'}; font-size:13px; padding:5px 0; text-align:right;${highlight ? ' font-weight:bold;' : ''}`;
   return `<tr><td style="${labelStyle}">${label}</td><td style="${valueStyle}">${value}</td></tr>`;
 }
@@ -55,7 +55,7 @@ function sectionLabel(text) {
 }
 
 function paragraph(text) {
-  return `<p style="color:rgba(255,255,255,0.85); font-size:15px; line-height:1.6; margin:0 0 20px 0;">${text}</p>`;
+  return `<p style="color:#f2f2f2; font-size:15px; line-height:1.6; margin:0 0 20px 0;">${text}</p>`;
 }
 
 function greeting(name) {
@@ -107,8 +107,8 @@ export function buildContactClientContent({ fromName, message }) {
       "Thanks for reaching out to High Tide Studios. We've received your message and will get back to you within 1–2 business days.",
     ),
     textBox(
-      `<p style="color:rgba(255,255,255,0.5); font-size:12px; text-transform:uppercase; letter-spacing:0.5px; margin:0 0 8px 0;">Your message</p>
-       <p style="color:rgba(255,255,255,0.85); font-size:14px; line-height:1.6; margin:0; font-style:italic;">"${escapeHtml(message)}"</p>`,
+      `<p style="color:#b3b3b3; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; margin:0 0 8px 0;">Your message</p>
+       <p style="color:#f2f2f2; font-size:14px; line-height:1.6; margin:0; font-style:italic;">"${escapeHtml(message)}"</p>`,
     ),
     paragraph(
       "In the meantime, feel free to browse our packages or reach us directly if anything's urgent.",
@@ -122,6 +122,7 @@ export function buildContactClientContent({ fromName, message }) {
 export function buildBookingInternalContent({
   fromName,
   fromEmail,
+
   phone,
   company,
   packageTitle,
@@ -153,7 +154,7 @@ export function buildBookingInternalContent({
     ),
     sectionLabel('Notes'),
     textBox(
-      `<p style="color:rgba(255,255,255,0.85); font-size:13px; line-height:1.6; margin:0;">${escapeHtml(notes || 'None provided')}</p>`,
+      `<p style="color:#f2f2f2; font-size:13px; line-height:1.6; margin:0;">${escapeHtml(notes || 'None provided')}</p>`,
     ),
     ctaButton(`Reply to ${fromName}`, `mailto:${fromEmail}`),
   ].join('\n');
@@ -180,7 +181,7 @@ export function buildContactInternalContent({
     ),
     sectionLabel('Message'),
     textBox(
-      `<p style="color:rgba(255,255,255,0.85); font-size:14px; line-height:1.6; margin:0;">${escapeHtml(message)}</p>`,
+      `<p style="color:#f2f2f2; font-size:14px; line-height:1.6; margin:0;">${escapeHtml(message)}</p>`,
     ),
     ctaButton(`Reply to ${fromName}`, `mailto:${fromEmail}`),
   ].join('\n');
