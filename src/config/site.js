@@ -1,8 +1,23 @@
 // Site Configuration — Central source of truth for SEO, branding, and settings
 
+import { packages, businessPackages } from '../data/packages';
+
+const allPackages = [...packages, ...businessPackages];
+
+const getOfferCatalogItem = (pkg) => ({
+  '@type': 'Offer',
+  itemOffered: {
+    '@type': 'Service',
+    name: `${pkg.title} — ${pkg.subtitle}`,
+    description: pkg.description,
+  },
+  price: pkg.price.replace('€', ''),
+  priceCurrency: 'EUR',
+});
+
 export const siteConfig = {
   name: 'High Tide Studios',
-  tagline: 'Greystones',
+  locationSuffix: 'Greystones',
   fullName: 'High Tide Studios Greystones',
   description:
     'Broadcast-ready podcast and video studio in Greystones, Wicklow. Professional audio recording and content creation.',
@@ -49,6 +64,11 @@ export const siteConfig = {
       'broadcast studio Wicklow',
       'podcast production packages',
       'High Tide Studios',
+      'corporate podcast production Ireland',
+      'corporate video production Wicklow',
+      'business podcast studio Dublin',
+      'corporate content production Ireland',
+      'employer branding video Ireland',
     ],
     ogImage: '/og-image.jpg',
     twitterHandle: '@hightidestudios',
@@ -93,12 +113,17 @@ export const pageSEO = {
   services: {
     title: 'Podcast & Video Production Packages',
     description:
-      'Bronze, Silver and Gold podcast production packages from €299. Professional studio recording in Greystones, Wicklow.',
+      'Podcast and video production packages for individuals, creators, and businesses. From €299 for self-serve audio to full corporate production. Professional studio in Greystones, Wicklow.',
     keywords: [
       'podcast packages Ireland',
       'podcast studio prices',
       'video production packages',
       'podcast recording price',
+      'corporate podcast production Ireland',
+      'corporate video production Wicklow',
+      'business podcast studio Dublin',
+      'corporate content production Ireland',
+      'employer branding video Ireland',
     ],
   },
   contact: {
@@ -158,10 +183,10 @@ export const structuredData = {
     url: 'https://hightidestudios.ie',
     telephone: '+353871657108',
     email: 'hightidestudios@icloud.com',
-    foundingDate: '2023',
+    foundingDate: '2025',
     priceRange: '€€',
     currenciesAccepted: 'EUR',
-    paymentAccepted: 'Cash, Credit Card, Bank Transfer',
+    paymentAccepted: 'Cash, Credit Card, Bank Transfer, Invoice',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Unit 11, Watson Johnson, Church Road',
@@ -184,8 +209,8 @@ export const structuredData = {
       {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Saturday', 'Sunday'],
-        opens: '00:00',
-        closes: '00:00',
+        opens: '10:00',
+        closes: '16:00',
         description: 'By appointment only',
       },
     ],
@@ -198,41 +223,7 @@ export const structuredData = {
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Podcast & Video Production Packages',
-      itemListElement: [
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Bronze — Audio Foundation',
-            description:
-              'Multi-mic studio recording with professional EQ, mastering, and noise reduction.',
-          },
-          price: '299',
-          priceCurrency: 'EUR',
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Silver — Video + Social Clips',
-            description:
-              'HD video podcast production with social media highlight reels.',
-          },
-          price: '399',
-          priceCurrency: 'EUR',
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Gold — Signature Broadcast',
-            description:
-              'End-to-end cinematic podcast production from recording to release.',
-          },
-          price: '749',
-          priceCurrency: 'EUR',
-        },
-      ],
+      itemListElement: allPackages.map(getOfferCatalogItem),
     },
     areaServed: [
       { '@type': 'City', name: 'Greystones' },
@@ -330,7 +321,7 @@ export const structuredData = {
   },
 
   // Used on services page
-  servicesPage: {
+  getServicesPageSchema: () => ({
     '@context': 'https://schema.org',
     '@graph': [
       {
@@ -347,62 +338,9 @@ export const structuredData = {
           addressCountry: 'IE',
         },
       },
-      {
-        '@type': 'Service',
-        name: 'Bronze Podcast Package — Audio Foundation',
-        description:
-          'Multi-mic studio recording with professional EQ, mastering, and noise reduction. WAV and MP3 deliverables.',
-        provider: {
-          '@type': 'LocalBusiness',
-          name: 'High Tide Studios',
-          '@id': 'https://hightidestudios.ie/#business',
-        },
-        offers: {
-          '@type': 'Offer',
-          price: '299',
-          priceCurrency: 'EUR',
-          availability: 'https://schema.org/InStock',
-        },
-        areaServed: 'Ireland',
-      },
-      {
-        '@type': 'Service',
-        name: 'Silver Podcast Package — Video + Social Clips',
-        description:
-          'HD video podcast production with 1–2 cameras and professionally edited social media clips for Instagram, LinkedIn, and TikTok.',
-        provider: {
-          '@type': 'LocalBusiness',
-          name: 'High Tide Studios',
-          '@id': 'https://hightidestudios.ie/#business',
-        },
-        offers: {
-          '@type': 'Offer',
-          price: '399',
-          priceCurrency: 'EUR',
-          availability: 'https://schema.org/InStock',
-        },
-        areaServed: 'Ireland',
-      },
-      {
-        '@type': 'Service',
-        name: 'Gold Podcast Package — Signature Broadcast',
-        description:
-          'End-to-end cinematic podcast production: 3–5 camera filming, full editing, SEO show notes, distribution, and platform setup.',
-        provider: {
-          '@type': 'LocalBusiness',
-          name: 'High Tide Studios',
-          '@id': 'https://hightidestudios.ie/#business',
-        },
-        offers: {
-          '@type': 'Offer',
-          price: '749',
-          priceCurrency: 'EUR',
-          availability: 'https://schema.org/InStock',
-        },
-        areaServed: 'Ireland',
-      },
+      ...allPackages.map((pkg) => structuredData.getServiceSchema(pkg)),
     ],
-  },
+  }),
 
   // Dynamic service schema for individual package pages
   getServiceSchema: (pkg) => ({

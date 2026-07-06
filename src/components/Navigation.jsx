@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { siteConfig } from '../config/site';
 
 /**
  * Main navigation component with responsive mobile menu
@@ -28,38 +29,36 @@ export default function Navigation() {
   }, []);
 
   const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
-  { to: '/clients', label: 'Clients' },
-  { to: '/services', label: 'Services' },
-  { to: '/booking', label: 'Book Now' },
-  { to: '/contact', label: 'Contact' },
-];
+    { to: '/', label: 'Home' },
+    { to: '/about', label: 'About' },
+    { to: '/clients', label: 'Clients' },
+    { to: '/services', label: 'Services' },
+    { to: '/booking', label: 'Book Now' },
+    { to: '/contact', label: 'Contact' },
+  ];
 
   return (
     <header>
-      <nav 
+      <nav
         className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
         role="navigation"
-        aria-label="Main navigation"
-      >
+        aria-label="Main navigation">
         <div className="container">
-          <NavLink 
-            className="navbar-brand fw-bold d-flex align-items-center" 
+          <NavLink
+            className="navbar-brand fw-bold d-flex align-items-center"
             to="/"
-            aria-label="High Tide Studios - Home"
-          >
-            <img 
-              src="/images/logo.png" 
-              alt="" 
-              height="40" 
+            aria-label="High Tide Studios - Home">
+            <img
+              src="/images/logo.png"
+              alt=""
+              height="40"
               width="40"
               className="me-2"
               style={{ objectFit: 'contain' }}
             />
             <span className="d-none d-sm-inline">High Tide Studios</span>
             <span className="d-none d-md-inline text-muted ms-2 fw-normal small">
-              Greystones
+              {siteConfig.locationSuffix}
             </span>
           </NavLink>
 
@@ -69,15 +68,13 @@ export default function Navigation() {
             onClick={toggleMenu}
             aria-controls="main-nav"
             aria-expanded={isOpen}
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
-          >
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}>
             <span className="navbar-toggler-icon" />
           </button>
 
-          <div 
-            id="main-nav" 
-            className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}
-          >
+          <div
+            id="main-nav"
+            className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}>
             <ul className="navbar-nav ms-auto" role="menubar">
               {navLinks.map(({ to, label }) => (
                 <li className="nav-item" key={to} role="none">
@@ -87,8 +84,9 @@ export default function Navigation() {
                     }
                     to={to}
                     role="menuitem"
-                    aria-current={location.pathname === to ? 'page' : undefined}
-                  >
+                    aria-current={
+                      location.pathname === to ? 'page' : undefined
+                    }>
                     {label}
                   </NavLink>
                 </li>

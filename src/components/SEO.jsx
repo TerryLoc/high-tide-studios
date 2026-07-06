@@ -16,19 +16,26 @@ export default function SEO({
   const location = useLocation();
   const pageData = pageSEO[page] || pageSEO.home;
   const finalTitle = customTitle || title || pageData.title;
-  const finalDescription = customDescription || description || pageData.description;
+  const finalDescription =
+    customDescription || description || pageData.description;
   const brandedTitle = finalTitle.includes(siteConfig.name)
     ? finalTitle
     : `${finalTitle} | ${siteConfig.name}`;
-  const cleanPath = location.pathname === '/'
-    ? '/'
-    : location.pathname.replace(/\/+$/, '');
+  const cleanPath =
+    location.pathname === '/' ? '/' : location.pathname.replace(/\/+$/, '');
   const canonicalUrl = `${siteConfig.url}${cleanPath}`;
   const finalImage = `${siteConfig.url}${siteConfig.seo.ogImage}`;
 
   const finalKeywords = useMemo(
-    () => Array.from(new Set([...(pageData.keywords || []), ...siteConfig.seo.keywords, ...keywords])),
-    [pageData.keywords, keywords]
+    () =>
+      Array.from(
+        new Set([
+          ...(pageData.keywords || []),
+          ...siteConfig.seo.keywords,
+          ...keywords,
+        ]),
+      ),
+    [pageData.keywords, keywords],
   );
 
   useEffect(() => {
@@ -49,13 +56,15 @@ export default function SEO({
     const setLink = (rel, href, attributes = {}) => {
       const selector = Object.entries(attributes).reduce(
         (acc, [key, value]) => `${acc}[${key}="${value}"]`,
-        `link[rel="${rel}"]`
+        `link[rel="${rel}"]`,
       );
       let el = document.querySelector(selector);
       if (!el) {
         el = document.createElement('link');
         el.setAttribute('rel', rel);
-        Object.entries(attributes).forEach(([key, value]) => el.setAttribute(key, value));
+        Object.entries(attributes).forEach(([key, value]) =>
+          el.setAttribute(key, value),
+        );
         document.head.appendChild(el);
       }
       el.setAttribute('href', href);
@@ -64,9 +73,11 @@ export default function SEO({
     setMeta('description', finalDescription);
     setMeta('keywords', finalKeywords.join(', '));
     setMeta('author', siteConfig.fullName);
-    setMeta('robots', noIndex
-      ? 'noindex, nofollow'
-      : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+    setMeta(
+      'robots',
+      noIndex
+        ? 'noindex, nofollow'
+        : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
     );
 
     setMeta('og:type', 'website', true);
@@ -78,7 +89,11 @@ export default function SEO({
     setMeta('og:image:secure_url', finalImage, true);
     setMeta('og:image:width', '1200', true);
     setMeta('og:image:height', '630', true);
-    setMeta('og:image:alt', `${siteConfig.name} — Professional Podcast & Video Studio`, true);
+    setMeta(
+      'og:image:alt',
+      `${siteConfig.name} — Professional Podcast & Video Studio`,
+      true,
+    );
     setMeta('og:locale', 'en_IE', true);
 
     setMeta('twitter:card', 'summary_large_image');
@@ -86,13 +101,18 @@ export default function SEO({
     setMeta('twitter:title', brandedTitle);
     setMeta('twitter:description', finalDescription);
     setMeta('twitter:image', finalImage);
-    setMeta('twitter:image:alt', `${siteConfig.name} — Professional Podcast & Video Studio`);
+    setMeta(
+      'twitter:image:alt',
+      `${siteConfig.name} — Professional Podcast & Video Studio`,
+    );
 
     setLink('canonical', canonicalUrl);
     setLink('alternate', canonicalUrl, { hreflang: 'en-IE' });
     setLink('alternate', canonicalUrl, { hreflang: 'x-default' });
 
-    const existing = document.querySelector('script[data-seo="structured-data"]');
+    const existing = document.querySelector(
+      'script[data-seo="structured-data"]',
+    );
     if (existing) existing.remove();
 
     const graph = [
@@ -112,7 +132,8 @@ export default function SEO({
     } else if (structuredDataType === 'service' && structuredDataPayload) {
       graph.push(structuredData.getServiceSchema(structuredDataPayload));
     } else if (page === 'services') {
-      graph.push(...structuredData.servicesPage['@graph']);
+      const servicesSchema = structuredData.getServicesPageSchema();
+      graph.push(...servicesSchema['@graph']);
     } else {
       graph.push(structuredData.getOrganizationSchema());
     }
@@ -147,7 +168,9 @@ export default function SEO({
 
 export function PreloadResources() {
   useEffect(() => {
-    const preloads = [{ href: '/images/hero.webp', as: 'image', type: 'image/webp' }];
+    const preloads = [
+      { href: '/images/hero.webp', as: 'image', type: 'image/webp' },
+    ];
     preloads.forEach(({ href, as, type }) => {
       if (document.querySelector(`link[href="${href}"]`)) return;
       const link = document.createElement('link');
