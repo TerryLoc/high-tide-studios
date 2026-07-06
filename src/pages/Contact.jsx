@@ -263,7 +263,7 @@ export default function Contact() {
                         <div className="col-12 col-md-6">
                           <div className="ht-field">
                             <label htmlFor="contact-phone" className="ht-label">
-                              Studio Phone{' '}
+                              Phone{' '}
                               <span className="ht-optional">(optional)</span>
                             </label>
                             <input
@@ -374,7 +374,9 @@ export default function Contact() {
                         <i className="bi bi-envelope" aria-hidden="true" />
                       </div>
                       <div>
-                        <span className="ht-contact-info-label">Email</span>
+                        <span className="ht-contact-info-label">
+                          Studio Email
+                        </span>
                         <span className="ht-contact-info-value">
                           {contact.email}
                         </span>
@@ -388,7 +390,9 @@ export default function Contact() {
                         <i className="bi bi-telephone" aria-hidden="true" />
                       </div>
                       <div>
-                        <span className="ht-contact-info-label">Phone</span>
+                        <span className="ht-contact-info-label">
+                          Studio Phone
+                        </span>
                         <span className="ht-contact-info-value">
                           {contact.phone}
                         </span>
