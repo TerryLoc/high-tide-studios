@@ -87,6 +87,18 @@ const faqs = [
   },
 ];
 
+const vogFaqSchema = {
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
+
 function RopeDivider() {
   return (
     <div className="vog-divider" aria-hidden="true">
@@ -114,8 +126,11 @@ export default function Voices() {
   return (
     <>
       <SEO
+        page="voices"
         customTitle="Voices of Greystones | Community Podcast | High Tide Studios"
         customDescription="Voices of Greystones is a community podcast celebrating the remarkable stories of ordinary people across Greystones. Recorded professionally at High Tide Studios."
+        structuredDataType="faq"
+        structuredDataPayload={vogFaqSchema}
       />
 
       <main className="vog-page" aria-label="Voices of Greystones">

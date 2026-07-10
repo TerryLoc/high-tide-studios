@@ -9,6 +9,7 @@ const createConsent = (media) => ({
   essential: true,
   media,
   updatedAt: new Date().toISOString(),
+  expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
 });
 
 const readConsent = () => {
@@ -20,7 +21,12 @@ const readConsent = () => {
     if (stored === 'declined') return createConsent(false);
 
     const parsed = JSON.parse(stored);
-    if (parsed?.version === COOKIE_CONSENT_VERSION && typeof parsed.media === 'boolean') {
+    if (
+      parsed?.version === COOKIE_CONSENT_VERSION &&
+      typeof parsed.media === 'boolean' &&
+      parsed.expiresAt &&
+      new Date(parsed.expiresAt) > new Date()
+    ) {
       return parsed;
     }
   } catch {
@@ -33,7 +39,9 @@ const readConsent = () => {
 const saveConsent = (media) => {
   const consent = createConsent(media);
   localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(consent));
-  window.dispatchEvent(new CustomEvent('hts:cookie-consent-updated', { detail: consent }));
+  window.dispatchEvent(
+    new CustomEvent('hts:cookie-consent-updated', { detail: consent }),
+  );
   return consent;
 };
 
@@ -54,7 +62,11 @@ export default function CookieConsent() {
   useEffect(() => {
     const openPreferences = () => setShowBanner(true);
     window.addEventListener('hts:open-cookie-preferences', openPreferences);
-    return () => window.removeEventListener('hts:open-cookie-preferences', openPreferences);
+    return () =>
+      window.removeEventListener(
+        'hts:open-cookie-preferences',
+        openPreferences,
+      );
   }, []);
 
   const handleAcceptMedia = useCallback(() => {
@@ -75,35 +87,34 @@ export default function CookieConsent() {
       role="dialog"
       aria-label="Cookie consent"
       aria-describedby="cookie-consent-description"
-      aria-modal="false"
-    >
+      aria-modal="false">
       <div className="container">
         <div className="cookie-consent-content">
           <div className="cookie-consent-text">
             <p id="cookie-consent-description" className="mb-2">
-              We use essential storage to remember your choice. Optional embedded media
-              from YouTube or Google Maps may set cookies only when you allow or load it.{' '}
+              We use essential storage to remember your choice. Optional
+              embedded media from YouTube or Google Maps may set cookies only
+              when you allow or load it.{' '}
               <Link to="/privacy" className="cookie-consent-link">
                 Learn more
               </Link>
             </p>
             <p className="cookie-consent-note mb-0">
-              No advertising or analytics cookies are currently used on this site.
+              No advertising or analytics cookies are currently used on this
+              site.
             </p>
           </div>
           <div className="cookie-consent-buttons">
             <button
               onClick={handleEssentialOnly}
               className="btn btn-outline-light btn-sm me-2"
-              aria-label="Use essential cookies only"
-            >
+              aria-label="Use essential cookies only">
               Essential only
             </button>
             <button
               onClick={handleAcceptMedia}
               className="btn btn-light btn-sm"
-              aria-label="Allow optional embedded media cookies"
-            >
+              aria-label="Allow optional embedded media cookies">
               Allow media
             </button>
           </div>

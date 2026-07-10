@@ -87,6 +87,7 @@ export default function SEO({
     setMeta('og:url', canonicalUrl, true);
     setMeta('og:image', finalImage, true);
     setMeta('og:image:secure_url', finalImage, true);
+    setMeta('og:image:type', 'image/jpeg', true);
     setMeta('og:image:width', '1200', true);
     setMeta('og:image:height', '630', true);
     setMeta(
@@ -95,6 +96,15 @@ export default function SEO({
       true,
     );
     setMeta('og:locale', 'en_IE', true);
+
+    setMeta('twitter:card', 'summary_large_image');
+    setMeta('twitter:title', brandedTitle);
+    setMeta('twitter:description', finalDescription);
+    setMeta('twitter:image', finalImage);
+    setMeta(
+      'twitter:image:alt',
+      `${siteConfig.name} — Professional Podcast & Video Studio`,
+    );
 
     setLink('canonical', canonicalUrl);
     setLink('alternate', canonicalUrl, { hreflang: 'en-IE' });

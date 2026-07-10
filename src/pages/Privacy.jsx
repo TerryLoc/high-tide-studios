@@ -10,18 +10,14 @@ export default function Privacy() {
 
   return (
     <>
-      <SEO
-        page="privacy"
-      />
+      <SEO page="privacy" />
 
       {/* Hero Section */}
       <section className="bg-dark text-white py-5">
         <div className="container py-4">
           <FadeInUp>
             <h1 className="display-4 fw-bold mb-3">Privacy Policy</h1>
-            <p className="lead text-white-50">
-              Last updated: July 2026
-            </p>
+            <p className="lead text-white-50">Last updated: 10 July 2026</p>
           </FadeInUp>
         </div>
       </section>
@@ -33,14 +29,19 @@ export default function Privacy() {
             <div className="col-lg-8">
               <FadeIn>
                 <div className="privacy-content">
-                  
                   <h2>1. Introduction</h2>
                   <p>
-                    {name} ("we", "us", or "our") is committed to protecting your privacy. 
-                    This Privacy Policy explains how we collect, use, and safeguard your 
-                    information when you visit our website at {url}.
+                    {name} ("we", "us", or "our") is committed to protecting
+                    your privacy. This Privacy Policy explains how we collect,
+                    use, and safeguard your information when you visit our
+                    website at {url}.
                   </p>
-
+                  <h3>Data Controller</h3>
+                  <p>
+                    The data controller responsible for your personal data is
+                    High Tide Studios, reachable at the contact details in
+                    Section 11 below.
+                  </p>
                   <h2>2. Information We Collect</h2>
                   <h3>Information You Provide</h3>
                   <p>When you use our contact or booking forms, we collect:</p>
@@ -54,34 +55,45 @@ export default function Privacy() {
                   </ul>
 
                   <h3>Information Collected Automatically</h3>
-                  <p>When you visit our website, we may automatically collect:</p>
-                  <ul>
-                    <li>Browser type and version</li>
-                    <li>Operating system</li>
-                    <li>Pages visited and time spent</li>
-                    <li>Referring website</li>
-                  </ul>
+                  <p>
+                    Our hosting infrastructure may record standard server-access
+                    logs (IP address, browser type, and requested URL) for
+                    security and uptime monitoring purposes. We do not use
+                    analytics platforms, tracking pixels, or behavioural
+                    profiling tools on this website. No personal data is
+                    collected automatically for marketing or profiling purposes.
+                  </p>
 
                   <h2>3. Cookies</h2>
                   <p>
-                    Cookies and similar technologies are small files or browser storage entries
-                    stored on your device. We use them only where they are needed or where you
-                    choose to load an optional third-party service.
+                    Cookies and similar technologies are small files or browser
+                    storage entries stored on your device. We use them only
+                    where they are needed or where you choose to load an
+                    optional third-party service.
                   </p>
                   <ul>
-                    <li><strong>Essential storage:</strong> Remember your cookie preference so we do not ask on every visit</li>
-                    <li><strong>Optional embedded media:</strong> YouTube or Google Maps may set cookies or use similar technologies when you choose to play a video or load the map</li>
+                    <li>
+                      <strong>Essential storage:</strong> Remember your cookie
+                      preference so we do not ask on every visit
+                    </li>
+                    <li>
+                      <strong>Optional embedded media:</strong> YouTube or
+                      Google Maps may set cookies or use similar technologies
+                      when you choose to play a video or load the map
+                    </li>
                   </ul>
                   <p>
-                    We do not currently run advertising cookies or analytics cookies through this
-                    website. You can also control cookies through your browser settings.
+                    We do not currently run advertising cookies or analytics
+                    cookies through this website. You can also control cookies
+                    through your browser settings.
                   </p>
 
                   <h3>Cookie Preferences</h3>
                   <p>
-                    When you first visit our site, you'll see a cookie banner asking whether you
-                    want to allow optional embedded media cookies. Your choice is stored locally
-                    and remembered for future visits. You can change your preference at any time
+                    When you first visit our site, you'll see a cookie banner
+                    asking whether you want to allow optional embedded media
+                    cookies. Your choice is stored locally and remembered for
+                    future visits. You can change your preference at any time
                     from the Cookie settings link in the footer.
                   </p>
 
@@ -90,7 +102,9 @@ export default function Privacy() {
                   <ul>
                     <li>Respond to your enquiries and booking requests</li>
                     <li>Provide and maintain our services</li>
-                    <li>Send booking confirmations and relevant communications</li>
+                    <li>
+                      Send booking confirmations and relevant communications
+                    </li>
                     <li>Improve our website and services</li>
                     <li>Comply with legal obligations</li>
                   </ul>
@@ -99,67 +113,126 @@ export default function Privacy() {
                   <p>We use the following third-party services:</p>
                   <ul>
                     <li>
-                      <strong>EmailJS:</strong> To process contact and booking form submissions. 
-                      View their <a href="https://www.emailjs.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">privacy policy</a>.
+                      <strong>EmailJS:</strong> To process contact and booking
+                      form submissions. View their{' '}
+                      <a
+                        href="https://www.emailjs.com/legal/privacy-policy/"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        privacy policy
+                      </a>
+                      .
                     </li>
                     <li>
-                      <strong>YouTube:</strong> For embedded video content. 
-                      View their <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a>.
+                      <strong>YouTube:</strong> For embedded video content. View
+                      their{' '}
+                      <a
+                        href="https://policies.google.com/privacy"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        privacy policy
+                      </a>
+                      .
                     </li>
                   </ul>
 
                   <h2>6. Data Retention</h2>
                   <p>
-                    We retain your personal information only for as long as necessary to fulfil 
-                    the purposes outlined in this policy, unless a longer retention period is 
-                    required by law.
+                    We retain your personal information only for as long as
+                    necessary to fulfil the purposes outlined in this policy,
+                    unless a longer retention period is required by law.
                   </p>
 
                   <h2>7. Your Rights (GDPR)</h2>
                   <p>Under GDPR, you have the right to:</p>
                   <ul>
-                    <li><strong>Access:</strong> Request a copy of your personal data</li>
-                    <li><strong>Rectification:</strong> Request correction of inaccurate data</li>
-                    <li><strong>Erasure:</strong> Request deletion of your data ("right to be forgotten")</li>
-                    <li><strong>Restriction:</strong> Request restriction of processing</li>
-                    <li><strong>Portability:</strong> Request transfer of your data</li>
-                    <li><strong>Object:</strong> Object to processing of your data</li>
+                    <li>
+                      <strong>Access:</strong> Request a copy of your personal
+                      data
+                    </li>
+                    <li>
+                      <strong>Rectification:</strong> Request correction of
+                      inaccurate data
+                    </li>
+                    <li>
+                      <strong>Erasure:</strong> Request deletion of your data
+                      ("right to be forgotten")
+                    </li>
+                    <li>
+                      <strong>Restriction:</strong> Request restriction of
+                      processing
+                    </li>
+                    <li>
+                      <strong>Portability:</strong> Request transfer of your
+                      data
+                    </li>
+                    <li>
+                      <strong>Object:</strong> Object to processing of your data
+                    </li>
+                    <li>
+                      <strong>Withdraw consent:</strong> Where processing is
+                      based on consent, you may withdraw it at any time without
+                      affecting the lawfulness of prior processing
+                    </li>
                   </ul>
                   <p>
-                    To exercise any of these rights, please contact us using the details below.
+                    To exercise any of these rights, please contact us using the
+                    details below. You also have the right to lodge a complaint
+                    with the supervisory authority:
                   </p>
+                  <ul className="list-unstyled">
+                    <li>
+                      <strong>Data Protection Commission (Ireland)</strong>
+                    </li>
+                    <li>21 Fitzwilliam Square South, Dublin 2, D02 RD28</li>
+                    <li>
+                      Web:{' '}
+                      <a
+                        href="https://www.dataprotection.ie"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        www.dataprotection.ie
+                      </a>
+                    </li>
+                    <li>Phone: +353 (0)1 765 0100</li>
+                  </ul>
 
                   <h2>8. Data Security</h2>
                   <p>
-                    We implement appropriate technical and organisational measures to protect 
-                    your personal information. However, no method of transmission over the 
-                    Internet is 100% secure.
+                    We implement appropriate technical and organisational
+                    measures to protect your personal information. However, no
+                    method of transmission over the Internet is 100% secure.
                   </p>
 
                   <h2>9. Children's Privacy</h2>
                   <p>
-                    Our website is not intended for children under 16. We do not knowingly 
-                    collect personal information from children.
+                    Our website is not intended for children under 16. We do not
+                    knowingly collect personal information from children.
                   </p>
 
                   <h2>10. Changes to This Policy</h2>
                   <p>
-                    We may update this Privacy Policy from time to time. We will notify you 
-                    of any changes by posting the new policy on this page and updating the 
-                    "Last updated" date.
+                    We may update this Privacy Policy from time to time. We will
+                    notify you of any changes by posting the new policy on this
+                    page and updating the "Last updated" date.
                   </p>
 
                   <h2>11. Contact Us</h2>
                   <p>
-                    If you have any questions about this Privacy Policy or wish to exercise 
-                    your data protection rights, please contact us:
+                    If you have any questions about this Privacy Policy or wish
+                    to exercise your data protection rights, please contact us:
                   </p>
                   <ul className="list-unstyled">
-                    <li><strong>Email:</strong> {contact.email}</li>
-                    <li><strong>Phone:</strong> {contact.phone}</li>
-                    <li><strong>Address:</strong> {contact.address}</li>
+                    <li>
+                      <strong>Email:</strong> {contact.email}
+                    </li>
+                    <li>
+                      <strong>Phone:</strong> {contact.phone}
+                    </li>
+                    <li>
+                      <strong>Address:</strong> {contact.address}
+                    </li>
                   </ul>
-
                 </div>
               </FadeIn>
             </div>

@@ -1,87 +1,102 @@
 <!DOCTYPE html>
 <html lang="en-IE">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="google-site-verification"
-          content="B773f9EbULtvdjWn3LmA7HR0UE7LS7_kxqhBEuyWxe0" />
-    <!-- ============================================
+      <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="google-site-verification"
+                  content="B773f9EbULtvdjWn3LmA7HR0UE7LS7_kxqhBEuyWxe0" />
+            <!-- ============================================
          THEME & APPEARANCE
          ============================================ -->
-    <meta name="theme-color" content="#0a0a0a" />
-    <meta name="msapplication-TileColor" content="#0a0a0a" />
-    <meta name="color-scheme" content="dark" />
-    <!-- ============================================
+            <meta name="theme-color" content="#0a0a0a" />
+            <meta name="msapplication-TileColor" content="#0a0a0a" />
+            <meta name="color-scheme" content="dark" />
+            <!-- ============================================
          FAVICONS
          ============================================ -->
-    <link rel="icon" href="%PUBLIC_URL%/favicons/favicon.ico" />
-    <link rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="%PUBLIC_URL%/favicons/favicon-32x32.png" />
-    <link rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="%PUBLIC_URL%/favicons/favicon-16x16.png" />
-    <link rel="apple-touch-icon"
-          sizes="180x180"
-          href="%PUBLIC_URL%/favicons/apple-touch-icon.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!-- ============================================
+            <link rel="icon" href="%PUBLIC_URL%/favicons/favicon.ico" />
+            <link rel="icon"
+                  type="image/png"
+                  sizes="32x32"
+                  href="%PUBLIC_URL%/favicons/favicon-32x32.png" />
+            <link rel="icon"
+                  type="image/png"
+                  sizes="16x16"
+                  href="%PUBLIC_URL%/favicons/favicon-16x16.png" />
+            <link rel="apple-touch-icon"
+                  sizes="180x180"
+                  href="%PUBLIC_URL%/favicons/apple-touch-icon.png" />
+            <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+            <!-- ============================================
          DEFAULT SEO (overridden per-page by SEO.jsx)
          ============================================ -->
-    <title>High Tide Studios — Podcast &amp; Video Production Greystones</title>
-    <meta name="description"
-          content="Broadcast-ready podcast and video studio in Greystones, Wicklow. Professional audio recording, video production, and content creation from €299." />
-    <meta name="keywords"
-          content="podcast studio Greystones, podcast studio Ireland, video production Wicklow, audio recording studio, content creation Ireland, broadcast studio, podcast production" />
-    <meta name="author" content="High Tide Studios" />
-    <meta name="robots"
-          content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="application-name" content="High Tide Studios" />
-    <meta name="format-detection" content="telephone=no" />
-    <!-- Geo targeting -->
-    <meta name="geo.region" content="IE-WW" />
-    <meta name="geo.placename" content="Greystones, County Wicklow, Ireland" />
-    <meta name="geo.position" content="53.1459;-6.0631" />
-    <meta name="ICBM" content="53.1459, -6.0631" />
-    <!-- ============================================
+            <title>High Tide Studios — Podcast &amp; Video Production Greystones</title>
+            <meta name="description"
+                  content="Broadcast-ready podcast and video studio in Greystones, Wicklow. Professional audio recording, video production, and content creation from €299." />
+            <meta name="keywords"
+                  content="podcast studio Greystones, podcast studio Ireland, video production Wicklow, audio recording studio, content creation Ireland, broadcast studio, podcast production" />
+            <meta name="author" content="High Tide Studios" />
+            <meta name="robots"
+                  content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+            <meta name="googlebot" content="index, follow" />
+            <meta name="application-name" content="High Tide Studios" />
+            <meta name="format-detection" content="telephone=no" />
+            <!-- Geo targeting -->
+            <meta name="geo.region" content="IE-WW" />
+            <meta name="geo.placename" content="Greystones, County Wicklow, Ireland" />
+            <meta name="geo.position" content="53.1459;-6.0631" />
+            <meta name="ICBM" content="53.1459, -6.0631" />
+            <!-- ============================================
          OPEN GRAPH (default — overridden by SEO.jsx)
          ============================================ -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="High Tide Studios" />
-    <meta property="og:title"
-          content="High Tide Studios — Podcast &amp; Video Production Greystones" />
-    <meta property="og:description"
-          content="Broadcast-ready podcast and video studio in Greystones, Wicklow. Professional packages from €299. You turn up. We do the rest." />
-    <meta property="og:url" content="https://hightidestudios.ie/" />
-    <meta property="og:image" content="https://hightidestudios.ie/og-image.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt"
-          content="High Tide Studios — Professional Podcast &amp; Video Studio, Greystones" />
-    <meta property="og:locale" content="en_IE" />
-    <!-- ============================================
+            <meta property="og:type" content="website" />
+            <meta property="og:site_name" content="High Tide Studios" />
+            <meta property="og:title"
+                  content="High Tide Studios — Podcast &amp; Video Production Greystones" />
+            <meta property="og:description"
+                  content="Broadcast-ready podcast and video studio in Greystones, Wicklow. Professional packages from €299. You turn up. We do the rest." />
+            <meta property="og:url" content="https://hightidestudios.ie/" />
+            <meta property="og:image" content="https://hightidestudios.ie/og-image.jpg" />
+            <meta property="og:image:secure_url"
+                  content="https://hightidestudios.ie/og-image.jpg" />
+            <meta property="og:image:type" content="image/jpeg" />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
+            <meta property="og:image:alt"
+                  content="High Tide Studios — Professional Podcast &amp; Video Studio, Greystones" />
+            <meta property="og:locale" content="en_IE" />
+            <!-- ============================================
+         TWITTER / X CARD
+         ============================================ -->
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title"
+                  content="High Tide Studios — Podcast &amp; Video Production Greystones" />
+            <meta name="twitter:description"
+                  content="Broadcast-ready podcast and video studio in Greystones, Wicklow. Professional packages from €299. You turn up. We do the rest." />
+            <meta name="twitter:image"
+                  content="https://hightidestudios.ie/og-image.jpg" />
+            <meta name="twitter:image:alt"
+                  content="High Tide Studios — Professional Podcast &amp; Video Studio, Greystones" />
+            <!-- ============================================
          CANONICAL (default — overridden by SEO.jsx)
          ============================================ -->
-    <link rel="canonical" href="https://hightidestudios.ie/" />
-    <link rel="alternate" hreflang="en-IE" href="https://hightidestudios.ie/" />
-    <link rel="alternate"
-          hreflang="x-default"
-          href="https://hightidestudios.ie/" />
-    <!-- ============================================
+            <link rel="canonical" href="https://hightidestudios.ie/" />
+            <link rel="alternate" hreflang="en-IE" href="https://hightidestudios.ie/" />
+            <link rel="alternate"
+                  hreflang="x-default"
+                  href="https://hightidestudios.ie/" />
+            <!-- ============================================
          PERFORMANCE — DNS PREFETCH & PRECONNECT
          ============================================ -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.youtube.com" />
-    <link rel="dns-prefetch" href="https://open.spotify.com" />
-    <link rel="dns-prefetch" href="https://api.emailjs.com" />
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+            <link rel="dns-prefetch" href="https://www.youtube.com" />
+            <link rel="dns-prefetch" href="https://open.spotify.com" />
+            <link rel="dns-prefetch" href="https://api.emailjs.com" />
+      </head>
+      <body>
+            <noscript>You need to enable JavaScript to run this app.</noscript>
+            <div id="root"></div>
+      </body>
 </html>
