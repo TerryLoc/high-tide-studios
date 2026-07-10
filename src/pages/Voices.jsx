@@ -138,18 +138,18 @@ export default function Voices() {
                 built on them.
               </p>
               <p className="vog-body mx-auto mb-2">
-                <em>Voices of Greystones</em> is a weekly podcast celebrating
+                <em>Voices of Greystones</em> is a community vodcast celebrating
                 the people, memories and moments that have shaped this coastal
-                town and its community.
+                town.
               </p>
               <p className="vog-listing mx-auto mb-2">
                 From lifelong locals to new arrivals, business owners to
-                volunteers, musicians to adventurers - every voice deserves to
+                volunteers, musicians to adventurers... every voice deserves to
                 be heard.
               </p>
               <p className="vog-body mx-auto mb-4">
                 Recorded with care at High Tide Studios in the heart of
-                Greystones.
+                Greystones where every story receives the attention it deserves.
               </p>
               <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
                 <a className="vog-btn vog-btn--primary" href="#become-guest">
@@ -275,18 +275,18 @@ export default function Voices() {
           <div className="container vog-shell">
             <FadeInUp>
               <article className="vog-card">
-                <p className="vog-kicker">About the Podcast</p>
+                <p className="vog-kicker">Why We're Recording These Stories</p>
                 <h2 className="vog-section-title">
                   A living archive of Greystones
                 </h2>
                 <p className="vog-body">
                   <strong>
-                    Voices of Greystones is creating a living archive of our
-                    town.
+                    Voices of Greystones is creating a living archive of this
+                    amazing coastal town.
                   </strong>
                 </p>
                 <p className="vog-body mb-0">
-                  Every episode captures a piece of local history - stories that
+                  Every episode captures a piece of local history. Stories that
                   might otherwise only ever be told around a dinner table or
                   over a pint. Years from now, they&apos;ll still be here for
                   future generations to discover.
