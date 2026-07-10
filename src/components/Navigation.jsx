@@ -32,6 +32,7 @@ export default function Navigation() {
     { to: '/', label: 'Home' },
     { to: '/about', label: 'About' },
     { to: '/clients', label: 'Clients' },
+    { to: '/voices', label: 'Voices' },
     { to: '/services', label: 'Services' },
     { to: '/booking', label: 'Book Now' },
     { to: '/contact', label: 'Contact' },

@@ -11,6 +11,7 @@ import Contact from './pages/Contact';
 import Booking from './pages/Booking';
 import Clients from './pages/Clients';
 import Privacy from './pages/Privacy';
+import Voices from './pages/Voices';
 import NotFound from './pages/NotFound';
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/clients" element={<Clients />} />
+            <Route path="/voices" element={<Voices />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

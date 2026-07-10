@@ -15,14 +15,23 @@ export default function Footer() {
     { to: '/', label: 'Home' },
     { to: '/about', label: 'About' },
     { to: '/clients', label: 'Clients' },
+    { to: '/voices', label: 'Voices' },
     { to: '/services', label: 'Services' },
     { to: '/booking', label: 'Book Now' },
     { to: '/contact', label: 'Contact' },
   ];
 
   const socialLinks = [
-    { href: siteConfig.social.studioInstagram, icon: 'bi-instagram', label: 'Studio Instagram' },
-    { href: siteConfig.social.justinInstagram, icon: 'bi-instagram', label: 'Justin Caffrey Instagram' },
+    {
+      href: siteConfig.social.studioInstagram,
+      icon: 'bi-instagram',
+      label: 'Studio Instagram',
+    },
+    {
+      href: siteConfig.social.justinInstagram,
+      icon: 'bi-instagram',
+      label: 'Justin Caffrey Instagram',
+    },
     { href: siteConfig.social.youtube, icon: 'bi-youtube', label: 'YouTube' },
   ];
 
@@ -36,9 +45,7 @@ export default function Footer() {
               <i className="bi bi-broadcast me-2" aria-hidden="true" />
               {siteConfig.name}
             </h2>
-            <p className="text-muted small">
-              {siteConfig.description}
-            </p>
+            <p className="text-muted small">{siteConfig.description}</p>
           </div>
 
           {/* Quick Links */}
@@ -47,7 +54,9 @@ export default function Footer() {
             <ul className="list-unstyled small">
               {quickLinks.map(({ to, label }) => (
                 <li className="mb-2" key={to}>
-                  <Link to={to} className="text-muted text-decoration-none footer-link">
+                  <Link
+                    to={to}
+                    className="text-muted text-decoration-none footer-link">
                     {label}
                   </Link>
                 </li>
@@ -61,19 +70,17 @@ export default function Footer() {
             <ul className="list-unstyled small text-muted">
               <li className="mb-2">
                 <i className="bi bi-envelope me-2" aria-hidden="true" />
-                <a 
-                  href={`mailto:${siteConfig.contact.email}`} 
-                  className="text-muted text-decoration-none"
-                >
+                <a
+                  href={`mailto:${siteConfig.contact.email}`}
+                  className="text-muted text-decoration-none">
                   {siteConfig.contact.email}
                 </a>
               </li>
               <li className="mb-2">
                 <i className="bi bi-telephone me-2" aria-hidden="true" />
-                <a 
-                  href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`} 
-                  className="text-muted text-decoration-none"
-                >
+                <a
+                  href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
+                  className="text-muted text-decoration-none">
                   {siteConfig.contact.phone}
                 </a>
               </li>
@@ -95,8 +102,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-muted text-decoration-none footer-social-link"
-                    aria-label={`Follow us on ${label}`}
-                  >
+                    aria-label={`Follow us on ${label}`}>
                     <i className={`bi ${icon} me-2`} aria-hidden="true" />
                     {label}
                   </a>
@@ -115,14 +121,15 @@ export default function Footer() {
             </p>
           </div>
           <div className="col-12 col-md-6 text-center text-md-end mt-2 mt-md-0">
-            <Link to="/privacy" className="small text-muted text-decoration-none me-3 footer-link">
+            <Link
+              to="/privacy"
+              className="small text-muted text-decoration-none me-3 footer-link">
               Privacy Policy
             </Link>
             <button
               type="button"
               className="footer-cookie-button small text-muted me-3"
-              onClick={openCookiePreferences}
-            >
+              onClick={openCookiePreferences}>
               Cookie settings
             </button>
             <span className="small text-muted">

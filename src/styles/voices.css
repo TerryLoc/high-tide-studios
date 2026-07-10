@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&family=Raleway:wght@800&display=swap');
+
+.vog-page {
+  --vog-bg: #f6f5f1;
+  --vog-text: #1b2831;
+  --vog-muted: #45545f;
+  --vog-line: rgba(27, 40, 49, 0.14);
+  --vog-ink-soft: rgba(27, 40, 49, 0.06);
+  --vog-card-bg: rgba(255, 255, 255, 0.64);
+  --vog-card-border: rgba(27, 40, 49, 0.12);
+  --vog-shadow: 0 12px 30px rgba(27, 40, 49, 0.09);
+  background: var(--vog-bg);
+  color: var(--vog-text);
+  font-family: 'Lato', sans-serif;
+  position: relative;
+  isolation: isolate;
+}
+
+.vog-page::before,
+.vog-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.vog-page::before {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(27, 40, 49, 0.06), transparent 45%),
+    radial-gradient(circle at 80% 100%, rgba(27, 40, 49, 0.08), transparent 50%);
+}
+
+.vog-page::after {
+  opacity: 0.35;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 3px,
+      rgba(27, 40, 49, 0.025) 3px 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 5px,
+      rgba(27, 40, 49, 0.012) 5px 6px
+    );
+}
+
+.vog-shell {
+  max-width: 1080px;
+}
+
+.vog-hero {
+  padding-top: 2.5rem;
+}
+
+.vog-logo {
+  width: min(600px, 92%);
+  height: auto;
+  object-fit: contain;
+  margin-inline: auto;
+  display: block;
+  filter: saturate(0.95) contrast(1.03);
+}
+
+.vog-title {
+  font-family: 'Gill Sans', 'Gill Sans MT', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4.3vw, 3.1rem);
+  letter-spacing: 0.01em;
+  margin-bottom: 0.2rem;
+}
+
+.vog-subtitle {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.1rem;
+}
+
+.vog-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.77rem;
+  margin-bottom: 0.7rem;
+  color: var(--vog-muted);
+  font-weight: 700;
+}
+
+.vog-section-title,
+.vog-mini-title {
+  font-family: 'Gill Sans', 'Gill Sans MT', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+.vog-section-title {
+  font-size: clamp(1.55rem, 2.8vw, 2.2rem);
+}
+
+.vog-mini-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.9rem;
+}
+
+.vog-lead {
+  max-width: 760px;
+  font-size: clamp(1.04rem, 2.2vw, 1.3rem);
+  font-weight: 500;
+}
+
+.vog-body {
+  max-width: 760px;
+  font-size: 1.02rem;
+  line-height: 1.74;
+  color: var(--vog-text);
+}
+
+.vog-listing {
+  max-width: 760px;
+  line-height: 1.82;
+  color: var(--vog-muted);
+}
+
+.vog-card {
+  background: var(--vog-card-bg);
+  border: 1px solid var(--vog-card-border);
+  border-radius: 20px;
+  box-shadow: var(--vog-shadow);
+  padding: clamp(1.15rem, 2.5vw, 2rem);
+  backdrop-filter: blur(1.5px);
+}
+
+.vog-card--highlight,
+.vog-card--studio,
+.vog-card--cta {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.75),
+    rgba(255, 255, 255, 0.58)
+  );
+}
+
+.vog-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.72rem 1.35rem;
+  font-weight: 700;
+  font-size: 0.96rem;
+  border: 1px solid transparent;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.vog-btn:hover,
+.vog-btn:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(27, 40, 49, 0.12);
+}
+
+.vog-btn--primary {
+  background: #1b2831;
+  color: #f6f5f1;
+}
+
+.vog-btn--primary:hover,
+.vog-btn--primary:focus-visible {
+  background: #121d24;
+  color: #f6f5f1;
+}
+
+.vog-btn--ghost {
+  border-color: rgba(27, 40, 49, 0.35);
+  color: #1b2831;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.vog-btn--ghost:hover,
+.vog-btn--ghost:focus-visible {
+  color: #1b2831;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.vog-next-guest {
+  margin-top: 2.5rem;
+  width: min(220px, 100%);
+  height: auto;
+}
+
+.vog-next-guest-title {
+  font-family: 'Gill Sans', 'Gill Sans MT', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  margin-bottom: 0.8rem;
+}
+
+.vog-next-guest-list {
+  list-style: disc;
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 0.9rem;
+  padding-left: 1.2rem;
+  color: var(--vog-muted);
+}
+
+.vog-next-guest-list li {
+  margin-bottom: 0.3rem;
+}
+
+.vog-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.vog-checklist li {
+  position: relative;
+  padding-left: 1.8rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.vog-checklist li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 700;
+}
+
+.vog-story-card {
+  border: 1px solid var(--vog-card-border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 6px 14px rgba(27, 40, 49, 0.07);
+  padding: 1rem;
+}
+
+.vog-story-card p {
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.vog-service-chip {
+  margin: 0;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--vog-line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.62);
+  font-weight: 700;
+  text-align: center;
+}
+
+.vog-form-wrap {
+  border: 1px solid var(--vog-line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.vog-form-frame {
+  display: block;
+  width: 100%;
+  min-height: 650px;
+  border: 0;
+}
+
+.vog-form-placeholder {
+  padding: 1rem;
+  border-top: 1px solid var(--vog-line);
+  color: var(--vog-muted);
+  text-align: center;
+}
+
+.vog-faq {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.vog-faq-item {
+  border: 1px solid var(--vog-card-border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.62);
+  overflow: hidden;
+}
+
+.vog-faq-button {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 1rem 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-weight: 700;
+  color: var(--vog-text);
+  text-align: left;
+}
+
+.vog-faq-button:focus-visible {
+  outline: 2px solid #1b2831;
+  outline-offset: -2px;
+}
+
+.vog-faq-icon {
+  font-size: 1.15rem;
+  width: 1.2rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.vog-faq-panel {
+  border-top: 1px solid var(--vog-ink-soft);
+  padding: 0.95rem 1.15rem 1.1rem;
+  color: var(--vog-muted);
+  line-height: 1.6;
+}
+
+.vog-divider {
+  margin: clamp(1.25rem, 2.5vw, 2rem) auto;
+  width: min(1080px, calc(100% - 1.5rem));
+}
+
+.vog-divider svg {
+  width: 100%;
+  height: 30px;
+}
+
+.vog-divider path {
+  fill: none;
+  stroke: rgba(27, 40, 49, 0.38);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.vog-divider--harbour path {
+  stroke-width: 1.8;
+}
+
+@media (min-width: 992px) {
+  .vog-hero {
+    padding-top: 3.4rem;
+  }
+
+  .vog-card {
+    border-radius: 24px;
+    padding: 2.1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .vog-page {
+    background-size: auto;
+  }
+
+  .vog-faq-button {
+    font-size: 0.96rem;
+  }
+
+  .vog-form-frame {
+    min-height: 580px;
+  }
+}

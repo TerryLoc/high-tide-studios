@@ -146,6 +146,17 @@ export const pageSEO = {
       'studio booking Greystones',
     ],
   },
+  voices: {
+    title: 'Voices of Greystones | Community Podcast | High Tide Studios',
+    description:
+      'Voices of Greystones is a community podcast celebrating the remarkable stories of ordinary people across Greystones. Recorded professionally at High Tide Studios.',
+    keywords: [
+      'Voices of Greystones',
+      'community podcast Greystones',
+      'Greystones stories podcast',
+      'Wicklow podcast studio',
+    ],
+  },
   privacy: {
     title: 'Privacy & Cookie Policy — High Tide Studios',
     description:
@@ -163,6 +174,7 @@ export const routeLabels = {
   '/about': 'About',
   '/services': 'Services',
   '/clients': 'Clients',
+  '/voices': 'Voices',
   '/booking': 'Booking',
   '/contact': 'Contact',
   '/privacy': 'Privacy Policy',
