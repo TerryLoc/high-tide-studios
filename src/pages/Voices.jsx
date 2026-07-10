@@ -133,16 +133,16 @@ export default function Voices() {
               <p className="vog-lead mx-auto">
                 You don&apos;t need to be famous to have a story worth telling.
               </p>
-              <p className="vog-body mx-auto mb-2">
+              <p className="vog-body mx-auto mb-1">
                 Every family has them. Every street has them. Every town is
                 built on them.
               </p>
-              <p className="vog-body mx-auto mb-2">
+              <p className="vog-body mx-auto mb-1">
                 <em>Voices of Greystones</em> is a community vodcast celebrating
                 the people, memories and moments that have shaped this coastal
                 town.
               </p>
-              <p className="vog-listing mx-auto mb-2">
+              <p className="vog-listing mx-auto mb-1">
                 From lifelong locals to new arrivals, business owners to
                 volunteers, musicians to adventurers... every voice deserves to
                 be heard.
@@ -160,7 +160,7 @@ export default function Voices() {
                 </a>
               </div>
 
-              <RopeDivider />
+              <HarbourDivider />
 
               <img
                 src={nextGuestPath}
@@ -249,8 +249,6 @@ export default function Voices() {
           </div>
         </section>
 
-        <HarbourDivider />
-
         <section className="py-5">
           <div className="container vog-shell">
             <FadeInUp className="text-center mb-4">
@@ -269,61 +267,27 @@ export default function Voices() {
           </div>
         </section>
 
-        <RopeDivider />
+        <HarbourDivider />
 
         <section className="py-5">
           <div className="container vog-shell">
             <FadeInUp>
               <article className="vog-card">
-                <p className="vog-kicker">Why We're Recording These Stories</p>
-                <h2 className="vog-section-title">
-                  A living archive of Greystones
-                </h2>
+                <p className="vog-kicker">Recording The Stories</p>
+                <h2 className="vog-section-title">More Than Just a Podcast</h2>
                 <p className="vog-body">
-                  <strong>
-                    Voices of Greystones is creating a living archive of this
-                    amazing coastal town.
-                  </strong>
+                  <strong>The story of Greystones lives in the people.</strong>
                 </p>
                 <p className="vog-body mb-0">
-                  Every episode captures a piece of local history. Stories that
-                  might otherwise only ever be told around a dinner table or
-                  over a pint. Years from now, they&apos;ll still be here for
-                  future generations to discover.
+                  Every episode captures memories, experiences and moments that
+                  might otherwise only ever be shared around a dinner table or
+                  over a pint. Together, we&apos;re preserving a little piece of
+                  Greystones for future generations.
                 </p>
               </article>
             </FadeInUp>
           </div>
         </section>
-
-        <section className="py-5">
-          <div className="container vog-shell">
-            <FadeInUp>
-              <article className="vog-card vog-card--studio">
-                <p className="vog-kicker">
-                  Brought to you by High Tide Studios
-                </p>
-                <h2 className="vog-section-title">
-                  Premium production in Wicklow
-                </h2>
-                <div className="row g-3 mt-2">
-                  {studioServices.map((service) => (
-                    <div className="col-12 col-sm-6 col-lg-4" key={service}>
-                      <p className="vog-service-chip">{service}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4 text-center">
-                  <Link to="/booking" className="vog-btn vog-btn--primary">
-                    Book the Studio
-                  </Link>
-                </div>
-              </article>
-            </FadeInUp>
-          </div>
-        </section>
-
-        <HarbourDivider />
 
         <section className="py-5" id="become-guest">
           <div className="container vog-shell">
@@ -351,6 +315,35 @@ export default function Voices() {
                   opportunity to meet, get to know one another and see where the
                   conversation might lead.
                 </p>
+              </article>
+            </FadeInUp>
+          </div>
+        </section>
+
+        <RopeDivider />
+
+        <section className="py-5">
+          <div className="container vog-shell">
+            <FadeInUp>
+              <article className="vog-card vog-card--studio">
+                <p className="vog-kicker">
+                  Brought to you by High Tide Studios
+                </p>
+                <h2 className="vog-section-title">
+                  Premium production in Wicklow
+                </h2>
+                <div className="row g-3 mt-2">
+                  {studioServices.map((service) => (
+                    <div className="col-12 col-sm-6 col-lg-4" key={service}>
+                      <p className="vog-service-chip">{service}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 text-center">
+                  <Link to="/booking" className="vog-btn vog-btn--primary">
+                    Book the Studio
+                  </Link>
+                </div>
               </article>
             </FadeInUp>
           </div>
@@ -417,6 +410,13 @@ export default function Voices() {
             </FadeInUp>
           </div>
         </section>
+        <div className="vog-tagline-footer">
+          <div className="container vog-shell text-center">
+            <p className="vog-title vog-title--small mb-0">
+              Collecting the stories that make Greystones, Greystones.
+            </p>
+          </div>
+        </div>
       </main>
     </>
   );

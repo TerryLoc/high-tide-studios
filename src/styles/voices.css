@@ -71,6 +71,14 @@
   margin-bottom: 0.2rem;
 }
 
+.vog-title--small {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  color: var(--vog-muted);
+}
+
 .vog-subtitle {
   font-family: 'Raleway', sans-serif;
   font-weight: 800;
@@ -106,20 +114,21 @@
 }
 
 .vog-lead {
-  max-width: 760px;
-  font-size: clamp(1.04rem, 2.2vw, 1.3rem);
+  max-width: 680px;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   font-weight: 500;
 }
 
 .vog-body {
-  font-size: 1.02rem;
-  line-height: 1.74;
+  font-size: 0.97rem;
+  line-height: 1.68;
   color: var(--vog-text);
+  max-width: 680px;
 }
 
 .vog-listing {
-  max-width: 760px;
-  line-height: 1.82;
+  max-width: 640px;
+  line-height: 1.65;
   color: var(--vog-muted);
 }
 
@@ -350,6 +359,11 @@
 
 .vog-divider--harbour path {
   stroke-width: 1.8;
+}
+
+.vog-tagline-footer {
+  border-top: 1px solid var(--vog-line);
+  padding: 2rem 0 2.5rem;
 }
 
 @media (min-width: 992px) {
