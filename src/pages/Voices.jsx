@@ -191,6 +191,24 @@ export default function Voices() {
           </div>
         </section>
 
+        <section className="py-4">
+          <div className="container vog-shell">
+            <FadeInUp>
+              <article className="vog-card text-center">
+                <p className="vog-kicker">About the Show</p>
+                <h2 className="vog-section-title">
+                  What is Voices of Greystones?
+                </h2>
+                <p className="vog-body mx-auto mb-0">
+                  Voices of Greystones is a community vodcast produced by High
+                  Tide Studios, recording both video and audio to celebrate the
+                  people and stories that make Greystones unique.
+                </p>
+              </article>
+            </FadeInUp>
+          </div>
+        </section>
+
         <RopeDivider />
 
         <section className="py-5">
@@ -295,7 +313,7 @@ export default function Voices() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-4">
+                <div className="mt-4 text-center">
                   <Link to="/booking" className="vog-btn vog-btn--primary">
                     Book the Studio
                   </Link>
