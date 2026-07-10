@@ -10,7 +10,7 @@ import {
 const logoPath = '/images/voices_logo.png';
 const nextGuestPath = '/images/next_guest.png';
 const googleFormEmbedUrl =
-  'https://docs.google.com/forms/d/e/REPLACE_WITH_FORM_ID/viewform?embedded=true';
+  'https://docs.google.com/forms/d/e/1FAIpQLSeiBoUx9peKR-MysCeklxtPY7braF6GTjXtk-AcukpgfpcCbg/viewform?embedded=true';
 
 const freeFeatures = [
   'A warm welcome (and coffee!)',
@@ -344,12 +344,12 @@ export default function Voices() {
                     </p>
                   )}
                 </div>
-                <p className="vog-body mt-4 mb-2">
-                  We&apos;ll read every submission.
-                </p>
-                <p className="vog-body mb-0">
-                  If we think your story is a good fit we&apos;ll invite you in
-                  for a relaxed coffee chat before arranging a recording date.
+                <p className="vog-body vog-form-note mb-0">
+                  If it feels like there could be a great conversation,
+                  we&apos;ll be in touch to arrange a relaxed coffee and chat.
+                  There&apos;s no pressure and no expectation, just an
+                  opportunity to meet, get to know one another and see where the
+                  conversation might lead.
                 </p>
               </article>
             </FadeInUp>

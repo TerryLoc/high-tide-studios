@@ -97,6 +97,7 @@
 
 .vog-section-title {
   font-size: clamp(1.55rem, 2.8vw, 2.2rem);
+  margin-bottom: 2rem;
 }
 
 .vog-mini-title {
@@ -111,7 +112,6 @@
 }
 
 .vog-body {
-  max-width: 760px;
   font-size: 1.02rem;
   line-height: 1.74;
   color: var(--vog-text);
@@ -270,8 +270,13 @@
 .vog-form-frame {
   display: block;
   width: 100%;
-  min-height: 650px;
+  min-height: 4300px;
   border: 0;
+}
+
+.vog-form-note {
+  margin-top: 1.5rem;
+  text-align: center;
 }
 
 .vog-form-placeholder {
@@ -358,6 +363,12 @@
   }
 }
 
+@media (max-width: 991.98px) {
+  .vog-form-frame {
+    min-height: 4900px;
+  }
+}
+
 @media (max-width: 575.98px) {
   .vog-page {
     background-size: auto;
@@ -368,6 +379,6 @@
   }
 
   .vog-form-frame {
-    min-height: 580px;
+    min-height: 5200px;
   }
 }
