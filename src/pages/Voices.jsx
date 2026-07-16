@@ -335,16 +335,17 @@ export default function Voices() {
 
                 <p className="vog-body vog-body--wide">
                   Voices of Greystones is proudly produced at High Tide Studios,
-                  a purpose-built podcast and video production studio in the
-                  heart of Greystones. Alongside community projects like Voices
-                  of Greystones, we create professional podcasts, commercial
-                  video productions, branded content, voiceovers and creative
-                  audio for businesses, organisations and creators throughout
-                  Ireland. <br />
+                  a professional podcast, video and audio production studio in
+                  the heart of Greystones. Alongside community projects like
+                  Voices of Greystones, we create podcasts, commercial video,
+                  branded content, voiceovers and creative productions for
+                  businesses, organisations and creators throughout Ireland.
                   <br />
-                  Whether you're recording your first podcast or producing a
-                  complete video campaign, we're here to help bring your ideas
-                  to life.
+                  <br />
+                  Whether you're recording your first podcast, producing a
+                  commercial campaign or filming a corporate interview, High
+                  Tide Studios provides a calm, broadcast-ready environment
+                  where people can speak clearly and be taken seriously.
                 </p>
                 <div className="row g-3 mt-3 justify-content-center">
                   {studioServices.map((service) => (
@@ -354,7 +355,9 @@ export default function Voices() {
                   ))}
                 </div>
                 <div className="mt-4 text-center">
-                  <Link to="/contact" className="vog-btn vog-btn--primary">
+                  <Link
+                    to="/#studio-video"
+                    className="vog-btn vog-btn--primary">
                     Explore the Studio
                   </Link>
                 </div>
