@@ -300,13 +300,12 @@ export default function Voices() {
                     </p>
                   )}
                 </div>
-                <p className="vog-body vog-form-note mb-0">
+                <p className="vog-body vog-form-note mx-auto mb-0">
                   Every recording begins with a simple coffee and a chat.
                   <br />
                   <br />
-                  It&apos;s a chance for us to get to know one another.
-                  <br />
-                  We explore your story together and decide whether Voices of
+                  It&apos;s a chance for us to get to know one another. We
+                  explore your story together and decide whether Voices of
                   Greystones feels like the right place to tell it.
                 </p>
               </article>
