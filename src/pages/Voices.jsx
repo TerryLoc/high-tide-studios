@@ -301,7 +301,8 @@ export default function Voices() {
                   )}
                 </div>
                 <p className="vog-body vog-form-note mx-auto mb-0">
-                  Every recording begins with a simple coffee and a chat.
+                  Before we think about recording, it begins with a simple
+                  coffee and a chat.
                   <br />
                   <br />
                   It&apos;s a chance for us to get to know one another. We
