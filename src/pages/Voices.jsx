@@ -334,18 +334,16 @@ export default function Voices() {
                 </h2>
 
                 <p className="vog-body vog-body--wide">
-                  Voices of Greystones is proudly produced at High Tide Studios,
-                  a professional podcast, video and audio production studio in
-                  the heart of Greystones. Alongside community projects like
-                  Voices of Greystones, we create podcasts, commercial video,
-                  branded content, voiceovers and creative productions for
-                  businesses, organisations and creators throughout Ireland.
+                  We're proud to produce Voices of Greystones, because these
+                  stories matter. It&apos;s recorded at High Tide Studios, a
+                  podcast, video and audio production studio in the heart of
+                  Greystones, County Wicklow.
                   <br />
                   <br />
-                  Whether you're recording your first podcast, producing a
-                  commercial campaign or filming a corporate interview, High
-                  Tide Studios provides a calm, broadcast-ready environment
-                  where people can speak clearly and be taken seriously.
+                  The same care and production standards are available to
+                  businesses, organisations, creators and commercial projects
+                  across Ireland — from podcasts and corporate video to
+                  voiceovers and branded content.
                 </p>
                 <div className="row g-3 mt-3 justify-content-center">
                   {studioServices.map((service) => (

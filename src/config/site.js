@@ -147,9 +147,9 @@ export const pageSEO = {
     ],
   },
   voices: {
-    title: 'Voices of Greystones | Community Podcast | High Tide Studios',
+    title: 'Voices of Greystones | Community Stories | High Tide Studios',
     description:
-      'Voices of Greystones is a community podcast celebrating the remarkable stories of ordinary people across Greystones. Recorded professionally at High Tide Studios.',
+      'Voices of Greystones is a community storytelling project preserving the voices, memories and conversations of people across Greystones. Produced by High Tide Studios.',
     keywords: [
       'Voices of Greystones',
       'community podcast Greystones',

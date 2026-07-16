@@ -66,7 +66,7 @@ export const packages = Object.freeze([
     features: [
       '3–5 camera cinematic studio production',
       'Edited full-length video (up to 90 minutes)',
-      '2–3 premium promotional reels',
+      '2–3 professionally edited promotional reels',
       'Professional audio mastering and colour grading',
       'Optimised delivery for YouTube and Spotify Video Podcasts',
       'Podcast distribution and publishing',
@@ -117,7 +117,7 @@ export const businessPackages = Object.freeze([
     features: [
       'Cinematic multi-camera studio production (3–5 camera setup available)',
       'Professional audio mastering and colour grading',
-      '2–3 premium promotional reels optimised for LinkedIn, Instagram, and TikTok',
+      '2–3 professionally edited promotional reels optimised for LinkedIn, Instagram, and TikTok',
       'SEO-optimised show notes and full transcript',
       'Distribution and publishing support for YouTube and Spotify',
       'Scheduled release setup',

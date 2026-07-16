@@ -152,8 +152,7 @@ export default function Contact() {
             <h1 className="ht-contact-title">Let's Talk</h1>
             <div className="ht-title-divider mx-auto" aria-hidden="true" />
             <p className="ht-contact-lead">
-              Ready to create something remarkable? We'd love to hear about your
-              project.
+              Whatever stage you're at, we'd love to hear about your project.
             </p>
           </FadeInUp>
         </div>

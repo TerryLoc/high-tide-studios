@@ -1,8 +1,8 @@
-import { clients, reelsClips, studioPromo } from "../data/clients";
-import YouTubeEmbed from "../components/YouTubeEmbed";
-import ClientShow from "../components/ClientShow";
-import SEO from "../components/SEO";
-import { FadeInUp } from "../components/AnimatedSection";
+import { clients, reelsClips, studioPromo } from '../data/clients';
+import YouTubeEmbed from '../components/YouTubeEmbed';
+import ClientShow from '../components/ClientShow';
+import SEO from '../components/SEO';
+import { FadeInUp } from '../components/AnimatedSection';
 
 export default function Clients() {
   const hasStudioPromo =
@@ -10,14 +10,17 @@ export default function Clients() {
     !studioPromo.youtubeId.includes('YOUR_') &&
     !studioPromo.youtubeId.includes('YOUTUBE_ID');
 
-  const hasClients = clients.some(client =>
-    client.episodes.some(ep => ep.youtubeId && !ep.youtubeId.includes('YOUTUBE_ID'))
+  const hasClients = clients.some((client) =>
+    client.episodes.some(
+      (ep) => ep.youtubeId && !ep.youtubeId.includes('YOUTUBE_ID'),
+    ),
   );
 
-  const featuredClips = reelsClips.filter(clip =>
-    clip.youtubeId &&
-    !clip.youtubeId.includes('YOUR_') &&
-    !clip.youtubeId.includes('YOUTUBE_ID')
+  const featuredClips = reelsClips.filter(
+    (clip) =>
+      clip.youtubeId &&
+      !clip.youtubeId.includes('YOUR_') &&
+      !clip.youtubeId.includes('YOUTUBE_ID'),
   );
 
   return (
@@ -32,14 +35,17 @@ export default function Clients() {
             <h2 className="ht-section-title mb-2">Show Highlights</h2>
             <div className="ht-section-divider mb-3" aria-hidden="true" />
             <p className="ht-muted-text mb-4">
-              Quick highlight cuts from different shows recorded at High Tide Studios.
+              Quick highlight cuts from different shows recorded at High Tide
+              Studios.
             </p>
           </FadeInUp>
 
           {featuredClips.length > 0 ? (
             <div className="row g-4">
               {featuredClips.map((clip, i) => (
-                <div key={`${clip.showName}-${clip.youtubeId}-${i}`} className="col-12 col-md-6 col-xl-4">
+                <div
+                  key={`${clip.showName}-${clip.youtubeId}-${i}`}
+                  className="col-12 col-md-6 col-xl-4">
                   <article className="ht-reel-card h-100">
                     <p className="ht-reel-show mb-2">{clip.showName}</p>
                     <h3 className="ht-reel-title">{clip.clipTitle}</h3>
@@ -55,7 +61,10 @@ export default function Clients() {
             </div>
           ) : (
             <div className="ht-clients-empty text-center py-4">
-              <p className="ht-muted-text mb-0">Add clip entries in `src/data/clients.js` to publish your reels here.</p>
+              <p className="ht-muted-text mb-0">
+                Add clip entries in `src/data/clients.js` to publish your reels
+                here.
+              </p>
             </div>
           )}
         </div>
@@ -78,12 +87,13 @@ export default function Clients() {
       {/* Main content */}
       <section className="ht-clients-body py-5">
         <div className="container">
-
           {/* Studio Promo */}
           {hasStudioPromo && (
             <div className="ht-clients-promo mb-5">
               <p className="ht-eyebrow">The Studio</p>
-              <h2 className="ht-section-title mb-4">Inside High Tide Studios</h2>
+              <h2 className="ht-section-title mb-4">
+                Inside High Tide Studios
+              </h2>
               <div className="ht-section-divider mb-4" aria-hidden="true" />
               <YouTubeEmbed videoId={studioPromo.youtubeId} />
             </div>
@@ -101,14 +111,17 @@ export default function Clients() {
             </div>
           ) : (
             <div className="ht-clients-empty text-center py-5">
-              <i className="bi bi-camera-video ht-empty-icon" aria-hidden="true" />
+              <i
+                className="bi bi-camera-video ht-empty-icon"
+                aria-hidden="true"
+              />
               <h3 className="ht-section-title mt-4 mb-3">Coming Soon</h3>
               <p className="ht-muted-text">
-                We're currently working with amazing creators. Check back soon to see their work!
+                We're building out this page. Check back soon to see the shows
+                we've worked on.
               </p>
             </div>
           )}
-
         </div>
       </section>
     </>

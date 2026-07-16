@@ -122,8 +122,8 @@ export default function Home() {
               <h2 className="ht-section-title">Studio Features</h2>
               <div className="ht-section-divider mx-auto" aria-hidden="true" />
               <p className="ht-muted-text mt-3">
-                What makes High Tide Studios the ideal choice for your content
-                creation needs?
+                Everything here is built to help you focus on the conversation,
+                not the equipment.
               </p>
             </div>
           </FadeInUp>
@@ -157,8 +157,8 @@ export default function Home() {
                 </div>
                 <h5 className="ht-feature-title">Video Production</h5>
                 <p className="ht-muted-text small mb-0">
-                  Cinematic lighting and multi-camera setups for stunning
-                  visuals
+                  Cinematic lighting and multi-camera setups that keep the focus
+                  on you
                 </p>
               </div>
             </StaggerItem>
@@ -174,14 +174,15 @@ export default function Home() {
                 </div>
                 <h5 className="ht-feature-title">Expert Mixing</h5>
                 <p className="ht-muted-text small mb-0">
-                  Professional audio engineering with state-of-the-art equipment
+                  Professional audio engineering, so every recording sounds as
+                  clear as the conversation felt
                 </p>
               </div>
             </StaggerItem>
             <StaggerItem className="col-12">
               <div className="ht-feature-card ht-feature-card--equipment">
                 <h5 className="ht-feature-title mb-3">
-                  Premium Equipment &amp; Facilities
+                  Studio Equipment &amp; Facilities
                 </h5>
                 <ul className="ht-equipment-list">
                   {features.map((feature, i) => (
@@ -234,7 +235,7 @@ export default function Home() {
               <h2 className="ht-section-title">Our Studio</h2>
               <div className="ht-section-divider mx-auto" aria-hidden="true" />
               <p className="ht-muted-text mt-3">
-                A premium environment designed for exceptional content creation
+                A calm space, built for people who take their work seriously
               </p>
             </div>
           </FadeInUp>
@@ -367,9 +368,7 @@ export default function Home() {
             <p className="ht-eyebrow">Let's Work Together</p>
             <h2 className="ht-cta-title">Ready to Get Started?</h2>
             <div className="ht-title-divider mx-auto" aria-hidden="true" />
-            <p className="ht-cta-lead">
-              Let's create something remarkable together.
-            </p>
+            <p className="ht-cta-lead">Let's get your voice on record.</p>
             <Link
               to="/contact"
               className="ht-btn-primary ht-btn-primary--light">
