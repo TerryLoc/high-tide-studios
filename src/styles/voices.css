@@ -126,6 +126,10 @@
   max-width: 680px;
 }
 
+.vog-body--wide {
+  max-width: none;
+}
+
 .vog-listing {
   max-width: 640px;
   line-height: 1.65;

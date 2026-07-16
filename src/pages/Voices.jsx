@@ -14,7 +14,7 @@ const googleFormEmbedUrl =
 
 const freeFeatures = [
   'A warm welcome (and coffee!)',
-  'Professional recording in our studio',
+  'Professionally recorded and edited',
   'No experience needed',
   'We guide the conversation',
   'Fully edited episode',
@@ -40,12 +40,12 @@ const storyIdeas = [
 ];
 
 const studioServices = [
-  'Professional Podcast Recording',
-  'Corporate Podcasts',
+  'Podcasts',
   'Video Podcasts',
+  'Commercial Video',
+  'Corporate Content',
   'Voiceovers',
-  'Commercial Audio',
-  'Music Production',
+  'Audio Production',
   'Creative Projects',
 ];
 
@@ -84,6 +84,11 @@ const faqs = [
     question: 'Can families appear together?',
     answer:
       'Yes. Family and group stories are welcome if they are a good fit for the format and recording setup.',
+  },
+  {
+    question: 'Why are you doing this for free?',
+    answer:
+      "Because we believe these conversations are worth preserving. Voices of Greystones is our way of giving something back to the community while showing what's possible from High Tide Studios.",
   },
 ];
 
@@ -154,8 +159,8 @@ export default function Voices() {
                 Every town is built on them.
                 <br />
                 <br />
-                Voices of Greystones exists to preserve those stories for future
-                generations.
+                <i>Voices of Greystones</i> exists to preserve the stories of
+                Greystones for future generations.
               </p>
               <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
                 <a className="vog-btn vog-btn--primary" href="#become-guest">
@@ -178,8 +183,8 @@ export default function Voices() {
                 Who&apos;s sitting here next?
               </h3>
               <p className="vog-body mx-auto mb-2">
-                Today it&apos;s empty. Next week it could be someone telling the
-                story of:
+                Today, this chair is empty. Next week it could be someone
+                telling the story of:
               </p>
               <ul className="vog-next-guest-list">
                 <li>rowing across the Atlantic</li>
@@ -321,10 +326,27 @@ export default function Voices() {
             <FadeInUp>
               <article className="vog-card vog-card--studio">
                 <p className="vog-kicker">
-                  Brought to you by High Tide Studios
+                  Proudly produced by High Tide Studios
                 </p>
-                <h2 className="vog-section-title">Produced in Wicklow</h2>
-                <div className="row g-3 mt-2">
+
+                <h2 className="vog-section-title">
+                  Professional production. Local stories.
+                </h2>
+
+                <p className="vog-body vog-body--wide">
+                  Voices of Greystones is proudly produced at High Tide Studios,
+                  a purpose-built podcast and video production studio in the
+                  heart of Greystones. Alongside community projects like Voices
+                  of Greystones, we create professional podcasts, commercial
+                  video productions, branded content, voiceovers and creative
+                  audio for businesses, organisations and creators throughout
+                  Ireland. <br />
+                  <br />
+                  Whether you're recording your first podcast or producing a
+                  complete video campaign, we're here to help bring your ideas
+                  to life.
+                </p>
+                <div className="row g-3 mt-3 justify-content-center">
                   {studioServices.map((service) => (
                     <div className="col-12 col-sm-6 col-lg-4" key={service}>
                       <p className="vog-service-chip">{service}</p>
@@ -332,8 +354,8 @@ export default function Voices() {
                   ))}
                 </div>
                 <div className="mt-4 text-center">
-                  <Link to="/booking" className="vog-btn vog-btn--primary">
-                    Book the Studio
+                  <Link to="/contact" className="vog-btn vog-btn--primary">
+                    Explore the Studio
                   </Link>
                 </div>
               </article>
