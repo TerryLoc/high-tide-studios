@@ -23,7 +23,7 @@ const freeFeatures = [
 
 const storyIdeas = [
   'A turning point in your life',
-  'An incredible journey',
+  'A journey that changed your life',
   'Growing up in Greystones',
   'Starting a local business',
   'A family tradition',
@@ -127,8 +127,8 @@ export default function Voices() {
     <>
       <SEO
         page="voices"
-        customTitle="Voices of Greystones | Community Podcast | High Tide Studios"
-        customDescription="Voices of Greystones is a community podcast celebrating the remarkable stories of ordinary people across Greystones. Recorded professionally at High Tide Studios."
+        customTitle="Voices of Greystones | Community Stories | High Tide Studios"
+        customDescription="Voices of Greystones is a community storytelling project preserving the voices, memories and conversations of people across Greystones."
         structuredDataType="faq"
         structuredDataPayload={vogFaqSchema}
       />
@@ -145,26 +145,17 @@ export default function Voices() {
               />
               <h1 className="vog-title mt-4">Every Stone Has a Story.</h1>
               <h2 className="vog-subtitle">What&apos;s Yours?</h2>
-              <p className="vog-lead mx-auto">
+              <p className="vog-lead mx-auto mb-3">
                 You don&apos;t need to be famous to have a story worth telling.
               </p>
-              <p className="vog-body mx-auto mb-1">
-                Every family has them. Every street has them. Every town is
-                built on them.
-              </p>
-              <p className="vog-body mx-auto mb-1">
-                <em>Voices of Greystones</em> is a community vodcast celebrating
-                the people, memories and moments that have shaped this coastal
-                town.
-              </p>
-              <p className="vog-listing mx-auto mb-1">
-                From lifelong locals to new arrivals, business owners to
-                volunteers, musicians to adventurers... every voice deserves to
-                be heard.
-              </p>
               <p className="vog-body mx-auto mb-4">
-                Recorded with care at High Tide Studios in the heart of
-                Greystones where every story receives the attention it deserves.
+                Every family has them. Every street has them.
+                <br />
+                Every town is built on them.
+                <br />
+                <br />
+                Voices of Greystones exists to preserve those stories for future
+                generations.
               </p>
               <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
                 <a className="vog-btn vog-btn--primary" href="#become-guest">
@@ -206,24 +197,6 @@ export default function Voices() {
           </div>
         </section>
 
-        <section className="py-4">
-          <div className="container vog-shell">
-            <FadeInUp>
-              <article className="vog-card text-center">
-                <p className="vog-kicker">About the Show</p>
-                <h2 className="vog-section-title">
-                  What is Voices of Greystones?
-                </h2>
-                <p className="vog-body mx-auto mb-0">
-                  Voices of Greystones is a community vodcast produced by High
-                  Tide Studios, recording both video and audio to celebrate the
-                  people and stories that make Greystones unique.
-                </p>
-              </article>
-            </FadeInUp>
-          </div>
-        </section>
-
         <RopeDivider />
 
         <section className="py-5">
@@ -233,17 +206,20 @@ export default function Voices() {
                 <article className="vog-card h-100">
                   <p className="vog-kicker">Why We&apos;re Doing This</p>
                   <h2 className="vog-section-title">
-                    Every community is built on stories.
+                    Why are we recording these stories?
                   </h2>
-                  <p className="vog-body">
-                    Greystones is full of people with lived experience,
-                    hard-earned wisdom and stories worth preserving. This
-                    project creates space for those voices to be heard,
-                    remembered and shared with future generations.
-                  </p>
+                  <p className="vog-body">Because memories fade.</p>
+                  <p className="vog-body">Photographs get lost.</p>
                   <p className="vog-body mb-0">
-                    We want every guest to feel comfortable, respected and proud
-                    of the episode they create with us.
+                    People move away.
+                    <br />
+                    <br />
+                    And one day the voices that built this community won&apos;t
+                    be here to tell their stories.
+                    <br />
+                    <br />
+                    Voices of Greystones exists to preserve those conversations
+                    one episode at a time.
                   </p>
                 </article>
               </FadeInUp>
@@ -289,15 +265,16 @@ export default function Voices() {
             <FadeInUp>
               <article className="vog-card">
                 <p className="vog-kicker">Recording The Stories</p>
-                <h2 className="vog-section-title">More Than Just a Podcast</h2>
+                <h2 className="vog-section-title">Why record them now?</h2>
                 <p className="vog-body">
-                  <strong>The story of Greystones lives in the people.</strong>
+                  Every conversation we record today becomes part of
+                  tomorrow&apos;s history.
                 </p>
                 <p className="vog-body mb-0">
-                  Every episode captures memories, experiences and moments that
-                  might otherwise only ever be shared around a dinner table or
-                  over a pint. Together, we&apos;re preserving a little piece of
-                  Greystones for future generations.
+                  The people of Greystones are writing the story of this town
+                  every single day.
+                  <br />
+                  We&apos;re simply pressing record.
                 </p>
               </article>
             </FadeInUp>
@@ -309,7 +286,7 @@ export default function Voices() {
             <FadeInUp>
               <article className="vog-card">
                 <p className="vog-kicker">Become a Guest</p>
-                <h2 className="vog-section-title">Tell us your story</h2>
+                <h2 className="vog-section-title">Start the conversation</h2>
                 <div className="vog-form-wrap">
                   <iframe
                     title="Voices of Greystones guest form"
@@ -324,11 +301,13 @@ export default function Voices() {
                   )}
                 </div>
                 <p className="vog-body vog-form-note mb-0">
-                  If it feels like there could be a great conversation,
-                  we&apos;ll be in touch to arrange a relaxed coffee and chat.
-                  There&apos;s no pressure and no expectation, just an
-                  opportunity to meet, get to know one another and see where the
-                  conversation might lead.
+                  Every recording begins with a simple coffee and a chat.
+                  <br />
+                  <br />
+                  It&apos;s a chance for us to get to know one another.
+                  <br />
+                  We explore your story together and decide whether Voices of
+                  Greystones feels like the right place to tell it.
                 </p>
               </article>
             </FadeInUp>
@@ -344,9 +323,7 @@ export default function Voices() {
                 <p className="vog-kicker">
                   Brought to you by High Tide Studios
                 </p>
-                <h2 className="vog-section-title">
-                  Premium production in Wicklow
-                </h2>
+                <h2 className="vog-section-title">Produced in Wicklow</h2>
                 <div className="row g-3 mt-2">
                   {studioServices.map((service) => (
                     <div className="col-12 col-sm-6 col-lg-4" key={service}>
@@ -415,11 +392,13 @@ export default function Voices() {
             <FadeInUp>
               <article>
                 <h2 className="vog-section-title mb-2">
-                  Every Voice Leaves Its Mark
+                  Everyone in this town has a story.
+                  <br />
+                  Some just haven&apos;t been asked yet.
                 </h2>
 
                 <a className="vog-btn vog-btn--primary" href="#become-guest">
-                  Tell the story only you can tell
+                  Start the Conversation
                 </a>
               </article>
             </FadeInUp>
@@ -428,7 +407,7 @@ export default function Voices() {
         <div className="vog-tagline-footer">
           <div className="container vog-shell text-center">
             <p className="vog-title vog-title--small mb-0">
-              Collecting the stories that make Greystones, Greystones.
+              Preserving the stories of Greystones.
             </p>
           </div>
         </div>
