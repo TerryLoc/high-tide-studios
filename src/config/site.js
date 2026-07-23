@@ -372,6 +372,25 @@ export const structuredData = {
     },
     areaServed: 'Ireland',
   }),
+
+  // Self-hosted <video> promo schema (e.g. the Voices of Greystones teaser)
+  getVideoSchema: (video) => ({
+    '@type': 'VideoObject',
+    name: video.name,
+    description: video.description,
+    thumbnailUrl: [`https://hightidestudios.ie${video.thumbnailUrl}`],
+    uploadDate: video.uploadDate,
+    duration: video.duration,
+    contentUrl: `https://hightidestudios.ie${video.contentUrl}`,
+    publisher: {
+      '@type': 'Organization',
+      name: 'High Tide Studios',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://hightidestudios.ie/images/main_logo.png',
+      },
+    },
+  }),
 };
 
 export default siteConfig;

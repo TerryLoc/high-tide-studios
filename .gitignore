@@ -11,6 +11,9 @@
 # production
 /build
 
+# raw/unprocessed media masters (too large for the web build)
+/raw-media
+
 # misc
 .DS_Store
 .env.local

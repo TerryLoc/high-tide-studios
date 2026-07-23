@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import PromoVideo from '../components/PromoVideo';
 import {
   FadeInUp,
   StaggerContainer,
@@ -9,6 +10,12 @@ import {
 
 const logoPath = '/images/voices_logo.png';
 const nextGuestPath = '/images/next_guest.png';
+
+const promoVideoSources = [
+  { src: '/video/vog_promo.webm', type: 'video/webm' },
+  { src: '/video/vog_promo.mp4', type: 'video/mp4' },
+];
+const promoVideoPoster = '/video/vog_promo_poster.jpg';
 const googleFormEmbedUrl =
   'https://docs.google.com/forms/d/e/1FAIpQLSeiBoUx9peKR-MysCeklxtPY7braF6GTjXtk-AcukpgfpcCbg/viewform?embedded=true';
 
@@ -104,6 +111,16 @@ const vogFaqSchema = {
   })),
 };
 
+const vogVideoSchema = {
+  name: 'Voices of Greystones | Every Stone Has a Story',
+  description:
+    'A short introduction to Voices of Greystones, a free community storytelling podcast recorded at High Tide Studios in Greystones, County Wicklow.',
+  thumbnailUrl: promoVideoPoster,
+  uploadDate: '2026-07-23',
+  duration: 'PT56S',
+  contentUrl: '/video/vog_promo.mp4',
+};
+
 function RopeDivider() {
   return (
     <div className="vog-divider" aria-hidden="true">
@@ -136,6 +153,7 @@ export default function Voices() {
         customDescription="Voices of Greystones is a community storytelling project preserving the voices, memories and conversations of people across Greystones."
         structuredDataType="faq"
         structuredDataPayload={vogFaqSchema}
+        videoPayload={vogVideoSchema}
       />
 
       <main className="vog-page" aria-label="Voices of Greystones">
@@ -198,6 +216,14 @@ export default function Voices() {
               <p className="vog-body mx-auto mb-0">
                 <strong>Maybe it&apos;s your story.</strong>
               </p>
+
+              <PromoVideo
+                sources={promoVideoSources}
+                poster={promoVideoPoster}
+                title="Voices of Greystones — Every Stone Has a Story"
+                caption="Watch: a short introduction to Voices of Greystones."
+                durationLabel="0:56"
+              />
             </FadeInUp>
           </div>
         </section>

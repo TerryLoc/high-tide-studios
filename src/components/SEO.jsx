@@ -12,6 +12,7 @@ export default function SEO({
   customDescription,
   structuredDataType = null,
   structuredDataPayload = null,
+  videoPayload = null,
 }) {
   const location = useLocation();
   const pageData = pageSEO[page] || pageSEO.home;
@@ -138,6 +139,10 @@ export default function SEO({
       graph.push(structuredData.getOrganizationSchema());
     }
 
+    if (videoPayload) {
+      graph.push(structuredData.getVideoSchema(videoPayload));
+    }
+
     const schema = { '@context': 'https://schema.org', '@graph': graph };
 
     const script = document.createElement('script');
@@ -157,6 +162,7 @@ export default function SEO({
     noIndex,
     structuredDataType,
     structuredDataPayload,
+    videoPayload,
     finalImage,
     page,
     canonicalUrl,
