@@ -50,7 +50,7 @@ export default function Navigation() {
             to="/"
             aria-label="High Tide Studios - Home">
             <img
-              src="/images/logo.png"
+              src="/images/hts_logo.png"
               alt=""
               height="40"
               width="40"
