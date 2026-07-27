@@ -37,7 +37,7 @@ export default function Services() {
             <p className="ht-services-lead">
               Professional recording packages tailored to your needs.
             </p>
-            <p className="ht-services-price-teaser">Packages from €299</p>
+            <p className="ht-services-price-teaser">Packages from €230</p>
           </FadeInUp>
         </div>
       </section>

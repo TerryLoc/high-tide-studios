@@ -154,7 +154,7 @@ export const onLocationPackages = Object.freeze([
     description:
       'Mobile multi-mic recording for interviews, musicians, and voice sessions — wherever your subject is. Full post-production included.',
     features: [
-      'Mobile multi-mic setup, travel included within 25km of Greystones',
+      'Mobile multi-mic setup, local travel included (surcharge beyond 20km of Greystones)',
       'Professional mix and mastering of all tracks',
       'Noise cleanup and level balancing',
       'Final exports ready for release or distribution',
