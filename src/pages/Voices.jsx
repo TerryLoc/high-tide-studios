@@ -360,10 +360,11 @@ export default function Voices() {
                 </h2>
 
                 <p className="vog-body vog-body--wide">
-                  We're proud to produce Voices of Greystones, because these
-                  stories matter. It&apos;s recorded at High Tide Studios, a
-                  podcast, video and audio production studio in the heart of
-                  Greystones, County Wicklow.
+                  We believe every story deserves to be told well — a local
+                  story just as much as a corporate one. That's why we're proud
+                  to produce Voices of Greystones. It's recorded at High Tide
+                  Studios, a podcast, video and audio production studio in the
+                  heart of Greystones, County Wicklow.
                   <br />
                   <br />
                   The same care and production standards are available to

@@ -26,7 +26,7 @@ export default function Booking() {
         name: 'How do I book a session at High Tide Studios?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Select your preferred dates, choose a package, and submit your details. We will confirm availability and send deposit instructions.',
+          text: 'Select your preferred dates, choose a package and submit your details. We will confirm availability and send deposit instructions.',
         },
       },
       {
@@ -50,7 +50,7 @@ export default function Booking() {
         name: 'What equipment is available?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Our studio features 5 x 4K cameras, multiple studio microphones, professional lighting, greenscreen, and live video switching.',
+          text: 'Our studio features 5 x 4K cameras, multiple studio microphones, professional lighting, greenscreen and live video switching.',
         },
       },
       {
@@ -438,7 +438,7 @@ export default function Booking() {
             <h1 className="ht-booking-title">Book Your Session</h1>
             <div className="ht-title-divider mx-auto" aria-hidden="true" />
             <p className="ht-booking-lead">
-              Select your preferred dates, choose your package, and secure your
+              Select your preferred dates, choose your package and secure your
               booking with a 10% deposit.
             </p>
           </FadeInUp>
@@ -666,7 +666,7 @@ export default function Booking() {
                         value={formData.notes}
                         onChange={handleChange}
                         className="ht-input ht-textarea"
-                        placeholder="Tell us about your project, any special requirements, or questions..."
+                        placeholder="Tell us about your project, any special requirements or questions..."
                       />
                     </div>
 

@@ -58,7 +58,7 @@ export const clients = Object.freeze([
   {
     name: 'Two Gas Tickets to Anywhere',
     description:
-      'A weekly passport to the chaos, comedy, and the joy of travel. Hosted by Irish travel experts and best friends Aoife Birmingham and April Drew.',
+      'A weekly passport to the chaos, comedy and the joy of travel. Hosted by Irish travel experts and best friends Aoife Birmingham and April Drew.',
     spotifyShowUrl: 'https://open.spotify.com/show/0toG2JzrAke9T5UOC1dN9t', // TODO: Replace with actual Spotify show URL
     episodes: [
       {

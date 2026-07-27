@@ -2,7 +2,12 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { teamMembers, companyInfo, whoWeAre, stats } from '../data/about';
 import { siteConfig } from '../config/site';
-import { FadeInUp, FadeIn, StaggerContainer, StaggerItem } from '../components/AnimatedSection';
+import {
+  FadeInUp,
+  FadeIn,
+  StaggerContainer,
+  StaggerItem,
+} from '../components/AnimatedSection';
 import SEO from '../components/SEO';
 
 export default function About() {
@@ -34,7 +39,7 @@ export default function About() {
           <div className="row align-items-center g-5">
             <div className="col-12 col-lg-6">
               <FadeInUp>
-                <p className="ht-eyebrow">Who We Are</p>
+                <p className="ht-eyebrow">Why We Exist</p>
                 <h2 className="ht-section-title">{whoWeAre.title}</h2>
                 <div className="ht-section-divider" aria-hidden="true" />
               </FadeInUp>
@@ -42,8 +47,7 @@ export default function About() {
                 {whoWeAre.paragraphs.map((p, i) => (
                   <p
                     key={i}
-                    className={`ht-body-text mb-4 ${i === 0 ? 'ht-body-text--lead' : ''} ${p === 'This is not a content factory.' ? 'ht-body-text--emphasis' : ''}`}
-                  >
+                    className={`ht-body-text mb-4 ${i === 0 ? 'ht-body-text--lead' : ''} ${p === 'This is not a content factory.' ? 'ht-body-text--emphasis' : ''}`}>
                     {p}
                   </p>
                 ))}
@@ -122,12 +126,23 @@ export default function About() {
                       <button
                         className="ht-team-toggle"
                         onClick={() => toggleMember(member.id)}
-                        aria-expanded={expandedMember === member.id}
-                      >
+                        aria-expanded={expandedMember === member.id}>
                         {expandedMember === member.id ? (
-                          <>Read less <i className="bi bi-chevron-up ms-1" aria-hidden="true" /></>
+                          <>
+                            Read less{' '}
+                            <i
+                              className="bi bi-chevron-up ms-1"
+                              aria-hidden="true"
+                            />
+                          </>
                         ) : (
-                          <>Read full bio <i className="bi bi-chevron-down ms-1" aria-hidden="true" /></>
+                          <>
+                            Read full bio{' '}
+                            <i
+                              className="bi bi-chevron-down ms-1"
+                              aria-hidden="true"
+                            />
+                          </>
                         )}
                       </button>
 
@@ -159,15 +174,22 @@ export default function About() {
             <div className="row justify-content-center mt-4">
               <div className="col-12 col-md-6">
                 <address className="ht-address mb-4">
-                  <strong className="ht-address-name">High Tide Studios</strong><br />
-                  Unit 11, Watson Johnson<br />
-                  Church Road<br />
-                  Greystones<br />
-                  County Wicklow<br />
+                  <strong className="ht-address-name">High Tide Studios</strong>
+                  <br />
+                  Unit 11, Watson Johnson
+                  <br />
+                  Church Road
+                  <br />
+                  Greystones
+                  <br />
+                  County Wicklow
+                  <br />
                   Ireland
                 </address>
                 <p className="mb-4">
-                  <a href={`mailto:${siteConfig.contact.email}`} className="ht-location-link">
+                  <a
+                    href={`mailto:${siteConfig.contact.email}`}
+                    className="ht-location-link">
                     <i className="bi bi-envelope me-2" aria-hidden="true" />
                     {siteConfig.contact.email}
                   </a>

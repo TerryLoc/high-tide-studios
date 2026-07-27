@@ -78,7 +78,8 @@ export default function Clients() {
             <h1 className="ht-clients-title">Our Work</h1>
             <div className="ht-title-divider mx-auto" aria-hidden="true" />
             <p className="ht-clients-lead">
-              A selection of shows and creators recorded at High Tide Studios.
+              A selection of shows, creators and businesses who trusted us with
+              their story.
             </p>
           </FadeInUp>
         </div>

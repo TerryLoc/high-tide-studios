@@ -31,10 +31,10 @@ export default function Privacy() {
                 <div className="privacy-content">
                   <h2>1. Introduction</h2>
                   <p>
-                    {name} ("we", "us", or "our") is committed to protecting
-                    your privacy. This Privacy Policy explains how we collect,
-                    use, and safeguard your information when you visit our
-                    website at {url}.
+                    {name} ("we", "us" or "our") is committed to protecting your
+                    privacy. This Privacy Policy explains how we collect, use
+                    and safeguard your information when you visit our website at{' '}
+                    {url}.
                   </p>
                   <h3>Data Controller</h3>
                   <p>
@@ -57,9 +57,9 @@ export default function Privacy() {
                   <h3>Information Collected Automatically</h3>
                   <p>
                     Our hosting infrastructure may record standard server-access
-                    logs (IP address, browser type, and requested URL) for
+                    logs (IP address, browser type and requested URL) for
                     security and uptime monitoring purposes. We do not use
-                    analytics platforms, tracking pixels, or behavioural
+                    analytics platforms, tracking pixels or behavioural
                     profiling tools on this website. No personal data is
                     collected automatically for marketing or profiling purposes.
                   </p>

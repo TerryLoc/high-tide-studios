@@ -3,7 +3,6 @@ import { useEffect, useRef } from 'react';
 import SEO from '../components/SEO';
 import { FadeInUp } from '../components/AnimatedSection';
 
-
 /**
  * 404 Not Found page
  * Styled to match High Tide Studios brand — cinematic dark theme with audio motif
@@ -29,13 +28,13 @@ export default function NotFound() {
       />
 
       <section className="ht-404-section" aria-labelledby="error-title">
-
         {/* Ghost watermark number */}
-        <div className="ht-ghost-number" aria-hidden="true">404</div>
+        <div className="ht-ghost-number" aria-hidden="true">
+          404
+        </div>
 
         <div className="ht-404-card">
           <FadeInUp>
-
             {/* Animated soundwave */}
             <div className="ht-soundwave" ref={barsRef} aria-hidden="true">
               {Array.from({ length: 13 }).map((_, i) => (
@@ -46,14 +45,16 @@ export default function NotFound() {
             <p className="ht-eyebrow">Error 404</p>
 
             <h1 id="error-title" className="ht-headline">
-              This frequency<br />is off the air
+              This frequency
+              <br />
+              is off the air
             </h1>
 
             <div className="ht-divider" />
 
             <p className="ht-subtext">
               The page you're looking for has gone silent — it may have been
-              moved, renamed, or never existed. Let's get you back on air.
+              moved, renamed or never existed. Let's get you back on air.
             </p>
 
             <div className="ht-btn-group">
@@ -68,9 +69,9 @@ export default function NotFound() {
             </div>
 
             <p className="ht-studio-tag">
-              High Tide Studios &nbsp;<span>·</span>&nbsp; Podcast &amp; Video Production
+              High Tide Studios &nbsp;<span>·</span>&nbsp; Podcast &amp; Video
+              Production
             </p>
-
           </FadeInUp>
         </div>
       </section>

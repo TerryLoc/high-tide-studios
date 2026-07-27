@@ -31,11 +31,14 @@ export default function Services() {
       <section className="ht-services-hero text-center">
         <div className="container">
           <FadeInUp>
-            <p className="ht-eyebrow">Services</p>
-            <h1 className="ht-services-title">Pick Your Perfect Package</h1>
+            <p className="ht-eyebrow">What We Do</p>
+            <h1 className="ht-services-title">
+              The Right Setting for Your Story
+            </h1>
             <div className="ht-title-divider mx-auto" aria-hidden="true" />
             <p className="ht-services-lead">
-              Professional recording packages tailored to your needs.
+              Podcasts, video and audio production — shaped around the story
+              you're telling, not just the equipment we use.
             </p>
             <p className="ht-services-price-teaser">Packages from €230</p>
           </FadeInUp>

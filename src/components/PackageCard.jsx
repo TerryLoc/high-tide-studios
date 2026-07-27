@@ -17,7 +17,7 @@ export default function PackageCard({ pkg, featured = false }) {
       'on-location-audio-video': 'ht-pkg-gold',
       'on-location-extended': 'ht-pkg-gold',
     }[pkg.id] || '';
-  const ctaLabel = pkg.ctaLabel || 'Book Now';
+  const ctaLabel = pkg.ctaLabel || 'Start the Conversation';
   const ctaLink = pkg.ctaLink || `/booking?package=${pkg.id}`;
 
   return (

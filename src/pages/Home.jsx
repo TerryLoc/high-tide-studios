@@ -51,14 +51,15 @@ export default function Home() {
         <div className="container">
           <FadeInUp>
             <p className="ht-eyebrow">
-              Podcast &amp; Video Production · Greystones
+              Podcast, Video &amp; Storytelling · Greystones
             </p>
             <h1 className="ht-hero-title">High Tide Studios</h1>
             <div className="ht-title-divider" aria-hidden="true" />
           </FadeInUp>
           <FadeInUp delay={0.2}>
             <p className="ht-hero-lead">
-              A calm, broadcast-ready environment for serious voices.
+              Every production deserves to be told well. This is where yours
+              gets told properly.
             </p>
           </FadeInUp>
           <FadeInUp delay={0.4}>
@@ -122,7 +123,7 @@ export default function Home() {
               <h2 className="ht-section-title">Studio Features</h2>
               <div className="ht-section-divider mx-auto" aria-hidden="true" />
               <p className="ht-muted-text mt-3">
-                Everything here is built to help you focus on the conversation,
+                Everything here is built to help you focus on the conversation
                 not the equipment.
               </p>
             </div>
@@ -365,15 +366,18 @@ export default function Home() {
       <section className="ht-cta py-5">
         <div className="container text-center">
           <FadeInUp>
-            <p className="ht-eyebrow">Let's Work Together</p>
-            <h2 className="ht-cta-title">Ready to Get Started?</h2>
+            <p className="ht-eyebrow">Start Here</p>
+            <h2 className="ht-cta-title">Let's Start With a Conversation</h2>
             <div className="ht-title-divider mx-auto" aria-hidden="true" />
-            <p className="ht-cta-lead">Let's get your voice on record.</p>
+            <p className="ht-cta-lead">
+              No pitch, no pressure — just a conversation about your story and
+              where it could go.
+            </p>
             <Link
               to="/contact"
               className="ht-btn-primary ht-btn-primary--light">
               <i className="bi bi-envelope" aria-hidden="true" />
-              Contact Us
+              Tell Us Your Story
             </Link>
           </FadeInUp>
         </div>

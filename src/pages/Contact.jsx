@@ -152,7 +152,8 @@ export default function Contact() {
             <h1 className="ht-contact-title">Let's Talk</h1>
             <div className="ht-title-divider mx-auto" aria-hidden="true" />
             <p className="ht-contact-lead">
-              Whatever stage you're at, we'd love to hear about your project.
+              Whatever stage you're at — an idea, a rough plan or just a feeling
+              that you have a story worth telling — we'd love to hear about it.
             </p>
           </FadeInUp>
         </div>
@@ -178,7 +179,9 @@ export default function Contact() {
             <div className="col-12 col-lg-7">
               <FadeIn delay={0.1}>
                 <div className="ht-contact-card">
-                  <h2 className="ht-contact-card-title">Send us a Message</h2>
+                  <h2 className="ht-contact-card-title">
+                    Tell Us About Your Story
+                  </h2>
 
                   {submitted ? (
                     <div
@@ -193,7 +196,8 @@ export default function Contact() {
                       </div>
                       <p className="ht-eyebrow">Message Sent</p>
                       <p className="ht-body-text mb-0">
-                        Thanks for reaching out! We'll be in touch soon.
+                        Thank you for reaching out. We'll be in touch soon —
+                        we're looking forward to hearing your story.
                       </p>
                     </div>
                   ) : (

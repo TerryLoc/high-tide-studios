@@ -104,7 +104,7 @@ export function buildContactClientContent({ fromName, message }) {
   return [
     greeting(fromName),
     paragraph(
-      "Thanks for reaching out to High Tide Studios. We've received your message and will get back to you within 1–2 business days.",
+      "Thanks for reaching out to High Tide Studios. We've received your message and will get back to you within 1–2 working days.",
     ),
     textBox(
       `<p style="color:#b3b3b3; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; margin:0 0 8px 0;">Your message</p>
