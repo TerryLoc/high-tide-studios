@@ -53,7 +53,7 @@ export const siteConfig = {
     title: 'High Tide Studios — Podcast & Video Production Greystones',
     titleTemplate: '%s | High Tide Studios',
     description:
-      'Broadcast-ready podcast and video studio in Greystones, Wicklow. Professional audio recording, video production, and content creation from €299.',
+      'Broadcast-ready podcast and video studio in Greystones, Wicklow. Professional audio recording, video production, and content creation from €230.',
     keywords: [
       'podcast studio',
       'podcast studio Ireland',
@@ -83,7 +83,7 @@ export const pageSEO = {
   home: {
     title: 'High Tide Studios — Podcast & Video Production Greystones',
     description:
-      'Broadcast-ready podcast and video studio in Greystones, Wicklow. Professional packages from €299. You turn up. We do the rest.',
+      'Broadcast-ready podcast and video studio in Greystones, Wicklow. Professional packages from €230. You turn up. We do the rest.',
     keywords: [
       'podcast studio Greystones',
       'video production Wicklow',
@@ -116,7 +116,7 @@ export const pageSEO = {
   services: {
     title: 'Podcast & Video Production Packages',
     description:
-      'Podcast and video production packages for individuals, creators, and businesses. From €299 for self-serve audio to full corporate production. Professional studio in Greystones, Wicklow.',
+      'Podcast and video production packages for individuals, creators, and businesses. From €230 for on-location audio to full corporate production. Professional studio in Greystones, Wicklow.',
     keywords: [
       'podcast packages Ireland',
       'podcast studio prices',
