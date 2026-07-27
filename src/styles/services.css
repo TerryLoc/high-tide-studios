@@ -57,6 +57,14 @@
   line-height: 1.7;
 }
 
+.ht-services-price-teaser {
+  color: var(--ht-gold-pkg);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin: 0.75rem auto 0;
+}
+
 /* ============================================================
    PACKAGES SECTION
    ============================================================ */
@@ -71,7 +79,7 @@
   display: flex;
   gap: 0.35rem;
   margin: 0 auto 2rem;
-  max-width: 560px;
+  max-width: 740px;
   padding: 0.35rem;
 }
 
@@ -189,23 +197,17 @@
 .ht-pkg-price-row {
   display: flex;
   align-items: baseline;
-  gap: 0.75rem;
-  margin: 1.25rem 0;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.4rem 0 1.25rem;
 }
 
 .ht-pkg-price {
-  font-family: var(--ht-serif);
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--ht-cream);
-  line-height: 1;
-}
-
-.ht-pkg-original-price {
-  font-size: 0.95rem;
-  color: #ffffff;
-  opacity: 0.9;
-  text-decoration: line-through;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ht-gold-pkg);
+  line-height: 1.3;
 }
 
 .ht-pkg-price-note {
@@ -422,10 +424,6 @@
 }
 
 .ht-pkg-gold .ht-pkg-tier-label {
-  color: var(--ht-gold-pkg);
-}
-
-.ht-pkg-gold .ht-pkg-price {
   color: var(--ht-gold-pkg);
 }
 

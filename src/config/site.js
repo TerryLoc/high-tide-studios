@@ -1,8 +1,12 @@
 // Site Configuration — Central source of truth for SEO, branding, and settings
 
-import { packages, businessPackages } from '../data/packages';
+import {
+  packages,
+  businessPackages,
+  onLocationPackages,
+} from '../data/packages';
 
-const allPackages = [...packages, ...businessPackages];
+const allPackages = [...packages, ...businessPackages, ...onLocationPackages];
 
 const getOfferCatalogItem = (pkg) => ({
   '@type': 'Offer',
@@ -11,7 +15,7 @@ const getOfferCatalogItem = (pkg) => ({
     name: `${pkg.title} — ${pkg.subtitle}`,
     description: pkg.description,
   },
-  price: pkg.price.replace('€', ''),
+  price: pkg.price.replace(/[^\d]/g, ''),
   priceCurrency: 'EUR',
 });
 
@@ -366,7 +370,7 @@ export const structuredData = {
     },
     offers: {
       '@type': 'Offer',
-      price: pkg.price.replace('€', ''),
+      price: pkg.price.replace(/[^\d]/g, ''),
       priceCurrency: 'EUR',
       availability: 'https://schema.org/InStock',
     },

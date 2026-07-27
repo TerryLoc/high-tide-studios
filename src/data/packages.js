@@ -3,9 +3,8 @@
  * @property {string} id - Unique identifier
  * @property {string} title - Package name
  * @property {string} subtitle - Short description
- * @property {string} price - Display price
+ * @property {string} price - Small "From €X" display tag
  * @property {string} [priceNote] - Supporting price note
- * @property {string} [originalPrice] - Crossed-out original price
  * @property {string} description - Full description
  * @property {string[]} features - List of included features
  * @property {string} [note] - Additional note/disclaimer
@@ -21,8 +20,7 @@ export const packages = Object.freeze([
     id: 'bronze',
     title: 'BRONZE',
     subtitle: 'Audio Foundation',
-    price: '€299',
-    originalPrice: '€349',
+    price: 'From €299',
     description:
       'Designed for interviews, narration, and voice-led storytelling. This package is intended for experienced podcasters who wish to self-operate. Studio access includes Rode audio equipment, Mac workstation, and full technical setup. No video in this package.',
     features: [
@@ -39,8 +37,7 @@ export const packages = Object.freeze([
     id: 'silver',
     title: 'SILVER',
     subtitle: 'Video + Social Clips',
-    price: '€399',
-    originalPrice: '€489',
+    price: 'From €399',
     description:
       'A focused entry into video podcasting, designed to test your message and market without the cost of full broadcast production. Ideal for two-person, talking-head conversations.',
     features: [
@@ -59,8 +56,7 @@ export const packages = Object.freeze([
     id: 'gold',
     title: 'GOLD',
     subtitle: 'Signature Broadcast',
-    price: '€749',
-    originalPrice: '€999',
+    price: 'From €749',
     description:
       'End-to-end cinematic podcast production for leaders, founders, and creators who want full broadcast presence without managing the process. This is High Tide at its highest level. You turn up. We do the rest.',
     features: [
@@ -87,9 +83,8 @@ export const businessPackages = Object.freeze([
     id: 'leadership-voice',
     title: 'LEADERSHIP VOICE',
     subtitle: 'Internal & Leadership Podcasts',
-    price: '€324',
-    priceNote: 'ex VAT, per episode · Discounted price until 1st Oct',
-    originalPrice: null,
+    price: 'From €324',
+    priceNote: 'ex VAT, per episode',
     description:
       'Full-service internal comms and leadership podcast production for organisations who want their leadership to sound present, human, and consistent — without the self-op learning curve.',
     features: [
@@ -109,9 +104,8 @@ export const businessPackages = Object.freeze([
     id: 'brand-signal',
     title: 'BRAND SIGNAL',
     subtitle: 'Marketing & Thought-Leadership Podcasts',
-    price: '€609',
-    priceNote: 'ex VAT, per episode · Discounted price until 1st Oct',
-    originalPrice: null,
+    price: 'From €609',
+    priceNote: 'ex VAT, per episode',
     description:
       'Cinematic marketing and thought-leadership podcast production built for brand credibility, not just content volume.',
     features: [
@@ -132,9 +126,8 @@ export const businessPackages = Object.freeze([
     id: 'talent-story',
     title: 'TALENT STORY',
     subtitle: 'Employer Branding & Recruitment Video',
-    price: '€324',
-    priceNote: 'ex VAT, per session · Discounted price until 1st Oct',
-    originalPrice: null,
+    price: 'From €359',
+    priceNote: 'ex VAT, per session',
     description:
       'Studio-based interview and testimonial video production for employer branding and recruitment campaigns.',
     features: [
@@ -148,6 +141,64 @@ export const businessPackages = Object.freeze([
       'Heads of Talent Acquisition, HR Directors, and People Directors competing for candidates.',
     ctaLabel: 'Request a Consultation',
     ctaLink: '/contact?enquiry=talent-story',
+  },
+]);
+
+/** @type {Package[]} */
+export const onLocationPackages = Object.freeze([
+  {
+    id: 'on-location-audio',
+    title: 'ON-LOCATION',
+    subtitle: 'On-Location Audio',
+    price: 'From €230',
+    description:
+      'Mobile multi-mic recording for interviews, musicians, and voice sessions — wherever your subject is. Full post-production included.',
+    features: [
+      'Mobile multi-mic setup, travel included within 25km of Greystones',
+      'Professional mix and mastering of all tracks',
+      'Noise cleanup and level balancing',
+      'Final exports ready for release or distribution',
+    ],
+    whoFor:
+      'Solo musicians, podcasters, and interview subjects who need professional audio without coming to the studio.',
+    ctaLabel: 'Request a Location Quote',
+    ctaLink: '/contact?enquiry=on-location-audio',
+  },
+  {
+    id: 'on-location-audio-video',
+    title: 'ON-LOCATION',
+    subtitle: 'On-Location Audio + Video',
+    price: 'From €350',
+    description:
+      'Single-camera on-site video and audio production, edited and colour-graded, for content that needs to be shot where the story happens.',
+    features: [
+      'Mobile audio rig + single HD camera setup',
+      'Basic lighting kit included',
+      'Full mix, sync, and colour-graded edit',
+      'Delivered per-song or per-segment',
+    ],
+    whoFor:
+      'Creators and small groups who want on-site video without a full studio crew.',
+    ctaLabel: 'Request a Location Quote',
+    ctaLink: '/contact?enquiry=on-location-audio-video',
+  },
+  {
+    id: 'on-location-extended',
+    title: 'ON-LOCATION',
+    subtitle: 'On-Location Extended Coverage',
+    price: 'From €460',
+    description:
+      'Multi-angle on-site coverage with extended editing for sessions that need more visual variety — additional camera angle, B-roll, and a full edited package.',
+    features: [
+      'Two camera angles or setups, additional lighting',
+      'B-roll and cutaway coverage',
+      'Full edit with colour grade, thumbnail, and per-song/segment exports',
+      'Raw footage plus final assets included',
+    ],
+    whoFor:
+      'Bands, sessions, and small productions wanting broadcast-style coverage on location.',
+    ctaLabel: 'Request a Location Quote',
+    ctaLink: '/contact?enquiry=on-location-extended',
   },
 ]);
 

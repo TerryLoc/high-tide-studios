@@ -5,22 +5,25 @@ import PropTypes from 'prop-types';
  * Package card component for displaying service offerings
  */
 export default function PackageCard({ pkg, featured = false }) {
-  const tierClass = {
-    bronze: 'ht-pkg-bronze',
-    silver: 'ht-pkg-silver',
-    gold:   'ht-pkg-gold',
-    'leadership-voice': 'ht-pkg-gold',
-    'brand-signal': 'ht-pkg-gold',
-    'talent-story': 'ht-pkg-gold',
-  }[pkg.id] || '';
+  const tierClass =
+    {
+      bronze: 'ht-pkg-bronze',
+      silver: 'ht-pkg-silver',
+      gold: 'ht-pkg-gold',
+      'leadership-voice': 'ht-pkg-gold',
+      'brand-signal': 'ht-pkg-gold',
+      'talent-story': 'ht-pkg-gold',
+      'on-location-audio': 'ht-pkg-gold',
+      'on-location-audio-video': 'ht-pkg-gold',
+      'on-location-extended': 'ht-pkg-gold',
+    }[pkg.id] || '';
   const ctaLabel = pkg.ctaLabel || 'Book Now';
   const ctaLink = pkg.ctaLink || `/booking?package=${pkg.id}`;
 
   return (
     <article
       className={`ht-pkg-card h-100 ${tierClass} ${featured ? 'ht-pkg-card--featured' : ''}`}
-      aria-label={`${pkg.title} package — ${pkg.price}`}
-    >
+      aria-label={`${pkg.title} package — ${pkg.price}`}>
       {/* Tier accent bar at top */}
       <div className="ht-pkg-accent-bar" aria-hidden="true" />
 
@@ -31,7 +34,6 @@ export default function PackageCard({ pkg, featured = false }) {
       )}
 
       <div className="ht-pkg-body">
-
         {/* Header */}
         <header className="ht-pkg-header">
           <p className="ht-pkg-tier-label">{pkg.title}</p>
@@ -41,11 +43,6 @@ export default function PackageCard({ pkg, featured = false }) {
         {/* Price */}
         <div className="ht-pkg-price-row" aria-label="Pricing">
           <span className="ht-pkg-price">{pkg.price}</span>
-          {pkg.originalPrice && (
-            <span className="ht-pkg-original-price" aria-label={`Originally ${pkg.originalPrice}`}>
-              {pkg.originalPrice}
-            </span>
-          )}
           {pkg.priceNote && (
             <span className="ht-pkg-price-note">{pkg.priceNote}</span>
           )}
@@ -57,7 +54,9 @@ export default function PackageCard({ pkg, featured = false }) {
         {/* Features */}
         <ul className="ht-pkg-features" aria-label="Package features">
           {pkg.features.map((feature, index) => (
-            <li key={`${pkg.id}-feature-${index}`} className="ht-pkg-feature-item">
+            <li
+              key={`${pkg.id}-feature-${index}`}
+              className="ht-pkg-feature-item">
               <i className="bi bi-check2 ht-pkg-check" aria-hidden="true" />
               {feature}
             </li>
@@ -87,12 +86,10 @@ export default function PackageCard({ pkg, featured = false }) {
         <Link
           to={ctaLink}
           className="ht-pkg-cta"
-          aria-label={`${ctaLabel} for ${pkg.title}`}
-        >
+          aria-label={`${ctaLabel} for ${pkg.title}`}>
           <i className="bi bi-calendar-check" aria-hidden="true" />
           {ctaLabel}
         </Link>
-
       </div>
     </article>
   );
@@ -105,7 +102,6 @@ PackageCard.propTypes = {
     subtitle: PropTypes.string,
     price: PropTypes.string.isRequired,
     priceNote: PropTypes.string,
-    originalPrice: PropTypes.string,
     description: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.string).isRequired,
     note: PropTypes.string,
