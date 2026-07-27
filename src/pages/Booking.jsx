@@ -115,7 +115,7 @@ export default function Booking() {
   // apart if one was ever edited without the other.
   const priceBreakdown = useMemo(() => {
     if (!selectedPackage) return null;
-    const total = parseInt(selectedPackage.price.replace(/[€,]/g, ''), 10);
+    const total = parseInt(selectedPackage.price.replace(/[^\d]/g, ''), 10);
     const deposit = Math.round(total * 0.1);
     return { total, deposit, balance: total - deposit };
   }, [selectedPackage]);
