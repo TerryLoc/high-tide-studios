@@ -38,7 +38,7 @@ export const whoWeAre = {
   paragraphs: [
     'High Tide Studios was founded on a simple belief: every story deserves to be told well — and almost every person has one worth hearing.',
     'Justin Caffrey established the studio after years spent behind microphones, cameras and conversations that mattered. Terry Loughran, who leads the studio today, spent decades on the other side of the camera — as a cameraman, technical director and audio specialist — learning that the best productions are built on trust, not just equipment.',
-    'Between them, they had seen both ends of the spectrum: rushed sets that treated people like content and under-resourced setups that let good stories fall flat. High Tide is the studio they wished existed earlier — one built around listening first and producing second.',
+    'They had both seen what happens when production moves faster than the story — rushed sets, under-resourced setups, good conversations that never quite landed. High Tide is the studio they wished had existed earlier.',
     "That's still how we work. Before a camera rolls, we ask questions. We take the time to understand the person, the business or the story in front of us, because the right questions produce better answers than the right lighting ever will.",
     'This is not a content factory.',
     "It's a place to find your voice, shape your story and leave with something that sounds and feels exactly like you — precise without being clinical, creative without being performative and human without being casual.",
@@ -50,15 +50,16 @@ export const brandVision = {
   paragraphs: [
     'We listen before we produce. That belief shapes every session that happens here — whether it is a founder recording a first episode or a leadership team building an internal show.',
     'High Tide Studios exists for people and organisations who have something real to say — founders, creators, advisors and businesses who want their message to land, not just go viral.',
-    "This is not a content factory. It's a calm, broadcast-ready space where you can think clearly, speak with confidence and leave with work that sounds and feels like you.",
+    'This is not a content factory.',
+    "It's a calm, broadcast-ready space where you can think clearly, speak with confidence and leave with work that sounds and feels like you.",
     "The equipment here is exceptional. But it's rarely what people remember. They remember how the conversation felt — and that their story was treated with care.",
   ],
 };
 
 export const stats = [
-  { value: '50+', label: 'Episodes Produced' },
-  { value: 'Growing', label: 'Client Base' },
-  { value: '100%', label: 'Satisfaction Rate' },
+  { value: 'Greystones', label: 'Based in the heart of' },
+  { value: '2025', label: 'Studio opened' },
+  { value: '100%', label: 'Independent & Irish' },
 ];
 
 export const features = [

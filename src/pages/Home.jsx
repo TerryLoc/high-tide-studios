@@ -58,8 +58,8 @@ export default function Home() {
           </FadeInUp>
           <FadeInUp delay={0.2}>
             <p className="ht-hero-lead">
-              Every production deserves to be told well. This is where yours
-              gets told properly.
+              Your story deserves to be heard clearly. This is where that
+              happens.
             </p>
           </FadeInUp>
           <FadeInUp delay={0.4}>
