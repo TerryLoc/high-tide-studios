@@ -16,6 +16,8 @@ const promoVideoSources = [
   { src: '/video/vog_promo.mp4', type: 'video/mp4' },
 ];
 const promoVideoPoster = '/video/vog_promo_poster.jpg';
+const voicesYoutubeUrl = 'https://www.youtube.com/@HighTideGreystones';
+const voicesSpotifyUrl = 'https://open.spotify.com/';
 const googleFormEmbedUrl =
   'https://docs.google.com/forms/d/e/1FAIpQLSeiBoUx9peKR-MysCeklxtPY7braF6GTjXtk-AcukpgfpcCbg/viewform?embedded=true';
 
@@ -224,6 +226,49 @@ export default function Voices() {
                 caption="Watch: a short introduction to Voices of Greystones."
                 durationLabel="0:56"
               />
+
+              <div
+                className="vog-latest-stories"
+                aria-label="Latest episodes links">
+                <p className="vog-kicker mb-2">Listen &amp; Watch</p>
+                <h3 className="vog-section-title vog-latest-stories-title mb-2">
+                  Catch the latest stories
+                </h3>
+                <p className="vog-body mx-auto mb-0">
+                  New episodes will appear here as soon as they go live.
+                </p>
+                <div className="vog-platform-links" role="list">
+                  <a
+                    href={voicesYoutubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="vog-platform-link"
+                    role="listitem"
+                    aria-label="Watch Voices of Greystones on YouTube">
+                    <span className="vog-platform-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" role="presentation">
+                        <path d="M23.5 7.2c-.3-1.1-1.2-2-2.3-2.3C19.2 4.4 12 4.4 12 4.4s-7.2 0-9.2.5C1.7 5.2.8 6.1.5 7.2 0 9.2 0 12 0 12s0 2.8.5 4.8c.3 1.1 1.2 2 2.3 2.3 2 .5 9.2.5 9.2.5s7.2 0 9.2-.5c1.1-.3 2-1.2 2.3-2.3.5-2 .5-4.8.5-4.8s0-2.8-.5-4.8ZM9.7 16V8l6.2 4-6.2 4Z" />
+                      </svg>
+                    </span>
+                    <span>YouTube</span>
+                  </a>
+
+                  <a
+                    href={voicesSpotifyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="vog-platform-link"
+                    role="listitem"
+                    aria-label="Listen to Voices of Greystones on Spotify">
+                    <span className="vog-platform-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" role="presentation">
+                        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.7 0 12 0Zm5.2 17.3c-.2.3-.6.4-.9.2-2.6-1.6-6-2-10-1.1-.4.1-.7-.1-.8-.5-.1-.4.1-.7.5-.8 4.2-.9 7.8-.5 10.7 1.3.3.2.4.6.2.9Zm1.3-2.9c-.3.4-.8.5-1.1.2-3-1.8-7.5-2.3-11-1.2-.4.1-.9-.1-1-.5-.1-.4.1-.9.5-1 4-1.2 8.9-.6 12.2 1.4.4.2.5.8.3 1.1Zm.1-3c-3.4-2-9.1-2.2-12.2-1.2-.5.1-1-.1-1.2-.6-.2-.5.1-1 .6-1.2 3.6-1.1 9.9-.9 13.7 1.4.4.2.6.8.3 1.2-.2.4-.8.6-1.2.4Z" />
+                      </svg>
+                    </span>
+                    <span>Spotify</span>
+                  </a>
+                </div>
+              </div>
             </FadeInUp>
           </div>
         </section>
