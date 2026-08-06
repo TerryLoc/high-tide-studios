@@ -232,10 +232,11 @@ export default function Voices() {
                 aria-label="Latest episodes links">
                 <p className="vog-kicker mb-2">Listen &amp; Watch</p>
                 <h3 className="vog-section-title vog-latest-stories-title mb-2">
-                  Catch the latest stories
+                  Listen to the stories
                 </h3>
                 <p className="vog-body mx-auto mb-0">
-                  New episodes will appear here as soon as they go live.
+                  Every conversation becomes part of the growing story of
+                  Greystones.
                 </p>
                 <div className="vog-platform-links" role="list">
                   <a
