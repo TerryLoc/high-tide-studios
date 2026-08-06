@@ -9,30 +9,14 @@
 
 /** @type {Testimonial[]} */
 export const testimonials = Object.freeze([
-  // {
-  //   id: 1,
-  //   quote:
-  //     'High Tide Studios gave us the professional environment we needed to launch our podcast. The team understood exactly what we were going for.',
-  //   author: 'Sarah Mitchell',
-  //   role: 'Founder, Leadership Talks Podcast',
-  //   rating: 5,
-  // },
-  // {
-  //   id: 2,
-  //   quote:
-  //     'The quality of production exceeded our expectations. The team made us feel completely at ease behind the microphone.',
-  //   author: "David O'Connor",
-  //   role: 'CEO, TechStart Ireland',
-  //   rating: 5,
-  // },
-  // {
-  //   id: 3,
-  //   quote:
-  //     'Finally, a studio that takes audio seriously. No gimmicks, just broadcast-quality production from professionals who know their craft.',
-  //   author: 'Emma Byrne',
-  //   role: 'Author & Speaker',
-  //   rating: 5,
-  // },
+  {
+    id: 1,
+    quote:
+      'We recorded Season 1 of Two Gas Tickets to Anywhere at High Tide Studios earlier this year. After exploring several recording studios, we felt that the intimacy and location of High Tide perfectly suited our needs. The team, led by Terry, provided outstanding guidance and expertise throughout the process. They also had all the right equipment to help us produce a highly professional first season. We couldn’t have asked for a better recording experience.',
+    author: 'April Drew',
+    role: 'Host, Two Gas Tickets to Anywhere',
+    rating: 5,
+  },
 ]);
 
 /**
