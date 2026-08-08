@@ -17,7 +17,10 @@ const promoVideoSources = [
 ];
 const promoVideoPoster = '/video/vog_promo_poster.jpg';
 const voicesYoutubeUrl = 'https://www.youtube.com/@HighTideGreystones';
-const voicesSpotifyUrl = 'https://open.spotify.com/';
+const voicesSpotifyUrl = 'https://open.spotify.com/show/0343sjacUgFoeDXU4vHtof';
+const voicesAmazonMusicUrl =
+  'https://music.amazon.com/podcasts/31b6549f-a952-4c08-af88-748efff00d4c/voices-of-greystones';
+const voicesAcastUrl = 'https://shows.acast.com/voicesofgreystones';
 const googleFormEmbedUrl =
   'https://docs.google.com/forms/d/e/1FAIpQLSeiBoUx9peKR-MysCeklxtPY7braF6GTjXtk-AcukpgfpcCbg/viewform?embedded=true';
 
@@ -267,6 +270,36 @@ export default function Voices() {
                       </svg>
                     </span>
                     <span>Spotify</span>
+                  </a>
+
+                  <a
+                    href={voicesAmazonMusicUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="vog-platform-link"
+                    role="listitem"
+                    aria-label="Listen to Voices of Greystones on Amazon Music">
+                    <span className="vog-platform-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" role="presentation">
+                        <path d="M18.9 17.3c-2 1.5-4.9 2.4-7.4 2.4-3.5 0-6.6-1.3-9-3.4-.2-.2 0-.5.2-.4 2.6 1.5 5.8 2.4 9.1 2.4 2.2 0 4.7-.5 6.9-1.4.4-.2.7.2.2.4Zm.8 2.4c-.3.4-1.8.2-2.5.1-.2 0-.2-.2 0-.3.5-.4 1.4-.5 1.8-.6.4 0 .5-.1.7.2.1.2.1.4 0 .6Zm-.7-1.1c-.1-.2-.8-.1-1.3 0-.1 0-.2-.1-.1-.2.8-.6 2.1-.5 2.3-.2.2.3-.1 1.6-.8 2.3-.1.1-.3 0-.3-.1.2-.4.4-1.2.2-1.8Zm-7.9-10.2-3.4 8h1.6l.8-1.9h3.4l.7 1.9H16l-3.4-8h-1.5Zm-.4 4.8 1.1-2.8 1.1 2.8h-2.2Z" />
+                      </svg>
+                    </span>
+                    <span>Amazon Music</span>
+                  </a>
+
+                  <a
+                    href={voicesAcastUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="vog-platform-link"
+                    role="listitem"
+                    aria-label="Listen to Voices of Greystones on Acast">
+                    <span className="vog-platform-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" role="presentation">
+                        <path d="M12 2.2a9.8 9.8 0 1 0 0 19.6 9.8 9.8 0 0 0 0-19.6Zm0 3.1a6.7 6.7 0 1 1 0 13.4 6.7 6.7 0 0 1 0-13.4Zm0 2.4a4.3 4.3 0 1 0 0 8.6 4.3 4.3 0 0 0 0-8.6Zm0 2.4a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8Z" />
+                      </svg>
+                    </span>
+                    <span>Acast</span>
                   </a>
                 </div>
               </div>
