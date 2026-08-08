@@ -21,6 +21,8 @@ const voicesSpotifyUrl = 'https://open.spotify.com/show/0343sjacUgFoeDXU4vHtof';
 const voicesAmazonMusicUrl =
   'https://music.amazon.com/podcasts/31b6549f-a952-4c08-af88-748efff00d4c/voices-of-greystones';
 const voicesAcastUrl = 'https://shows.acast.com/voicesofgreystones';
+const voicesApplePodcastsUrl =
+  'https://podcasts.apple.com/ie/podcast/voices-of-greystones/id6799051811';
 const googleFormEmbedUrl =
   'https://docs.google.com/forms/d/e/1FAIpQLSeiBoUx9peKR-MysCeklxtPY7braF6GTjXtk-AcukpgfpcCbg/viewform?embedded=true';
 
@@ -300,6 +302,21 @@ export default function Voices() {
                       </svg>
                     </span>
                     <span>Acast</span>
+                  </a>
+
+                  <a
+                    href={voicesApplePodcastsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="vog-platform-link"
+                    role="listitem"
+                    aria-label="Listen to Voices of Greystones on Apple Podcasts">
+                    <span className="vog-platform-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" role="presentation">
+                        <path d="M16.6 0c-.2 1.6-.8 2.9-1.8 3.9-.9.9-2.1 1.6-3.4 1.5-.2-1.5.5-3 1.4-4 .9-.9 2.3-1.5 3.8-1.4ZM20.8 17.6c-.6 1.4-.9 2-1.7 3.2-1.1 1.7-2.7 3.8-4.6 3.8-1.7 0-2.1-1.1-4.4-1.1-2.3 0-2.8 1.1-4.5 1.1-1.9 0-3.4-1.8-4.5-3.5C-1.9 16.9-.6 9.5 3 7.8c1.7-.8 3.4-.7 4.8 0 1 .5 1.8 1.1 3 1.1 1.1 0 1.7-.4 2.8-1 1.2-.6 2.8-.9 4.4-.5.7.2 2.7 1 3.8 3.1-3.3 1.8-2.8 6.5-.9 7.1Z" />
+                      </svg>
+                    </span>
+                    <span>Apple Podcasts</span>
                   </a>
                 </div>
               </div>
