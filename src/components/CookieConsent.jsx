@@ -2,12 +2,13 @@ import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 const COOKIE_CONSENT_KEY = 'hts_cookie_consent';
-const COOKIE_CONSENT_VERSION = '2026-07-02';
+const COOKIE_CONSENT_VERSION = '2026-10-12';
 
-const createConsent = (media) => ({
+const createConsent = (media, marketing = false) => ({
   version: COOKIE_CONSENT_VERSION,
   essential: true,
   media,
+  marketing,
   updatedAt: new Date().toISOString(),
   expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
 });
@@ -17,13 +18,11 @@ const readConsent = () => {
     const stored = localStorage.getItem(COOKIE_CONSENT_KEY);
     if (!stored) return null;
 
-    if (stored === 'accepted') return createConsent(true);
-    if (stored === 'declined') return createConsent(false);
-
     const parsed = JSON.parse(stored);
     if (
       parsed?.version === COOKIE_CONSENT_VERSION &&
       typeof parsed.media === 'boolean' &&
+      typeof parsed.marketing === 'boolean' &&
       parsed.expiresAt &&
       new Date(parsed.expiresAt) > new Date()
     ) {
@@ -36,8 +35,8 @@ const readConsent = () => {
   return null;
 };
 
-const saveConsent = (media) => {
-  const consent = createConsent(media);
+const saveConsent = (media, marketing) => {
+  const consent = createConsent(media, marketing);
   localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(consent));
   window.dispatchEvent(
     new CustomEvent('hts:cookie-consent-updated', { detail: consent }),
@@ -69,13 +68,13 @@ export default function CookieConsent() {
       );
   }, []);
 
-  const handleAcceptMedia = useCallback(() => {
-    saveConsent(true);
+  const handleAcceptAll = useCallback(() => {
+    saveConsent(true, true);
     setShowBanner(false);
   }, []);
 
   const handleEssentialOnly = useCallback(() => {
-    saveConsent(false);
+    saveConsent(false, false);
     setShowBanner(false);
   }, []);
 
@@ -92,16 +91,17 @@ export default function CookieConsent() {
         <div className="cookie-consent-content">
           <div className="cookie-consent-text">
             <p id="cookie-consent-description" className="mb-2">
-              We use essential storage to remember your choice. Optional
-              embedded media from YouTube or Google Maps may set cookies only
-              when you allow or load it.{' '}
+              We use essential storage to remember your choice. With your
+              permission we also load embedded media (YouTube, Google Maps) and
+              the Meta Pixel, which helps us measure and improve our
+              advertising on Facebook and Instagram.{' '}
               <Link to="/privacy" className="cookie-consent-link">
                 Learn more
               </Link>
             </p>
             <p className="cookie-consent-note mb-0">
-              No advertising or analytics cookies are currently used on this
-              site.
+              Nothing optional is loaded unless you choose &quot;Accept
+              all&quot;. You can change your mind at any time from the footer.
             </p>
           </div>
           <div className="cookie-consent-buttons">
@@ -112,10 +112,10 @@ export default function CookieConsent() {
               Essential only
             </button>
             <button
-              onClick={handleAcceptMedia}
+              onClick={handleAcceptAll}
               className="btn btn-light btn-sm"
-              aria-label="Allow optional embedded media cookies">
-              Allow media
+              aria-label="Accept media and marketing cookies">
+              Accept all
             </button>
           </div>
         </div>
@@ -217,4 +217,8 @@ export function hasAcceptedCookies() {
 
 export function hasAllowedMediaCookies() {
   return readConsent()?.media === true;
+}
+
+export function hasAllowedMarketingCookies() {
+  return readConsent()?.marketing === true;
 }

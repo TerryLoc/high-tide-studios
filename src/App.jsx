@@ -3,6 +3,7 @@ import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import CookieConsent from './components/CookieConsent';
+import MetaPixel from './components/MetaPixel';
 
 import Home from './pages/Home';
 import Services from './pages/Services';
@@ -35,6 +36,7 @@ export default function App() {
         <Footer />
         <ScrollToTop />
         <CookieConsent />
+        <MetaPixel />
       </div>
     </BrowserRouter>
   );

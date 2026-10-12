@@ -59,9 +59,11 @@ export default function Privacy() {
                     Our hosting infrastructure may record standard server-access
                     logs (IP address, browser type and requested URL) for
                     security and uptime monitoring purposes. We do not use
-                    analytics platforms, tracking pixels or behavioural
-                    profiling tools on this website. No personal data is
-                    collected automatically for marketing or profiling purposes.
+                    analytics platforms or behavioural profiling tools on this
+                    website. If you allow marketing cookies, the Meta Pixel
+                    (see Cookies below) records your visit for advertising
+                    measurement; otherwise no data is collected automatically
+                    for marketing purposes.
                   </p>
 
                   <h2>3. Cookies</h2>
@@ -81,20 +83,27 @@ export default function Privacy() {
                       Google Maps may set cookies or use similar technologies
                       when you choose to play a video or load the map
                     </li>
+                    <li>
+                      <strong>Marketing (Meta Pixel):</strong> Only if you
+                      choose &quot;Accept all&quot;, we load the Meta Pixel from
+                      Meta Platforms Ireland Ltd. It records your visit to our
+                      pages so we can measure and improve our Facebook and
+                      Instagram advertising
+                    </li>
                   </ul>
                   <p>
-                    We do not currently run advertising cookies or analytics
-                    cookies through this website. You can also control cookies
-                    through your browser settings.
+                    We do not run analytics or advertising cookies unless you
+                    allow them. You can also control cookies through your
+                    browser settings.
                   </p>
 
                   <h3>Cookie Preferences</h3>
                   <p>
                     When you first visit our site, you'll see a cookie banner
                     asking whether you want to allow optional embedded media
-                    cookies. Your choice is stored locally and remembered for
-                    future visits. You can change your preference at any time
-                    from the Cookie settings link in the footer.
+                    and marketing cookies. Your choice is stored locally and
+                    remembered for future visits. You can change your preference
+                    at any time from the Cookie settings link in the footer.
                   </p>
 
                   <h2>4. How We Use Your Information</h2>
