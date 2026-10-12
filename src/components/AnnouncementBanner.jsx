@@ -120,7 +120,10 @@ export default function AnnouncementBanner() {
         ))}{' '}
         remaining
         <span className="ht-banner-sep">·</span>
-        <Link to="/services#packages" className="ht-banner-link">
+        <Link
+          to="/services"
+          state={{ showOffer: true }}
+          className="ht-banner-link">
           Book Now →
         </Link>
         <button

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
 import {
   FadeInUp,
@@ -118,19 +118,24 @@ const modalStyles = {
 
 function IntroOfferModal() {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const requested = location.state?.showOffer === true;
 
   useEffect(() => {
+    if (new Date() >= INTRO_OFFER_DEADLINE) return;
+    // The banner link asks for the offer explicitly, even if already seen.
+    if (requested) {
+      setOpen(true);
+      navigate(location.pathname, { replace: true, state: null });
+      return;
+    }
     try {
-      if (
-        !sessionStorage.getItem(INTRO_OFFER_KEY) &&
-        new Date() < INTRO_OFFER_DEADLINE
-      ) {
-        setOpen(true);
-      }
+      if (!sessionStorage.getItem(INTRO_OFFER_KEY)) setOpen(true);
     } catch {
       setOpen(true);
     }
-  }, []);
+  }, [requested]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const close = () => {
     try {
