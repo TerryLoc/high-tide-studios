@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import CookieConsent from './components/CookieConsent';
 import MetaPixel from './components/MetaPixel';
+import AnnouncementBanner from './components/AnnouncementBanner';
 
 import Home from './pages/Home';
 import Services from './pages/Services';
@@ -19,6 +20,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="d-flex flex-column min-vh-100">
+        <AnnouncementBanner />
         <Navigation />
         <main className="flex-grow-1" style={{ paddingTop: '76px' }}>
           <Routes>
