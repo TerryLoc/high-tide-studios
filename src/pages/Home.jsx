@@ -53,7 +53,9 @@ export default function Home() {
             <p className="ht-eyebrow">
               Podcast, Video &amp; Storytelling · Greystones
             </p>
-            <h1 className="ht-hero-title">High Tide Studios</h1>
+            <h1 className="ht-hero-title">
+              Podcast &amp; Video Production Studio in Greystones, Wicklow
+            </h1>
             <div className="ht-title-divider" aria-hidden="true" />
           </FadeInUp>
           <FadeInUp delay={0.2}>

@@ -366,7 +366,7 @@ export default function Booking() {
     return (
       <>
         <SEO
-          page="contact"
+          page="booking"
           customTitle="Booking Confirmed — High Tide Studios"
         />
         <section className="ht-booking-section">
@@ -423,7 +423,7 @@ export default function Booking() {
   return (
     <>
       <SEO
-        page="contact"
+        page="booking"
         customTitle="Book a Session — High Tide Studios"
         customDescription="Book your podcast or video recording session at High Tide Studios Greystones."
         structuredDataType="faq"

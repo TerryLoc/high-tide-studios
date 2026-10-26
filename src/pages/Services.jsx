@@ -269,7 +269,7 @@ export default function Services() {
           <FadeInUp>
             <p className="ht-eyebrow">What We Do</p>
             <h1 className="ht-services-title">
-              The Right Setting for Your Story
+              Podcast &amp; Video Production in Greystones, Wicklow
             </h1>
             <div className="ht-title-divider mx-auto" aria-hidden="true" />
             <p className="ht-services-lead">

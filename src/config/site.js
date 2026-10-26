@@ -8,6 +8,15 @@ import {
 
 const allPackages = [...packages, ...businessPackages, ...onLocationPackages];
 
+const getPriceSpecification = (pkg) => ({
+  '@type': 'PriceSpecification',
+  minPrice: pkg.price.replace(/[^\d.]/g, ''),
+  priceCurrency: 'EUR',
+  ...(pkg.priceNote?.toLowerCase().includes('ex vat')
+    ? { valueAddedTaxIncluded: false }
+    : {}),
+});
+
 const getOfferCatalogItem = (pkg) => ({
   '@type': 'Offer',
   itemOffered: {
@@ -15,8 +24,8 @@ const getOfferCatalogItem = (pkg) => ({
     name: `${pkg.title} — ${pkg.subtitle}`,
     description: pkg.description,
   },
-  price: pkg.price.replace(/[^\d]/g, ''),
-  priceCurrency: 'EUR',
+  priceSpecification: getPriceSpecification(pkg),
+  description: `Starting price: ${pkg.price}${pkg.priceNote ? `, ${pkg.priceNote}` : ''}`,
 });
 
 export const siteConfig = {
@@ -54,26 +63,6 @@ export const siteConfig = {
     titleTemplate: '%s | High Tide Studios',
     description:
       'Broadcast-ready podcast and video studio in Greystones, Wicklow. Professional audio recording, video production and content creation from €230.',
-    keywords: [
-      'podcast studio',
-      'podcast studio Ireland',
-      'podcast studio Greystones',
-      'podcast studio Wicklow',
-      'podcast studio Dublin',
-      'video production Ireland',
-      'video production Wicklow',
-      'video podcast studio',
-      'audio recording studio',
-      'content creation Ireland',
-      'broadcast studio Wicklow',
-      'podcast production packages',
-      'High Tide Studios',
-      'corporate podcast production Ireland',
-      'corporate video production Wicklow',
-      'business podcast studio Dublin',
-      'corporate content production Ireland',
-      'employer branding video Ireland',
-    ],
     ogImage: '/og-image.jpg',
   },
 };
@@ -81,95 +70,45 @@ export const siteConfig = {
 // Page-specific SEO metadata
 export const pageSEO = {
   home: {
-    title: 'High Tide Studios — Podcast & Video Production Greystones',
+    title:
+      'Podcast & Video Production Studio in Greystones, Wicklow | High Tide Studios',
     description:
-      'Broadcast-ready podcast and video studio in Greystones, Wicklow. Professional packages from €230. You turn up. We do the rest.',
-    keywords: [
-      'podcast studio Greystones',
-      'video production Wicklow',
-      'podcast packages Ireland',
-      'broadcast studio',
-    ],
+      'High Tide Studios is a podcast and video production studio in Greystones, Wicklow, Ireland. Multi-camera filming, podcast recording, editing and publishing for creators and businesses.',
   },
   about: {
     title: 'About High Tide Studios',
     description:
       'Meet Justin Caffrey and Terry Loughran, the team behind High Tide Studios in Greystones, Wicklow.',
-    keywords: [
-      'about High Tide Studios',
-      'podcast team Ireland',
-      'Greystones studio team',
-      'Terry Loughran',
-      'Justin Caffrey',
-    ],
   },
   clients: {
     title: 'Our Clients & Shows',
     description:
       'Podcasts and video productions created at High Tide Studios Greystones. See our client work and featured shows.',
-    keywords: [
-      'podcast portfolio Ireland',
-      'video production clients',
-      'podcast shows Greystones',
-    ],
   },
   services: {
     title: 'Podcast & Video Production Packages',
     description:
       'Podcast and video production packages for individuals, creators and businesses. From €230 for on-location audio to full corporate production. Professional studio in Greystones, Wicklow.',
-    keywords: [
-      'podcast packages Ireland',
-      'podcast studio prices',
-      'video production packages',
-      'podcast recording price',
-      'corporate podcast production Ireland',
-      'corporate video production Wicklow',
-      'business podcast studio Dublin',
-      'corporate content production Ireland',
-      'employer branding video Ireland',
-    ],
   },
   contact: {
     title: 'Book a Session — High Tide Studios',
     description:
       'Get in touch with High Tide Studios. Book your podcast or video recording session in Greystones, Wicklow.',
-    keywords: [
-      'book podcast session',
-      'contact High Tide Studios',
-      'Greystones studio booking',
-      'podcast studio enquiry',
-    ],
   },
   booking: {
     title: 'Book Your Session — High Tide Studios',
     description:
       'Reserve your podcast or video production session at High Tide Studios Greystones. Secure your slot with a 10% deposit.',
-    keywords: [
-      'book podcast studio',
-      'podcast session booking',
-      'studio booking Greystones',
-    ],
   },
   voices: {
     title: 'Voices of Greystones | Community Stories | High Tide Studios',
     description:
       'Voices of Greystones is a community storytelling project preserving the voices, memories and conversations of people across Greystones. Produced by High Tide Studios.',
-    keywords: [
-      'Voices of Greystones',
-      'community podcast Greystones',
-      'Greystones stories podcast',
-      'Wicklow podcast studio',
-    ],
   },
   privacy: {
     title: 'Privacy & Cookie Policy — High Tide Studios',
     description:
       'Privacy and cookie information for High Tide Studios, including contact forms, booking enquiries, essential storage and optional embedded media.',
-    keywords: [
-      'High Tide Studios privacy',
-      'High Tide Studios cookies',
-      'studio privacy policy',
-    ],
   },
 };
 
@@ -220,13 +159,6 @@ export const structuredData = {
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
         opens: '09:00',
         closes: '18:00',
-      },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Saturday', 'Sunday'],
-        opens: '10:00',
-        closes: '16:00',
-        description: 'By appointment only',
       },
     ],
     image: 'https://hightidestudios.ie/og-image.jpg',
@@ -370,8 +302,8 @@ export const structuredData = {
     },
     offers: {
       '@type': 'Offer',
-      price: pkg.price.replace(/[^\d]/g, ''),
-      priceCurrency: 'EUR',
+      priceSpecification: getPriceSpecification(pkg),
+      description: `Starting price: ${pkg.price}${pkg.priceNote ? `, ${pkg.priceNote}` : ''}`,
       availability: 'https://schema.org/InStock',
     },
     areaServed: 'Ireland',

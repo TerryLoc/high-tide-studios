@@ -7,13 +7,16 @@ A professional website for **High Tide Studios** — a broadcast-ready podcast a
 - **Modern React 19** with functional components and hooks
 - **Bootstrap 5** for responsive, mobile-first design
 - **Framer Motion** animations for smooth page transitions
-- **SEO optimized** with meta tags, Open Graph, and JSON-LD structured data
+- **SEO optimized** with route-specific prerendered metadata, Open Graph, and JSON-LD structured data
+- **HTTP 404 handling** for unknown routes on Netlify
 - **Centralized configuration** in `src/config/site.js` for easy content management
 - **Lazy-loaded YouTube embeds** for better performance
 - **Booking system** with calendar, package selection, and 10% deposit calculation
 - **Optimized images** in WebP format with lazy loading
 
 ## 🚀 Quick Start
+
+Use Node.js 22.12 or newer.
 
 ```bash
 # Install dependencies
@@ -50,6 +53,10 @@ All site settings are centralized in `src/config/site.js`:
 - **Social links** (Instagram, YouTube)
 - **SEO defaults** (meta descriptions, keywords)
 - **Structured data** (JSON-LD for Google)
+
+The production build prerenders every route listed in `public/sitemap.xml` and
+generates a noindex `404.html` page. Keep the sitemap's URLs in sync with the
+public routes in `src/App.jsx`.
 
 ## 📦 Packages & Services
 

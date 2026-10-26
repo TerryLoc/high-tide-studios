@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { siteConfig, pageSEO, structuredData } from '../config/site';
 
@@ -6,7 +6,6 @@ export default function SEO({
   page = 'home',
   title,
   description,
-  keywords = [],
   noIndex = false,
   customTitle,
   customDescription,
@@ -26,18 +25,6 @@ export default function SEO({
     location.pathname === '/' ? '/' : location.pathname.replace(/\/+$/, '');
   const canonicalUrl = `${siteConfig.url}${cleanPath}`;
   const finalImage = `${siteConfig.url}${siteConfig.seo.ogImage}`;
-
-  const finalKeywords = useMemo(
-    () =>
-      Array.from(
-        new Set([
-          ...(pageData.keywords || []),
-          ...siteConfig.seo.keywords,
-          ...keywords,
-        ]),
-      ),
-    [pageData.keywords, keywords],
-  );
 
   useEffect(() => {
     document.title = brandedTitle;
@@ -72,7 +59,6 @@ export default function SEO({
     };
 
     setMeta('description', finalDescription);
-    setMeta('keywords', finalKeywords.join(', '));
     setMeta('author', siteConfig.fullName);
     setMeta(
       'robots',
@@ -97,15 +83,6 @@ export default function SEO({
       true,
     );
     setMeta('og:locale', 'en_IE', true);
-
-    setMeta('twitter:card', 'summary_large_image');
-    setMeta('twitter:title', brandedTitle);
-    setMeta('twitter:description', finalDescription);
-    setMeta('twitter:image', finalImage);
-    setMeta(
-      'twitter:image:alt',
-      `${siteConfig.name} — Professional Podcast & Video Studio`,
-    );
 
     setLink('canonical', canonicalUrl);
     setLink('alternate', canonicalUrl, { hreflang: 'en-IE' });
@@ -158,7 +135,6 @@ export default function SEO({
   }, [
     brandedTitle,
     finalDescription,
-    finalKeywords,
     noIndex,
     structuredDataType,
     structuredDataPayload,
@@ -169,23 +145,5 @@ export default function SEO({
     cleanPath,
   ]);
 
-  return null;
-}
-
-export function PreloadResources() {
-  useEffect(() => {
-    const preloads = [
-      { href: '/images/hero.webp', as: 'image', type: 'image/webp' },
-    ];
-    preloads.forEach(({ href, as, type }) => {
-      if (document.querySelector(`link[href="${href}"]`)) return;
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = as;
-      link.href = href;
-      if (type) link.type = type;
-      document.head.appendChild(link);
-    });
-  }, []);
   return null;
 }

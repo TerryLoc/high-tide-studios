@@ -105,7 +105,7 @@ export default function AnnouncementBanner() {
         />
         <span className="ht-banner-label">✦ Studio Special</span>
         <span className="ht-banner-sep">·</span>
-        Podcast packages from €650 + VAT
+        Four-episode podcast production from €650 + VAT
         <span className="ht-banner-sep">·</span>
         {[
           [timeLeft.d, 'd'],
